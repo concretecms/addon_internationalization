@@ -1,0 +1,99 @@
+<?php defined('C5_EXECUTE') or die("Access Denied.");
+
+Loader::model('section', 'multilingual');
+
+class DefaultLanguageHelper {
+
+
+	public function checkDefaultLanguage() {
+		$req = Request::get();
+		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
+			if (!$req->getRequestCollectionPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
+				$pkg = Package::getByHandle('multilingual');
+				if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
+					$ms = MultilingualSection::getByLanguage(DefaultLanguageHelper::getSessionDefaultLanguage());
+					if (is_object($ms)) {
+						header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
+						exit;
+					}
+				}
+			}
+		}
+	}
+	/*
+	 * To do the redirect to the browser language:
+	 *  - check the package's controller.php: it extends on_start to use checkdefaltlanguage() above.
+	 *       So this wil add a config option of "Default language is determined by User's browser." or "Detect default language from visitor's browser"
+	 *       Instead of adding another function to extend the on_start event, just add another check in the checkdefaultlanguage for the new config variable
+	 *       - get the browser's language with the zend library
+	 *       - see if there is a language for the browser
+	 *       - if yes, use that, otherwise use the default
+	 */
+	
+	// first checks to see if there is a cookie set with this
+	// otherwise we retrieve it from the sitewide multilingual settings
+	
+	public function getSessionDefaultLanguage() {
+		if ($_COOKIE['DEFAULT_LANGUAGE']) {
+			return $_COOKIE['DEFAULT_LANGUAGE'];
+		}
+		
+		
+		$pkg = Package::getByHandle('multilingual');
+		//
+		// This could set the cookie here but it does not. 
+		// If something wants to set the default language it should probably do that outside of here.
+		//
+		if ($pkg->config('TRY_BROWSER_LANGUAGE')) {
+			Loader::model('section','multilingual');
+			Loader::library('3rdparty/Zend/Locale');
+			$locale = new Zend_Locale();
+			$guestLanguage = $locale->getLanguage();
+			
+			if(is_object(MultilingualSection::getByLanguage($guestLanguage))){
+				return $guestLanguage;
+			}
+		}
+		
+		return $pkg->config('DEFAULT_LANGUAGE');
+	}
+	
+	public static function setupSiteInterfaceLocalization() {
+		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
+			$ms = MultilingualSection::getCurrentSection();
+			if (is_object($ms)) {
+				$language = $ms->getLanguage();
+				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $language . '.mo')) {
+					$loc = Localization::getInstance();
+					$loc->addSiteInterfaceLanguage($ms->getLanguage());
+				}
+			} else {
+				$language = DefaultLanguageHelper::getSessionDefaultLanguage();
+				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $language . '.mo')) {
+					$loc = Localization::getInstance();
+					$loc->addSiteInterfaceLanguage($language);
+				}
+			}
+		}
+		
+		echo var_dump($language);
+		/* nope 
+		// add package translations
+		//$pkg->setupPackageLocalization();
+		$language = 'fr_FR';
+		if(strlen($language)) {
+			$pl = PackageList::get();
+			$installed = $pl->getPackages(); 
+			$t = Localization::getInstance();
+			$translate = $t->getActiveTranslateObject();
+			foreach($installed as $ipkg) {
+				$path = $ipkg->getPackagePath() . '/' . DIRNAME_LANGUAGES;
+				if (file_exists($path . '/' . $language . '/LC_MESSAGES/messages.mo')) {
+					$translate->addTranslation($path . '/' . $language . '/LC_MESSAGES/messages.mo', $language);
+				}
+			}
+		}
+		*/
+		
+	}
+}

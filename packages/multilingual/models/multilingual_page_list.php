@@ -1,0 +1,40 @@
+<?
+
+defined('C5_EXECUTE') or die("Access Denied.");
+Loader::model("page_list");
+class MultilingualPageList extends PageList {
+
+	public function __construct() {
+		$mslist = MultilingualSection::getList();
+		$query = ',  (select mpRelationID from MultilingualPageRelations where cID = p1.cID) as mpr';
+		foreach($mslist as $ms) {
+			$query .= ', (select count(mpRelationID) from MultilingualPageRelations where MultilingualPageRelations.mpRelationID = mpr and mpLanguage = \'' . $ms->getLanguage() . '\') as relationCount'  . $ms->getCollectionID();
+		}
+		$this->setBaseQuery($query);
+	}
+	
+	public function filterByMissingTargets($targets) {
+		$haveStr .= '';
+		
+		if (count($targets) > 0) {
+			$haveStr .= '(';
+		}
+		
+		for ($i = 0; $i < count($targets); $i++) {
+			$t = $targets[$i];
+			$haveStr .= 'relationCount' . $t->getCollectionID() . ' = 0';
+			if (count($targets) > ($i + 1)) {
+				$haveStr .= ' or ';
+			}
+		}
+
+		if (count($targets) > 0) {
+			$haveStr .= ')';
+		}
+
+		if ($haveStr) {
+			$this->having(false, $haveStr);
+		}	
+	}
+	
+}

@@ -1,0 +1,311 @@
+msgid   ""
+msgstr  "Project-Id-Version: concrete5 CMS 1.0\n"
+        "Report-Msgid-Bugs-To: info@concrete5.org\n"
+        "POT-Creation-Date: 2011-08-25 17:29+0200\n"
+        "PO-Revision-Date: 2011-08-25 15:30+0000\n"
+        "Last-Translator: Michele Locati <mlocati@gmail.com>\n"
+        "Language-Team: \n"
+        "Language: it-IT\n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=UTF-8\n"
+        "Content-Transfer-Encoding: 8bit\n"
+        "X-Language: it-IT\n"
+        "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+        "X-Poedit-Language: Italian\n"
+        "X-Poedit-Country: Italy\n"
+
+#: blocks/switch_language/add.php:1 blocks/switch_language/controller.php:2
+#: blocks/switch_language/edit.php:1
+#: blocks/switch_language/templates/flags/view.php:1
+#: blocks/switch_language/templates/flags_set_default/view.php:1
+#: blocks/switch_language/tools/switch.php:1 blocks/switch_language/view.php:1
+#: controller.php:1
+msgid   "Access Denied."
+msgstr "Accesso negato."
+
+#: blocks/switch_language/controller.php:11
+msgid   "Adds a front-end language switcher to your website."
+msgstr "Aggiunge un selettore della lingua al tuo sito web."
+
+#: blocks/switch_language/controller.php:15
+msgid   "Switch Language"
+msgstr "Passa alla lingua"
+
+#: blocks/switch_language/controller.php:23
+#: single_pages/dashboard/multilingual/setup.php:37
+msgid   "Choose Language"
+msgstr "Seleziona una lingua"
+
+#: blocks/switch_language/form.php:3
+msgid   "Label"
+msgstr "Etichetta"
+
+#: blocks/switch_language/templates/flags_set_default/view.php:31
+msgid   "Remember my choice on this computer."
+msgstr "Ricorda la mia scelta su questo computer."
+
+#: blocks/switch_language/templates/flags_set_default/view.php:34
+msgid   "Save"
+msgstr "Salva"
+
+#: controller.php:10
+msgid   "Translate your site with this free multilingual solution."
+msgstr "Traduci il tuo sito con questa soluzione gratuita multilingua."
+
+#: controller.php:14
+msgid   "Internationalization"
+msgstr "Internazionalizzazione"
+
+#: controller.php:58
+msgid   "Multilingual Pages"
+msgstr "Pagine multilingua"
+
+#: controller.php:78
+msgid   "Multilingual"
+msgstr "Multilingua"
+
+#: controllers/dashboard/multilingual/page_report.php:73
+msgid   "You cannot assign this page to itself."
+msgstr "Non è possibile assegnare questa pagina a se stessa."
+
+#: controllers/dashboard/multilingual/page_report.php:93
+msgid   "The destination page doesn't appear to be in a valid multilingual section."
+msgstr ""
+"La pagina di destinazione non sembra essere in una sezione multilingua valida."
+
+#: controllers/dashboard/multilingual/page_report.php:104
+#: single_pages/dashboard/multilingual/page_report.php:92
+msgid   "Ignored"
+msgstr "Ignorato"
+
+#: controllers/dashboard/multilingual/page_report.php:130
+msgid   "Insufficient permissions."
+msgstr "Autorizzazioni insufficienti."
+
+#: controllers/dashboard/multilingual/setup.php:14
+msgid   "** Choose a Language"
+msgstr "** Scegli una lingua"
+
+#: controllers/dashboard/multilingual/setup.php:40
+msgid   "You must have admin privileges on the destination page to perform this action."
+msgstr ""
+"È necessario disporre di privilegi di amministratore per la pagina di "
+"destinazione per eseguire questa azione."
+
+#: controllers/dashboard/multilingual/setup.php:43
+msgid   "You cannot read the original page."
+msgstr "Non puoi leggere la pagina originale."
+
+#: controllers/dashboard/multilingual/setup.php:68
+msgid   "You must choose two separate, valid language sections."
+msgstr "È necessario selezionare due sezioni di lingua valide e differenti."
+
+#: controllers/dashboard/multilingual/setup.php:116
+msgid   "None"
+msgstr "Nessuno"
+
+#: controllers/dashboard/multilingual/setup.php:123
+msgid   "Multilingual content enabled"
+msgstr "Contenuto multilingua abilitato"
+
+#: controllers/dashboard/multilingual/setup.php:128
+msgid   "Multilingual content updated"
+msgstr "Contenuto multilingua aggiornato"
+
+#: controllers/dashboard/multilingual/setup.php:133
+msgid   "Multilingual tree copied."
+msgstr "Albero multilingua copiato."
+
+#: controllers/dashboard/multilingual/setup.php:138
+msgid   "Language section removed."
+msgstr "Sezione linguistica rimossa."
+
+#: controllers/dashboard/multilingual/setup.php:143
+msgid   "Default language settings updated."
+msgstr "Impostazioni della lingua predefinita aggiornate."
+
+#: controllers/dashboard/multilingual/setup.php:157
+#: controllers/dashboard/multilingual/setup.php:174
+msgid   "Invalid language section"
+msgstr "Sezione linguistica non valida"
+
+#: controllers/dashboard/multilingual/setup.php:185
+msgid   "You must specify a page for this multilingual content section."
+msgstr "È necessario specificare una pagina per questa sezione multilingua."
+
+#: controllers/dashboard/multilingual/setup.php:189
+msgid   "Invalid Page. You must specify a page directly under the home page."
+msgstr ""
+"Pagina non valida. È necessario specificare una pagina posta immediatamente "
+"sotto la pagina iniziale."
+
+#: controllers/dashboard/multilingual/setup.php:195
+msgid   "A language section page at this location already exists."
+msgstr "Una sezione linguistica esiste già in questa posizione."
+
+#: single_pages/dashboard/multilingual/page_report.php:3
+msgid   "Page Report"
+msgstr "Rapporto sulle pagine"
+
+#: single_pages/dashboard/multilingual/page_report.php:13
+msgid   "Choose Source"
+msgstr "Seleziona origine"
+
+#: single_pages/dashboard/multilingual/page_report.php:18
+msgid   "Choose Targets"
+msgstr "Seleziona destinazioni"
+
+#: single_pages/dashboard/multilingual/page_report.php:34
+msgid   "Show: "
+msgstr "Mostra: "
+
+#: single_pages/dashboard/multilingual/page_report.php:36
+msgid   "Missing Pages"
+msgstr "Pagine mancanti"
+
+#: single_pages/dashboard/multilingual/page_report.php:38
+msgid   "All Pages"
+msgstr "Tutte le pagine"
+
+#: single_pages/dashboard/multilingual/page_report.php:41
+msgid   "Go"
+msgstr "Vai"
+
+#: single_pages/dashboard/multilingual/page_report.php:101
+msgid   "Re-Map"
+msgstr "Ri-mappa"
+
+#: single_pages/dashboard/multilingual/page_report.php:103
+msgid   "Map"
+msgstr "Mappa"
+
+#: single_pages/dashboard/multilingual/page_report.php:108
+msgid   "Create"
+msgstr "Crea"
+
+#: single_pages/dashboard/multilingual/page_report.php:112
+msgid   "Ignore"
+msgstr "Ignora"
+
+#: single_pages/dashboard/multilingual/page_report.php:117
+msgid   "Create the parent page first."
+msgstr "Prima è necessario creare la pagina padre."
+
+#: single_pages/dashboard/multilingual/page_report.php:127
+msgid   "No pages found."
+msgstr "Nessuna pagina trovata."
+
+#: single_pages/dashboard/multilingual/page_report.php:164
+msgid   "Choose A Page"
+msgstr "Scegli una pagina"
+
+#: single_pages/dashboard/multilingual/page_report.php:187
+msgid   "You have not defined any multilingual sections for your site yet."
+msgstr "Non è stata ancora definita alcuna sezione multilingua per il sito."
+
+#: single_pages/dashboard/multilingual/setup.php:3
+msgid   "Multilingual Content Setup"
+msgstr "Impostazione del contenuto multilingua"
+
+#: single_pages/dashboard/multilingual/setup.php:5
+msgid   "Content Sections"
+msgstr "Sezioni di contenuto"
+
+#: single_pages/dashboard/multilingual/setup.php:13
+msgid   "Name"
+msgstr "Nome"
+
+#: single_pages/dashboard/multilingual/setup.php:14
+msgid   "Language"
+msgstr "Lingua"
+
+#: single_pages/dashboard/multilingual/setup.php:15
+msgid   "Path"
+msgstr "Percorso"
+
+#: single_pages/dashboard/multilingual/setup.php:32
+#: single_pages/dashboard/multilingual/setup.php:102
+#: single_pages/dashboard/multilingual/setup.php:129
+msgid   "You have not created any multilingual content sections yet."
+msgstr "Non è stata ancora creata alcuna sezione di contenuto multilingua."
+
+#: single_pages/dashboard/multilingual/setup.php:35
+msgid   "Add a Language"
+msgstr "Aggiungi una lingua"
+
+#: single_pages/dashboard/multilingual/setup.php:42
+msgid   "Language Icon"
+msgstr "Icona della lingua"
+
+#: single_pages/dashboard/multilingual/setup.php:44
+msgid   "Choose a Language"
+msgstr "Seleziona una lingua"
+
+#: single_pages/dashboard/multilingual/setup.php:48
+msgid   "Choose a Parent Page"
+msgstr "Seleziona una pagina padre"
+
+#: single_pages/dashboard/multilingual/setup.php:52
+msgid   "Add Content Section"
+msgstr "Aggiungi una sezione di contenuto"
+
+#: single_pages/dashboard/multilingual/setup.php:79
+msgid   "Copy Language Tree"
+msgstr "Copia albero per la gestione multilingua"
+
+#: single_pages/dashboard/multilingual/setup.php:81
+msgid   "Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section."
+msgstr ""
+"Copia tutte le pagine di una lingua in un'altra sezione. Verranno copiate "
+"solo le pagine che che non sono state ancora associate. Non verrà sostituita "
+"o eliminata alcuna pagina nella sezione di destinazione."
+
+#: single_pages/dashboard/multilingual/setup.php:93
+#, php-format
+msgid   "Copy from %s to %s"
+msgstr "Copia da %s a %s"
+
+#: single_pages/dashboard/multilingual/setup.php:96
+msgid   "Copy Tree"
+msgstr "Copia albero"
+
+#: single_pages/dashboard/multilingual/setup.php:100
+msgid   "You must have more than one multilingual section to use this tool."
+msgstr ""
+"È necessario avere più di una sezione multilingua per utilizzare questo "
+"strumento."
+
+#: single_pages/dashboard/multilingual/setup.php:107
+msgid   "Default Language"
+msgstr "Lingua predefinita"
+
+#: single_pages/dashboard/multilingual/setup.php:109
+msgid   "Set a default language section for your site."
+msgstr "Imposta una lingua predefinita del sito."
+
+#: single_pages/dashboard/multilingual/setup.php:111
+msgid   "** None Set"
+msgstr "** Nessuna selezione"
+
+#: single_pages/dashboard/multilingual/setup.php:122
+msgid   "Redirect home page to default language section."
+msgstr "Reindirizza la homepage alla pagina della lingua predefinita."
+
+#: single_pages/dashboard/multilingual/setup.php:125
+msgid   "Set Default"
+msgstr "Imposta la lingua predefinita"
+
+#: tools/switch_language_for_page.php:38
+#, php-format
+msgid   "%s: %s"
+msgstr "%s: %s"
+
+#: tools/switch_language_for_page.php:41
+#, php-format
+msgid   "Currently Viewing: %s"
+msgstr "Attualmente nella pagina: %s"
+
+#: tools/switch_language_for_page.php:42
+#, php-format
+msgid   "%s: None Created"
+msgstr "%s: nulla è stato creato"

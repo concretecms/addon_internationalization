@@ -1,0 +1,27 @@
+# 1.0.4
+Added German translation
+
+# 1.0.3
+- Added missing t() strings so package itself can be completely translated.
+- fixed db.xml schema problem for language block.
+
+# 1.0.2.3
+
+- Added Finnish translation
+
+# 1.0.2.2
+
+- Added Italian translation. One message and the two sub-pages didn't have
+translatable titles.
+
+# 1.0.2.1
+
+- Added French translation
+
+# 1.0.1
+
+- Removed error on page report if you don't have any multilingual sections enabled
+
+# 1.0
+
+Initial Version

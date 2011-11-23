@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: multilingual 1.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-13 11:45+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: cali <cali@concrete5.fr>\n"
+"Language-Team: concrete5 france <team@concrete5.fr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /home/cali/Téléchargements/multilingual\n"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controller.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/view.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/add.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/controller.php:2
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/edit.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/templates/flags/view.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/templates/flags_set_default/view.php:1
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/tools/switch.php:1
+msgid "Access Denied."
+msgstr "Accès refusé."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controller.php:10
+msgid "Translate your site with this free multilingual solution."
+msgstr "Traduisez votre site avec cette solution multilingue gratuite."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controller.php:14
+msgid "Internationalization"
+msgstr "Internationalisation"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controller.php:58
+msgid "Multilingual Pages"
+msgstr "Pages multilingues"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controller.php:78
+msgid "Multilingual"
+msgstr "Multilingue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/controller.php:11
+msgid "Adds a front-end language switcher to your website."
+msgstr "Ajouter un sélecteur de langage sur votre site web."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/controller.php:15
+msgid "Switch Language"
+msgstr "Sélectionner une langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/controller.php:23
+msgid "Choose Language"
+msgstr "Choisir une langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/form.php:3
+msgid "Label"
+msgstr "Titre"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/templates/flags_set_default/view.php:31
+msgid "Remember my choice on this computer."
+msgstr "Mémoriser mon choix."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/blocks/switch_language/templates/flags_set_default/view.php:34
+msgid "Save"
+msgstr "Enregistrer"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:14
+msgid "** Choose a Language"
+msgstr "** Choisissez une langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:40
+msgid "You must have admin privileges on the destination page to perform this action."
+msgstr "Vous devez avoir les privilèges d'administration sur la page de de destination pour effectuer cette action."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:43
+msgid "You cannot read the original page."
+msgstr "Vous ne pouvez pas lire la page originale."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:68
+msgid "You must choose two separate, valid language sections."
+msgstr "Vous devez sélectionner deux sections de langue séparées."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:116
+msgid "None"
+msgstr "Aucun"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:123
+msgid "Multilingual content enabled"
+msgstr "Contenu multilingue activé"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:128
+msgid "Multilingual content updated"
+msgstr "Contenu multilingue mis à jour"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:133
+msgid "Multilingual tree copied."
+msgstr "Arborescence multilingue copiée."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:138
+msgid "Language section removed."
+msgstr "Section linguistique supprimée."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:143
+msgid "Default language settings updated."
+msgstr "Paramétrage de la langue par défaut enregistré."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:157
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:174
+msgid "Invalid language section"
+msgstr "Section linguistique invalide"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:185
+msgid "You must specify a page for this multilingual content section."
+msgstr "Vous devez spécifier une page pour cette section multilingue."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:189
+msgid "Invalid Page. You must specify a page directly under the home page."
+msgstr "Page invalide. Vous devez spécifier une page située directement sous la page d'accueil."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/setup.php:195
+msgid "A language section page at this location already exists."
+msgstr "Une section linguistique existe déjà à cet emplacement."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/page_report.php:73
+msgid "You cannot assign this page to itself."
+msgstr "Vous ne pouvez assigner cette page sur elle même."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/page_report.php:93
+msgid "The destination page doesn't appear to be in a valid multilingual section."
+msgstr "La page de destination ne semble pas être dans une section multilingue valide."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/page_report.php:104
+msgid "Ignored"
+msgstr "Ignoré"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/controllers/dashboard/multilingual/page_report.php:130
+msgid "Insufficient permissions."
+msgstr "Permissions insuffisantes."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:3
+msgid "Multilingual Content Setup"
+msgstr "Paramétrage du contenu multilingue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:5
+msgid "Content Sections"
+msgstr "Sections de contenu"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:13
+msgid "Name"
+msgstr "Nom"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:14
+msgid "Language"
+msgstr "Langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:15
+msgid "Path"
+msgstr "Chemin"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:32
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:102
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:129
+msgid "You have not created any multilingual content sections yet."
+msgstr "Vous n'avez encore créé aucune section de contenu multilingue."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:35
+msgid "Add a Language"
+msgstr "Ajouter une langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:42
+msgid "Language Icon"
+msgstr "Icône de la langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:44
+msgid "Choose a Language"
+msgstr "Choisir une langue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:48
+msgid "Choose a Parent Page"
+msgstr "Choisir une page parente"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:52
+msgid "Add Content Section"
+msgstr "Ajouter une section de contenu"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:79
+msgid "Copy Language Tree"
+msgstr "Copier les arborescences pour la gestion multilingue"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:81
+msgid "Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section."
+msgstr "Copie toutes les pages d'une section linguistique vers un autre. Cela ne va copier que les pages qui n'ont pas été associées, et ne remplacera ou supprimera aucunes pages de la section de destination."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:93
+#, php-format
+msgid "Copy from %s to %s"
+msgstr "Copier de %s vers %s"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:96
+msgid "Copy Tree"
+msgstr "Effectuer la copie de l'arborescence"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:100
+msgid "You must have more than one multilingual section to use this tool."
+msgstr "Vous devez avoir plus qu'une seule section multilingue pour utiliser cette outil."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:107
+msgid "Default Language"
+msgstr "Langage par défaut."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:109
+msgid "Set a default language section for your site."
+msgstr "Paramétrer le langage par défaut de votre site."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:111
+msgid "** None Set"
+msgstr "** Aucune sélection"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:122
+msgid "Redirect home page to default language section."
+msgstr "Rediriger la page d'accueil sur la page de garde de la section de langue par défaut."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/setup.php:125
+msgid "Set Default"
+msgstr "Enregistrer la langue par défaut"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:3
+msgid "Page Report"
+msgstr "Rapport des pages"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:13
+msgid "Choose Source"
+msgstr "Choisir la source"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:18
+msgid "Choose Targets"
+msgstr "Choisir la destination"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:34
+msgid "Show: "
+msgstr "Afficher:"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:36
+msgid "Missing Pages"
+msgstr "Pages manquantes"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:38
+msgid "All Pages"
+msgstr "Toutes les pages"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:41
+msgid "Go"
+msgstr "Aller"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:101
+msgid "Re-Map"
+msgstr "Re-lier"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:103
+msgid "Map"
+msgstr "Lier"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:108
+msgid "Create"
+msgstr "Créer"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:112
+msgid "Ignore"
+msgstr "Ignorer"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:117
+msgid "Create the parent page first."
+msgstr "Créer une page parente d'abord."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:127
+msgid "No pages found."
+msgstr "Aucune page trouvée."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:164
+msgid "Choose A Page"
+msgstr "Choisir une page"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/single_pages/dashboard/multilingual/page_report.php:187
+msgid "You have not defined any multilingual sections for your site yet."
+msgstr "Vous n'avez pas encore défini de section multilingue sur votre site."
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/tools/switch_language_for_page.php:38
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/tools/switch_language_for_page.php:41
+#, php-format
+msgid "Currently Viewing: %s"
+msgstr "Actuellement sur la page: %s"
+
+#: /home/cali/TÃ©lÃ©chargements/multilingual/tools/switch_language_for_page.php:42
+#, php-format
+msgid "%s: None Created"
+msgstr "%s: Aucun(e) de créé(e)"
+

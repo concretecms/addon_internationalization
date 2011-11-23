@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Multilingual v.1.0.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-03 03:49+0100\n"
+"PO-Revision-Date: 2011-09-03 03:50+0100\n"
+"Last-Translator: Michael Jensen-Maar <maar@maargrafisk.dk>\n"
+"Language-Team: Danish <maar@maargrafisk.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: t\n"
+"X-Poedit-Basepath: \\\\192.168.89.101\\Concrete5\\Dansk\\multilingual\n"
+"Plural-Forms: nplurals=2; plural=0;\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SearchPath-0: \\\\192.168.89.101\\Concrete5\\Dansk\\multilingual\n"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/add.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/controller.php:2
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/edit.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/view.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/templates/flags/view.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/templates/flags_set_default/view.php:1
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/tools/switch.php:1
+msgid "Access Denied."
+msgstr "Adgang Nægtet."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:10
+msgid "Translate your site with this free multilingual solution."
+msgstr "Oversæt dit websted med denne gratis flersprogsløsning."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:14
+msgid "Internationalization"
+msgstr "Internationalisering"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:58
+msgid "Multilingual Pages"
+msgstr "Flersproget Sider"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:78
+msgid "Multilingual"
+msgstr "Flersproget"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:78
+msgid "Translate your site."
+msgstr "Oversæt din webside"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:83
+msgid "Setup"
+msgstr "Setup"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controller.php:87
+msgid "Page Report"
+msgstr "Side Rapport"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/controller.php:11
+msgid "Adds a front-end language switcher to your website."
+msgstr "Tilføjer en front-end sprog skifter til din hjemmeside."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/controller.php:15
+msgid "Switch Language"
+msgstr "Skift Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/controller.php:23
+msgid "Choose Language"
+msgstr "Vælg Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/form.php:3
+msgid "Label"
+msgstr "Label"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/templates/flags_set_default/view.php:31
+msgid "Remember my choice on this computer."
+msgstr "Husk mit valg på denne computer."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/blocks/switch_language/templates/flags_set_default/view.php:34
+msgid "Save"
+msgstr "Gem"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/page_report.php:73
+msgid "You cannot assign this page to itself."
+msgstr "Du kan ikke tildele denne side til sig selv."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/page_report.php:93
+msgid "The destination page doesn't appear to be in a valid multilingual section."
+msgstr "Destinationssiden synes ikke at være i en gyldig flersproget sektion."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/page_report.php:104
+msgid "Ignored"
+msgstr "Ignorerede"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/page_report.php:130
+msgid "Insufficient permissions."
+msgstr "Utilstrækkelig tilladelser."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:14
+msgid "** Choose a Language"
+msgstr "** Vælg et sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:40
+msgid "You must have admin privileges on the destination page to perform this action."
+msgstr "Du skal have administratorrettigheder på destinationen side for at udføre denne handling."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:43
+msgid "You cannot read the original page."
+msgstr "Du kan ikke læse den oprindelige side."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:68
+msgid "You must choose two separate, valid language sections."
+msgstr "Du skal vælge to separate, gyldige sprogsektioner."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:116
+msgid "None"
+msgstr "Ingen"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:123
+msgid "Multilingual content enabled"
+msgstr "Flersproget indhold aktiveret"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:128
+msgid "Multilingual content updated"
+msgstr "Flersproget indhold opdateret"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:133
+msgid "Multilingual tree copied."
+msgstr "Flersproget træ kopieret."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:138
+msgid "Language section removed."
+msgstr "Sprogsektion fjernet."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:143
+msgid "Default language settings updated."
+msgstr "Standard sprogindstillinger opdateret."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:157
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:174
+msgid "Invalid language section"
+msgstr "Ugyldigt sprogsektion"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:185
+msgid "You must specify a page for this multilingual content section."
+msgstr "Du skal angive en side for dette flersprogede indholds afsnit."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:189
+msgid "Invalid Page. You must specify a page directly under the home page."
+msgstr "Ugyldig side. Du skal angive en side direkte under startsiden."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/controllers/dashboard/multilingual/setup.php:195
+msgid "A language section page at this location already exists."
+msgstr "En sprogsektions side på dette sted, findes allerede."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:13
+msgid "Choose Source"
+msgstr "Vælg Kilde"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:18
+msgid "Choose Targets"
+msgstr "Vælg Mål"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:34
+msgid "Show: "
+msgstr "Vis:"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:36
+msgid "Missing Pages"
+msgstr "Manglende Sider"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:38
+msgid "All Pages"
+msgstr "Alle Sider"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:41
+msgid "Go"
+msgstr "Udfør"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:101
+msgid "Re-Map"
+msgstr "Re-Map"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:103
+msgid "Map"
+msgstr "Map"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:108
+msgid "Create"
+msgstr "Opret"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:112
+msgid "Ignore"
+msgstr "Ignorér"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:117
+msgid "Create the parent page first."
+msgstr "Opret den overordnede side først."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:127
+msgid "No pages found."
+msgstr "Ingen sider fundet."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:164
+msgid "Choose A Page"
+msgstr "Vælg en Side"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/page_report.php:187
+msgid "You have not defined any multilingual sections for your site yet."
+msgstr "Du har ikke defineret nogen flersproget sektioner til dit websted endnu."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:3
+msgid "Multilingual Content Setup"
+msgstr "Setup af Flersproget indhold"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:5
+msgid "Content Sections"
+msgstr "Indholds Sektioner"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:13
+msgid "Name"
+msgstr "Navn"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:14
+msgid "Language"
+msgstr "Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:15
+msgid "Path"
+msgstr "Sti"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:32
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:102
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:129
+msgid "You have not created any multilingual content sections yet."
+msgstr "Du har ikke oprettet nogen flersprogede indholds sektioner endnu."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:35
+msgid "Add a Language"
+msgstr "Tilføje et Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:42
+msgid "Language Icon"
+msgstr "Sprog Ikon"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:44
+msgid "Choose a Language"
+msgstr "Vælg et Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:48
+msgid "Choose a Parent Page"
+msgstr "Vælge en overordnet side"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:52
+msgid "Add Content Section"
+msgstr "Tilføj Indholds Sektion"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:79
+msgid "Copy Language Tree"
+msgstr "Kopier Sprog Træet"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:81
+msgid "Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section."
+msgstr "Kopiér alle sider fra et sprog til en anden sektion. Dette vil kun kopiere sider, der ikke har været associeret. Dette vil ikke erstatte eller fjerne sider fra destinations sektionen."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:93
+#, php-format
+msgid "Copy from %s to %s"
+msgstr "Kopier fra %s til %s"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:96
+msgid "Copy Tree"
+msgstr "Kopier Træ"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:100
+msgid "You must have more than one multilingual section to use this tool."
+msgstr "Du skal have mere end én flersproget sektion for at bruge dette værktøj."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:107
+msgid "Default Language"
+msgstr "Standard Sprog"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:109
+msgid "Set a default language section for your site."
+msgstr "Sæt en standardsprogs sektion for dit websted."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:111
+msgid "** None Set"
+msgstr "** Ingen Angivet"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:122
+msgid "Redirect home page to default language section."
+msgstr "Omdirigere hjemmesiden til standard sprogs sektion."
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/single_pages/dashboard/multilingual/setup.php:125
+msgid "Set Default"
+msgstr "Angiv Standard"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/tools/switch_language_for_page.php:38
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/tools/switch_language_for_page.php:41
+#, php-format
+msgid "Currently Viewing: %s"
+msgstr "I Øjeblikket Vises: %s"
+
+#: \\192.168.89.101\Concrete5\Dansk\multilingual/tools/switch_language_for_page.php:42
+#, php-format
+msgid "%s: None Created"
+msgstr "%s: Ingen Oprettet"
+
