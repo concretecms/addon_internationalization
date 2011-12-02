@@ -107,7 +107,8 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 <h1><span><?=t('Default Language')?></span></h1>
 <div class="ccm-dashboard-inner">
 <p><?=t('Set a default language section for your site.')?></p>
-<? if (count($pages) > 0) {
+	<? 
+	if (count($pages) > 0) {
 	$defaultLanguages = array('' => t('** None Set'));
 	foreach($pages as $pc) {
 		$pcl = MultilingualSection::getByID($pc->getCollectionID());
@@ -117,11 +118,13 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	
 	?>
 	<form method="post" action="<?=$this->action('set_default')?>">
+		<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
+		<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
+		
 		<p><? print $defaultLanguagesSelect; ?>
+		
 		<?=$form->checkbox('redirectHomeToDefaultLanguage', 1, $redirectHomeToDefaultLanguage)?>
 		<?=$form->label('redirectHomeToDefaultLanguage', t('Redirect home page to default language section.'))?><br /><br />
-		<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
-		<?=$form->label('useBrowserDetectedLanguage', t('Automatically use visitor language based on their browser information.'))?>
 		</p>
 		<?=Loader::helper('validation/token')->output('set_default')?>
 		<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
