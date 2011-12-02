@@ -20,6 +20,7 @@ class DefaultLanguageHelper {
 			}
 		}
 	}
+	
 	/*
 	 * To do the redirect to the browser language:
 	 *  - check the package's controller.php: it extends on_start to use checkdefaltlanguage() above.
@@ -34,8 +35,8 @@ class DefaultLanguageHelper {
 	// otherwise we retrieve it from the sitewide multilingual settings
 	
 	public function getSessionDefaultLanguage() {
-		if ($_COOKIE['DEFAULT_LANGUAGE']) {
-			return $_COOKIE['DEFAULT_LANGUAGE'];
+		if (isset($_SESSION['DEFAULT_LANGUAGE'])) {
+			return $_SESSION['DEFAULT_LANGUAGE'];
 		}
 		
 		
@@ -59,6 +60,9 @@ class DefaultLanguageHelper {
 	}
 	
 	public static function setupSiteInterfaceLocalization() {
+		
+		
+		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
 			$ms = MultilingualSection::getCurrentSection();
 			if (is_object($ms)) {
@@ -76,24 +80,18 @@ class DefaultLanguageHelper {
 			}
 		}
 		
-		echo var_dump($language);
-		/* nope 
 		// add package translations
-		//$pkg->setupPackageLocalization();
-		$language = 'fr_FR';
 		if(strlen($language)) {
+			$ms = MultilingualSection::getByLanguage($language);
 			$pl = PackageList::get();
 			$installed = $pl->getPackages(); 
-			$t = Localization::getInstance();
-			$translate = $t->getActiveTranslateObject();
-			foreach($installed as $ipkg) {
-				$path = $ipkg->getPackagePath() . '/' . DIRNAME_LANGUAGES;
-				if (file_exists($path . '/' . $language . '/LC_MESSAGES/messages.mo')) {
-					$translate->addTranslation($path . '/' . $language . '/LC_MESSAGES/messages.mo', $language);
+			foreach($installed as $pkg) {
+				if($pkg instanceof Package) {
+					$pkg->setupPackageLocalization($ms->msLanguage."_".$ms->msIcon, $ms->msLanguage);
 				}
-			}
+			}			
 		}
-		*/
+		
 		
 	}
 }

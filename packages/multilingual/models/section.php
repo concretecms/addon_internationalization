@@ -59,9 +59,11 @@ class MultilingualSection extends Page {
 		}
 	}
 	
+	/*
 	public function getSessionDefaultLanguage() {
 		return "en";
 	}
+	*/
 	
 	public function getLanguage() {return $this->msLanguage;}
 	public function getLanguageText($locale = ACTIVE_LOCALE) {

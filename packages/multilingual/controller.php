@@ -17,7 +17,10 @@ class MultilingualPackage extends Package {
 	public function on_start() {
 		define('DIRNAME_IMAGES_LANGUAGES', 'flags');
 		
+		// checks to see if the user should be redirected to the default language home page instead of the / home page.
 		Events::extend('on_start', 'DefaultLanguageHelper', 'checkDefaultLanguage', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
+		
+		// adds the site translation files to the translation library so strings wrapped in t('') will be translated
 		Events::extend('on_start', 'DefaultLanguageHelper', 'setupSiteInterfaceLocalization', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
 		
 		Events::extend('on_page_get_icon',

@@ -23,10 +23,11 @@ class SectionHelper {
 	public function getLanguage() {
 		$ms = MultilingualSection::getCurrentSection();
 		if (is_object($ms)) {
-			return $ms->getLanguage();
+			$lang = $ms->getLanguage();
 		} else {
-			return Loader::helper('default_language','multilingual')->getSessionDefaultLanguage();
+			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLanguage();
 		}
+		$_SESSION['DEFAULT_LANGUAGE'] = $lang;
+		return $lang;
 	}
-	
 }
