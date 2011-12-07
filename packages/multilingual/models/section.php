@@ -41,7 +41,9 @@ class MultilingualSection extends Page {
 		static $lang;
 		if (!isset($lang)) {
 			$c = Page::getCurrentPage();
-			$lang = self::getBySectionOfSite($c);	
+			if($c instanceof Page) {
+				$lang = self::getBySectionOfSite($c);
+			}
 		}
 		return $lang;
 	}

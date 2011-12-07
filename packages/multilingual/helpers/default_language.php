@@ -60,7 +60,11 @@ class DefaultLanguageHelper {
 	}
 	
 	public static function setupSiteInterfaceLocalization() {
-		
+		// don't translate dashboard pages
+		$c = Page::getCurrentPage();
+		if($c instanceof Page && Loader::helper('section', 'multilingual')->section('dashboard')) {
+			return;
+		}		
 		
 		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {

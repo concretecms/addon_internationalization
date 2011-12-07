@@ -1,0 +1,5 @@
+# ignore system files
+.DS_Store
+thumbs.db
+__MACOSX
+
