@@ -11,6 +11,10 @@
       <DEFAULT value="''"/>
     </field>
     <field name="msIcon" type="C" size="6"/>
+    <field name="msLocale" type="C" size="32">
+      <NOTNULL/>
+      <DEFAULT value=""/>
+    </field>
   </table>
   <table name="MultilingualPageRelations">
     <field name="mpRelationID" type="I" size="10">

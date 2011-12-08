@@ -107,7 +107,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 					$checked = "checked=\"checked\"";
 				}
 					
-				$html .= '<li><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" /><label for="languageIcon' . $i . '">' . $flag . ' ' . $value  . '</label></li>';
+				$html .= '<li><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" onchange="ccm_multilingualUpdateLocale(\''.$region.'\')" /><label for="languageIcon' . $i . '">' . $flag . ' ' . $value  . '</label></li>';
 				$i++;
 			}
 		}
@@ -149,7 +149,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 
 	public function set_default() {
 		if (Loader::helper('validation/token')->validate('set_default')) {
-			$lc = MultilingualSection::getByLanguage($this->post('defaultLanguage'));
+			$lc = MultilingualSection::getByLocale($this->post('defaultLanguage'));
 			if (is_object($lc)) {
 				$pkg = Package::getByHandle('multilingual');
 				$pkg->saveConfig('DEFAULT_LANGUAGE', $this->post('defaultLanguage'));				

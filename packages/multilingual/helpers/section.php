@@ -30,15 +30,20 @@ class SectionHelper {
 	/**
 	 * returns the current language
 	 * @return string
+	 * @deprecated
 	 */
 	public function getLanguage() {
+		return self::getLocale();
+	}
+	
+	public function getLocale() {
 		$ms = MultilingualSection::getCurrentSection();
 		if (is_object($ms)) {
-			$lang = $ms->getLanguage();
+			$lang = $ms->getLocale();
 		} else {
-			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLanguage();
+			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLocale();
 		}
-		$_SESSION['DEFAULT_LANGUAGE'] = $lang;
+		$_SESSION['DEFAULT_LOCALE'] = $lang;
 		return $lang;
 	}
 }

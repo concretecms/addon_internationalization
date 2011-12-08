@@ -109,7 +109,7 @@ class DashboardMultilingualPageReportController extends Controller {
 	public function create_page() {
 		Loader::model('section', 'multilingual');
 		if (Loader::helper('validation/token')->validate('create_page', $_POST['token'])) {
-			$ms = MultilingualSection::getByLanguage($_POST['language']);
+			$ms = MultilingualSection::getByLocale($_POST['language']);
 			$page = Page::getByID($_POST['sourceID']);
 			if (is_object($page) && !$page->isError()) {
 				// we get the related parent id

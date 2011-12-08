@@ -16,12 +16,11 @@ if (count($pages) > 0) { ?>
 		<th>&nbsp;</th>
 	</tr>
 	<? foreach($pages as $pc) { 
-		$pcl = MultilingualSection::getByID($pc->getCollectionID());
-		?>
+		$pcl = MultilingualSection::getByID($pc->getCollectionID()); ?>
 		<tr>
 			<td><?=$ch->getSectionFlagIcon($pc)?></td>
 			<td><a href="<?=$nav->getLinkToCollection($pc)?>"><?=$pc->getCollectionName()?></a></td>
-			<td><?=$pcl->getLanguageText()?></td>
+			<td><?=$pcl->getLanguageText()?> (<?php echo $pcl->getLocale();?>)</td>
 			<td><?=$pc->getCollectionPath()?></td>
 			<td><a href="<?=$this->action('remove_language_section', $pc->getCollectionID(), Loader::helper('validation/token')->generate())?>"><img src="<?=ASSETS_URL_IMAGES?>/icons/remove_minus.png" /></td>
 		</tr>
@@ -43,7 +42,6 @@ if (count($pages) > 0) { ?>
 	<div id="ccm-multilingual-language-icon">
 	<?=t('Choose a Language')?>
 	</div>
-	
 	<br/>
 	<h3><?=t('Choose a Parent Page')?></h3>
 	<?=Loader::helper('form/page_selector')->selectPage('pageID', '')?>
@@ -70,7 +68,7 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	if (lang && lang != '') {
 		$("#ccm-multilingual-language-icon").load('<?=$this->action("load_icons")?>', {'msLanguage': lang, 'selectedLanguageIcon': icon});
 	}
-}
+};
 
 </script>
 
@@ -112,7 +110,7 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	$defaultLanguages = array('' => t('** None Set'));
 	foreach($pages as $pc) {
 		$pcl = MultilingualSection::getByID($pc->getCollectionID());
-		$defaultLanguages[$pcl->getLanguage()] = $pcl->getLanguageText();
+		$defaultLanguages[$pcl->getLocale()] = $pcl->getLanguageText();
 	}
 	$defaultLanguagesSelect = $form->select('defaultLanguage', $defaultLanguages, $defaultLanguage);
 	

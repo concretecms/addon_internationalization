@@ -2,10 +2,28 @@
 
 defined('C5_EXECUTE') or die("Access Denied.");
 class MultilingualSection extends Page {
+	
+	/**
+	 * @var string
+	*/
+	public $msLocale;
+	
+	/**
+	 * @var string
+	*/
+	public $msIcon;
+	
+	/**
+	 * @var string
+	*/
+	public $msLanguage;
 
 	public static function assign($c, $language, $icon) {
 		$db = Loader::db();
-		$db->Replace('MultilingualSections', array('cID' => $c->getCollectionID(), 'msLanguage' => $language, 'msIcon' => $icon), array('cID'), true);
+		
+		$locale = $language . (strlen($icon)?'_'.$icon:'');
+		
+		$db->Replace('MultilingualSections', array('cID' => $c->getCollectionID(), 'msLanguage' => $language, 'msIcon' => $icon, 'msLocale' => $locale), array('cID'), true);
 	}
 	
 	public function unassign() {
@@ -13,18 +31,30 @@ class MultilingualSection extends Page {
 		$db->Execute('delete from MultilingualSections where cID = ?', array($this->getCollectionID()));
 	}
 
+	/**
+	 * returns an instance of  MultilingualSection for the given page ID
+	 * @param int $cID
+	 * @param int $cvID
+	 * @return MultilingualSection|false
+	*/
 	public static function getByID($cID, $cvID = 'RECENT') {
 		$r = self::isMultilingualSection($cID);
 		if ($r) {
 			$obj = parent::getByID($cID, $cvID, 'MultilingualSection');
 			$obj->msLanguage = $r['msLanguage'];
 			$obj->msIcon = $r['msIcon'];
+			$obj->msLocale = $r['msLocale'];
 			return $obj;
 		}
 
 		return false;
 	}
 	
+	/**
+	 * @param string $language
+	 * @return MultilingualSection|false
+	 * @deprecated
+	*/
 	public static function getByLanguage($language) {
 		$db = Loader::db();
 		$r = $db->GetRow('select cID, msLanguage, msIcon from MultilingualSections where msLanguage = ?', array($language));
@@ -37,6 +67,28 @@ class MultilingualSection extends Page {
 		return false;
 	}
 	
+	/**
+	 * @param string $language
+	 * @return MultilingualSection|false
+	*/
+	public function getByLocale($locale) {
+		$db = Loader::db();
+		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where msLocale = ?', array($locale));
+		if ($r && is_array($r) && $r['msLocale']) {
+			$obj = parent::getByID($r['cID'], 'RECENT', 'MultilingualSection');
+			$obj->msLanguage 	= $r['msLanguage'];
+			$obj->msIcon 		= $r['msIcon'];
+			$obj->msLocale 		= $r['msLocale'];
+			return $obj;
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * gets the MultilingualSection object for the current section of the site
+	 * @return MultilingualSection
+	 */
 	public static function getCurrentSection() {
 		static $lang;
 		if (!isset($lang)) {
@@ -48,6 +100,10 @@ class MultilingualSection extends Page {
 		return $lang;
 	}
 	
+	/**
+	 * @param Page $page
+	 * @return MultilingualSection
+	 */
 	public static function getBySectionOfSite($page) {
 		// looks at the page, traverses its parents until it finds the proper language
 		$nav = Loader::helper('navigation');
@@ -61,13 +117,8 @@ class MultilingualSection extends Page {
 		}
 	}
 	
-	/*
-	public function getSessionDefaultLanguage() {
-		return "en";
-	}
-	*/
-	
 	public function getLanguage() {return $this->msLanguage;}
+	public function getLocale() { return $this->msLocale; }
 	public function getLanguageText($locale = ACTIVE_LOCALE) {
 		if (!class_exists('Zend_Locale')) {
 			Loader::library('3rdparty/Zend/Locale');
@@ -211,7 +262,7 @@ class MultilingualSection extends Page {
 			$cID = $cID->getCollectionID();
 		}
 		$db = Loader::db();
-		$r = $db->GetRow('select cID, msLanguage, msIcon from MultilingualSections where cID = ?', array($cID));
+		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where cID = ?', array($cID));
 		if ($r && is_array($r) && $r['msLanguage']) {
 			return $r;
 		} else {

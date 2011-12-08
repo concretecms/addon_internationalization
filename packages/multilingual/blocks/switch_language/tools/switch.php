@@ -13,7 +13,7 @@ if (isset($_POST['ccmMultilingualSiteDefaultLanguage'])) {
 	if (empty($_POST['ccmMultilingualSiteRememberDefault'])) {
 		 setcookie('DEFAULT_LANGUAGE', '', time() - 3600, DIR_REL . '/');
 	}
-	$lang = MultilingualSection::getByLanguage($_REQUEST['ccmMultilingualSiteDefaultLanguage']);
+	$lang = MultilingualSection::getByLocale($_REQUEST['ccmMultilingualSiteDefaultLanguage']);
 	
 } else {
 	$lang = MultilingualSection::getByID($_REQUEST['ccmMultilingualChooseLanguage']);

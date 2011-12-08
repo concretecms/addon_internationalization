@@ -48,7 +48,7 @@ class SwitchLanguageBlockController extends BlockController {
 		
 		$pkg = Package::getByHandle('multilingual');
 		$mdl = Loader::helper('default_language', 'multilingual');
-		$this->set('defaultLanguage', $mdl->getSessionDefaultLanguage());
+		$this->set('defaultLanguage', $mdl->getSessionDefaultLocale());
 		$this->set('cID', $c->getCollectionID());
 
 	}
