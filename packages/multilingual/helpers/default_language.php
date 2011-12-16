@@ -68,27 +68,29 @@ class DefaultLanguageHelper {
 		$c = Page::getCurrentPage();
 		if($c instanceof Page && Loader::helper('section', 'multilingual')->section('dashboard')) {
 			return;
-		}		
+		}
+		
+		$ms = MultilingualSection::getCurrentSection();
+		if (is_object($ms)) {
+			$locale = $ms->getLocale();
+		} else {
+			$locale = DefaultLanguageHelper::getSessionDefaultLocale();
+		}
+		
+		// change core language to translate e.g. core blocks/themes
+		if (strlen($locale)) {
+			Localization::changeLocale($locale);
+		}
 		
 		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
-			$ms = MultilingualSection::getCurrentSection();
-			if (is_object($ms)) {
-				$locale = $ms->getLocale();
-				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
-					$loc = Localization::getInstance();
-					$loc->addSiteInterfaceLanguage($locale);
-				}
-			} else {
-				$locale = DefaultLanguageHelper::getSessionDefaultLocale();
-				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
-					$loc = Localization::getInstance();
-					$loc->addSiteInterfaceLanguage($locale);
-				}
+			if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
+				$loc = Localization::getInstance();
+				$loc->addSiteInterfaceLanguage($locale);
 			}
 		}
 		
-		// add package translations, won't happen if the DIR_LANGUAGES_SITE_INTERFACE directory doen't exits...
+		// add package translations
 		if(strlen($locale)) {
 			$ms = MultilingualSection::getByLocale($locale);		
 			if($ms instanceof MultilingualSection) {
@@ -99,8 +101,7 @@ class DefaultLanguageHelper {
 						$pkg->setupPackageLocalization($ms->getLocale());
 					}
 				}
-			}			
+			}
 		}
-		
 	}
 }
