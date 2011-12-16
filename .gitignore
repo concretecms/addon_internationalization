@@ -2,29 +2,3 @@
 .DS_Store
 thumbs.db
 __MACOSX
-
-# Aptana studio
-.project
-.settings/**
-
-# Concrete5 project folder (no symlinks in windows)
-index.php
-blocks/**
-concrete/**
-config/**
-controllers/**
-css/**
-elements/**
-files/**
-helpers/**
-jobs/**
-js/**
-languages/**
-libraries/**
-mail/**
-models/**
-page_types/**
-single_pages/**
-themes/**
-tools/**
-updates/**
