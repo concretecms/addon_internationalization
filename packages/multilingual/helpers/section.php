@@ -1,5 +1,4 @@
-<?
-
+<?php
 Loader::Model('section', 'multilingual');
 
 class SectionHelper {
@@ -25,6 +24,14 @@ class SectionHelper {
 		} else {
 			return $s == $this->section;
 		}
+	}
+	
+	
+	public function getSectionByLocale($locale = NULL) {
+		if(!strlen($locale)) {
+			$locale = self::getLocale();
+		}
+		return MultilingualSection::getByLocale($locale);
 	}
 	
 	/**
