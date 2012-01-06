@@ -31,5 +31,9 @@
       <KEY/>
       <NOTNULL/>
     </field>
+    <field name="mpLocale" type="C" size="32">
+      <NOTNULL/>
+      <DEFAULT value=""/>
+    </field>
   </table>
 </schema>

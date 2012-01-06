@@ -11,7 +11,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		$list = MultilingualSection::getList();
 		$sections = array();
 		foreach($list as $pc) {
-			$sections[$pc->getCollectionID()] = $pc->getLanguageText();
+			$sections[$pc->getCollectionID()] = $pc->getLanguageText() . " (".$pc->getLocale().")";
 		}
 		$this->set('sections', $sections);
 		$this->set('sectionList', $list);
@@ -87,7 +87,7 @@ class DashboardMultilingualPageReportController extends Controller {
 					MultilingualSection::assignAdd($page);
 				}
 				
-				MultilingualSection::relatePage($page, $destPage, $ms->getLanguage());
+				MultilingualSection::relatePage($page, $destPage, $ms->getLocale());
 				print '<a href="' . Loader::helper("navigation")->getLinkToCollection($destPage) . '">' . $destPage->getCollectionName() . '</a>';
 			} else {
 				print '<span class="ccm-error">' . t("The destination page doesn't appear to be in a valid multilingual section.").'</span>';
@@ -100,7 +100,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		Loader::model('section', 'multilingual');
 		if (Loader::helper('validation/token')->validate('ignore_page', $_POST['token'])) {
 			$page = Page::getByID($_POST['sourceID']);
-			MultilingualSection::ignorePageRelation($page, $_POST['language']);
+			MultilingualSection::ignorePageRelation($page, $_POST['locale']);
 			print t('Ignored');
 		}
 		exit;
@@ -109,7 +109,8 @@ class DashboardMultilingualPageReportController extends Controller {
 	public function create_page() {
 		Loader::model('section', 'multilingual');
 		if (Loader::helper('validation/token')->validate('create_page', $_POST['token'])) {
-			$ms = MultilingualSection::getByLocale($_POST['language']);
+			$ms = MultilingualSection::getByLocale($_POST['locale']);
+			
 			$page = Page::getByID($_POST['sourceID']);
 			if (is_object($page) && !$page->isError()) {
 				// we get the related parent id

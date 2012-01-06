@@ -23,7 +23,8 @@ if (count($sections) > 0) { ?>
 		}
 		?>
 		<span class="ccm-multilingual-page-report-target">
-			<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?><?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText())?>
+			<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?>
+			<?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText(). " (".$sc->getLocale().")")?>
 		</span>
 	<? } ?>
 	
@@ -56,13 +57,14 @@ if (count($sections) > 0) { ?>
 		<tr>
 			<th><?
 				$sourceMS = MultilingualSection::getByID($sectionID);
-				print $sourceMS->getLanguageText();
+				print $sourceMS->getLanguageText(); echo " (".$sourceMS->getLocale().")";
 			
 			?></th>
 			<? foreach($targetList as $sc) { ?>
 				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
 					<th><?
 						print $sc->getLanguageText();
+						echo " (".$sc->getLocale().")";
 					?></th>
 				<? } ?>
 			<? } ?>
@@ -83,7 +85,7 @@ if (count($sections) > 0) { ?>
 			<td><a href="<?=$nav->getLinkToCollection($pc)?>"><?=$pc->getCollectionName()?></a></td>
 			<? foreach($targetList as $sc) { ?>
 				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
-					<td id="node-<?=$pc->getCollectionID()?>-<?=$sc->getLanguage()?>"><?
+					<td id="node-<?=$pc->getCollectionID()?>-<?=$sc->getLocale()?>"><?
 						$cID = $sc->getTranslatedPageID($pc);
 						if ($cID) { 
 							$p = Page::getByID($cID);
@@ -105,11 +107,11 @@ if (count($sections) > 0) { ?>
 						?>
 						<form>
 							<? if (!$cID) { ?>
-								<input style="font-size: 10px" type="button" value="<?=t('Create')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLanguage()?>" name="ccm-multilingual-create-page" />
+								<input style="font-size: 10px" type="button" value="<?=t('Create')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-create-page" />
 							<? } ?>
-							<input style="font-size: 10px" type="button" value="<?=$assignLang?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLanguage()?>" name="ccm-multilingual-assign-page" />
+							<input style="font-size: 10px" type="button" value="<?=$assignLang?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-assign-page" />
 							<? if ($cID !== '0' && !$cID) { ?>
-								<input style="font-size: 10px" type="button" value="<?=t('Ignore')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLanguage()?>" name="ccm-multilingual-ignore-page" />
+								<input style="font-size: 10px" type="button" value="<?=t('Ignore')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-ignore-page" />
 							<? } ?>
 						</form>
 						
@@ -176,10 +178,10 @@ ccm_multilingualAssignPage = function(cID, cName) {
 	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("assign_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("assign_page")?>', 'sourceID': srcID, 'destID': cID});
 }
 ccm_multilingualCreatePage = function(srcID, destLang) {
-	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("create_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("create_page")?>', 'sourceID': srcID, 'language': destLang});
+	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("create_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("create_page")?>', 'sourceID': srcID, 'locale': destLang});
 }
 ccm_multilingualIgnorePage = function(srcID, destLang) {
-	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("ignore_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("ignore_page")?>', 'sourceID': srcID, 'language': destLang});
+	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("ignore_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("ignore_page")?>', 'sourceID': srcID, 'locale': destLang});
 }
 
 </script>
