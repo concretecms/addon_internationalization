@@ -92,4 +92,11 @@ class MultilingualPackage extends Package {
 		BlockType::installBlockTypeFromPackage('switch_language', $pkg);
 
 	}
+
+
+	public function upgrade() {
+		parent::upgrade();
+		//@todo write conversion from lang to locale
+	}
+
 }
