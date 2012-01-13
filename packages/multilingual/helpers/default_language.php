@@ -76,7 +76,6 @@ class DefaultLanguageHelper {
 			}
 		}
 		
-		echo var_dump($language);
 		/* nope 
 		// add package translations
 		//$pkg->setupPackageLocalization();
