@@ -1,8 +1,13 @@
 <? defined('C5_EXECUTE') or die("Access Denied.");?>
+<style>
+table.ccm-results-list {
+margin-top: 15px;
+}
 
-<h1><span><?=t("Multilingual Content Setup")?></span></h1>
-<div class="ccm-dashboard-inner">
-<h2><?=t('Content Sections')?></h2>
+</style>
+<?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'),false, false, false); ?>
+<div class="ccm-pane-body">
+<legend><?=t('Content Sections')?></legend>
 <? 
 $nav = Loader::helper('navigation');
 if (count($pages) > 0) { ?>
@@ -30,30 +35,31 @@ if (count($pages) > 0) { ?>
 <? } else { ?>
 	<p><?=t('You have not created any multilingual content sections yet.')?></p>
 <? } ?>
-<form method="post" action="<?=$this->action('add_content_section')?>">
-	<h2><?=t('Add a Language')?></h2>
-	
-	<h3><?=$form->label('msLanguage', t('Choose Language'))?></h3>
-	<div><?=$form->select('msLanguage', $locales);?></div>
-	
-	<br/>
-	
-	<h3><?=t('Language Icon')?></h3>
-	<div id="ccm-multilingual-language-icon">
-	<?=t('Choose a Language')?>
-	</div>
-	<br/>
-	<h3><?=t('Choose a Parent Page')?></h3>
-	<?=Loader::helper('form/page_selector')->selectPage('pageID', '')?>
-	<br/>
-	<?=Loader::helper('validation/token')->output('add_content_section')?>
-	<?=Loader::helper('concrete/interface')->submit(t('Add Content Section'), 'add', 'left')?>
+<form method="post" action="<?=$this->action('add_content_section')?>" class="form-stacked">
+	<fieldset>
+		<legend><?=t('Add a Language')?></legend>
+		<div class="clearfix">
+			<label for="msLanguage"><?=$form->label('msLanguage', t('Choose Language'))?></label>
+			<div class="input">
+				<?=$form->select('msLanguage', $locales);?>
+			</div>
+		</div>
+		<label><?=t('Language Icon')?></label>
+		<div class="clearfix">
+			<div id="ccm-multilingual-language-icon">
+			</div>
+		</div>
+		<legend><?=t('Choose a Parent Page')?></legend>
+		<?=Loader::helper('form/page_selector')->selectPage('pageID', '')?>
+		<br/>
+		<?=Loader::helper('validation/token')->output('add_content_section')?>
+		<?=Loader::helper('concrete/interface')->submit(t('Add Content Section'), 'add', 'left')?>
+	</fieldset>
 </form>
 
 <style type="text/css">
 ul.ccm-multilingual-choose-flag {list-style-type: none;}
 ul.ccm-multilingual-choose-flag li img {vertical-align: middle;}
-
 </style>
 
 <script type="text/javascript">
@@ -72,12 +78,11 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 
 </script>
 
-</div>
 
-<h1><span><?=t('Copy Language Tree')?></span></h1>
-<div class="ccm-dashboard-inner">
-<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
-<? if (count($pages) > 1) {
+
+
+<form method="post" action="<?=$this->action('copy_tree')?>" class="form-stacked">
+	<? if (count($pages) > 1) {
 	$copyLanguages = array();
 	foreach($pages as $pc) {
 		$pcl = MultilingualSection::getByID($pc->getCollectionID());
@@ -87,12 +92,14 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
 	
 	?>
-	<form method="post" action="<?=$this->action('copy_tree')?>">
-		<p><?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?>
-		</p>
-		<?=Loader::helper('validation/token')->output('copy_tree')?>
-		<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
-		
+		<fieldset>
+		<legend><?=t('Copy Language Tree')?></legend>
+	<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
+			<p><?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?>
+			</p>
+			<?=Loader::helper('validation/token')->output('copy_tree')?>
+			<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
+		</fieldset>
 	</form>
 <? } else if (count($pages) == 1) { ?>
 	<p><?=t("You must have more than one multilingual section to use this tool.")?></p>
@@ -100,13 +107,8 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	<p><?=t('You have not created any multilingual content sections yet.')?></p>
 <? } ?>
 
-</div>
 
-<h1><span><?=t('Default Language')?></span></h1>
-<div class="ccm-dashboard-inner">
-<p><?=t('Set a default language section for your site.')?></p>
-	<? 
-	if (count($pages) > 0) {
+<? if (count($pages) > 0) {
 	$defaultLanguages = array('' => t('** None Set'));
 	foreach($pages as $pc) {
 		$pcl = MultilingualSection::getByID($pc->getCollectionID());
@@ -126,10 +128,9 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 		</p>
 		<?=Loader::helper('validation/token')->output('set_default')?>
 		<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
-		
 	</form>
 <? } else { ?>
 	<p><?=t('You have not created any multilingual content sections yet.')?></p>
 <? } ?>
-
 </div>
+<div class="ccm-pane-footer"></div>

@@ -5,7 +5,7 @@ Loader::controller('/dashboard/base');
 Loader::model('section', 'multilingual');
 class DashboardMultilingualSetupController extends DashboardBaseController {
 
-	public $helpers = array('form'); 
+	public $helpers = array('form');
 	
 	public function view() {
 		Loader::library('3rdparty/Zend/Locale');
