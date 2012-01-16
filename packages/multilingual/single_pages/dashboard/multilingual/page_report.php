@@ -1,51 +1,96 @@
 <? defined('C5_EXECUTE') or die("Access Denied.");?>
-
-<h1><span><?=t('Page Report')?></span></h1>
-<div class="ccm-dashboard-inner">
+<?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
+<style>
+	.ccm-pane form.form-stacked {
+	margin-bottom: 30px;
+}
+.ccm-pane-body ul.input-list {
+	list-style-type: none;
+	margin-left: 0px;
+	margin: 0px;
+	}
+	
+.ccm-pane ul.input-list li {
+	list-style-type: none;
+	margin: 0px;
+	}
+	
+.ccm-pane ul.input-list li label img.ccm-region-flag {
+	margin: 5px 0px -4px 5px;
+	}
+</style>
+<div class="ccm-pane-body">
 <?
 $fh = Loader::helper('interface/flag', 'multilingual');
 $nav = Loader::helper('navigation');
 if (count($sections) > 0) { ?>
-	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form">
-
+	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
+		<fieldset>
+			<div class="clearfix">
+				<legend><?=t('Choose Source')?></legend> 
+				<div class="input" style="margin-top: 15px;">
+					<?=$form->select('sectionIDSelect', $sections, $sectionID)?>
+				</div>
+			</div>
+			<div class="clearfix">
+			<legend style="margin: 20px 0px 10px 0px;"><?=t('Choose Targets')?></legend>
+			<? foreach($sectionList as $sc) { ?>
+				<? $args = array('style' => 'vertical-align: middle');
+				if ($sectionID == $sc->getCollectionID()) {
+					$args['disabled'] = 'disabled';
+				}
+				?>
+					<?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText(). " (".$sc->getLocale().")")?>
+					<div class="input">
+						<ul class="input-list">
+							<li>
+								<label>
+									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?>
+								</label>
+							</li>						
+						</ul>
+					</div>
+			<? } ?>
+			
+			</div>
+		
+			<div class="clearfix">
+				<label style="margin-top: 15px;"><?=t('Show: ')?></label>
+				<div class="input">
+					<ul class="inputs-list">
+						<li>
+							<label>
+								<?=$form->label('showAllPages', t('Missing Pages'))?><span><?=$form->radio('showAllPages', 0, 0)?></span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<?=$form->label('showAllPages', t('All Pages'))?><span><?=$form->radio('showAllPages', 1, false)?></span>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+				
+									
+									
+				
+				
+				
+				
+		
+		<div class="clearfix">
+			<div class="input" style="margin-top: 10px;">
+				<?=$form->submit('submitForm', t('Go'))?>
+				<?=$form->hidden('sectionID', $sectionID); ?>
+			</div>
+		</div>
+			
 	
-	<span class="ccm-multilingual-page-report-section">
-	<strong><?=t('Choose Source')?></strong> <?=$form->select('sectionIDSelect', $sections, $sectionID)?>
-	</span>
-	
-	<span class="ccm-multilingual-page-report-section">
-	
-	<strong><?=t('Choose Targets')?></strong>
-	<? foreach($sectionList as $sc) { ?>
-		<? $args = array('style' => 'vertical-align: middle');
-		if ($sectionID == $sc->getCollectionID()) {
-			$args['disabled'] = 'disabled';
-		}
-		?>
-		<span class="ccm-multilingual-page-report-target">
-			<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?>
-			<?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText(). " (".$sc->getLocale().")")?>
-		</span>
-	<? } ?>
-	
-	</span>
-
-	<span class="ccm-multilingual-page-report-section">
-	
-	<strong><?=t('Show: ')?></strong>
-	<?=$form->radio('showAllPages', 0, 0)?>
-	<?=$form->label('showAllPages', t('Missing Pages'))?>
-	<?=$form->radio('showAllPages', 1, false)?>
-	<?=$form->label('showAllPages', t('All Pages'))?>
-
-	
-	<?=$form->submit('submitForm', t('Go'))?>
-	<?=$form->hidden('sectionID', $sectionID); ?>
-	
-	</span>
-
-	
-	<div style="clear: both">&nbsp;</div>
+		
+			
+			<div style="clear: both">&nbsp;</div>
+		</fieldset>
 	</form>
 	<? if (count($pages) > 0) { ?>
 		<?=$pl->displaySummary()?>
@@ -106,6 +151,7 @@ if (count($sections) > 0) { ?>
 								}
 						?>
 						<form>
+							<fieldset>
 							<? if (!$cID) { ?>
 								<input style="font-size: 10px" type="button" value="<?=t('Create')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-create-page" />
 							<? } ?>
@@ -113,6 +159,7 @@ if (count($sections) > 0) { ?>
 							<? if ($cID !== '0' && !$cID) { ?>
 								<input style="font-size: 10px" type="button" value="<?=t('Ignore')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-ignore-page" />
 							<? } ?>
+							</fieldset>
 						</form>
 						
 						<? } else { ?>
@@ -188,4 +235,7 @@ ccm_multilingualIgnorePage = function(srcID, destLang) {
 <? } else { ?>
 	<p><?=t('You have not defined any multilingual sections for your site yet.')?></p>
 <? } ?>
+
 </div>
+<div class="ccm-pane-footer"></div>
+<?=Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false);?>

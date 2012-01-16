@@ -84,7 +84,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 		// and we return html for all regions in that language
 		$locales = Zend_Locale::getLocaleList();
 		$countries = array();
-		$html = '<ul class="ccm-multilingual-choose-flag">';
+		$html = '<div class="clearfix"><label></label><ul class="ccm-multilingual-choose-flag inputs-list">';
 		
 		foreach($locales as $locale => $none) {
 			$zl = new Zend_Locale($locale);
@@ -107,7 +107,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 					$checked = "checked=\"checked\"";
 				}
 					
-				$html .= '<li><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" onchange="ccm_multilingualUpdateLocale(\''.$region.'\')" /><label for="languageIcon' . $i . '">' . $flag . ' ' . $value  . '</label></li>';
+				$html .= '<li><label><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" onchange="ccm_multilingualUpdateLocale(\''.$region.'\')" />  ' . $flag . '   <span>    ' . $value  . ' </span> </li>';
 				$i++;
 			}
 		}
