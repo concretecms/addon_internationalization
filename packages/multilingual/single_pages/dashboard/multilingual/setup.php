@@ -2,12 +2,37 @@
 <style>
 table.ccm-results-list {
 margin-top: 15px;
+margin-bottom: 0px;
+}
+
+.ccm-pane-body form.form-stacked {
+padding-left: 0px;
+margin-bottom: 30px;
+}
+
+.ccm-multilingual-choose-flag  li {
+clear: left;
+float: left;
+margin: 5px 0px 5px 0px;
+}
+
+.ccm-multilingual-choose-flag  li label {
+	float: left;
+	margin: -5px 0px 0px 20px;
+}
+
+.ccm-multilingual-choose-flag  li input {
+	float: left;
+}
+
+select#defaultLanguage {
+	margin-top: 10px;
 }
 
 </style>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'),false, false, false); ?>
 <div class="ccm-pane-body">
-<legend><?=t('Content Sections')?></legend>
+<h3 style="font-weight: normal;"><?=t('Content Sections')?></h3>
 <? 
 $nav = Loader::helper('navigation');
 if (count($pages) > 0) { ?>
@@ -49,7 +74,7 @@ if (count($pages) > 0) { ?>
 			<div id="ccm-multilingual-language-icon">
 			</div>
 		</div>
-		<legend><?=t('Choose a Parent Page')?></legend>
+		<legend style="margin-top: 20px;"><?=t('Choose a Parent Page')?></legend>
 		<?=Loader::helper('form/page_selector')->selectPage('pageID', '')?>
 		<br/>
 		<?=Loader::helper('validation/token')->output('add_content_section')?>
@@ -94,11 +119,16 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	?>
 		<fieldset>
 		<legend><?=t('Copy Language Tree')?></legend>
-	<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
-			<p><?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?>
-			</p>
-			<?=Loader::helper('validation/token')->output('copy_tree')?>
-			<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
+		<div class="clearfix">
+			<label><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></label>
+			<div class="input" style="margin: 15px 0px 15px 0px;">
+				<p><?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?></p>
+			</div>
+			<div class="input">
+				<?=Loader::helper('validation/token')->output('copy_tree')?>
+				<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
+			</div>
+		</div>
 		</fieldset>
 	</form>
 <? } else if (count($pages) == 1) { ?>
@@ -117,20 +147,51 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	$defaultLanguagesSelect = $form->select('defaultLanguage', $defaultLanguages, $defaultLanguage);
 	
 	?>
-	<form method="post" action="<?=$this->action('set_default')?>">
-		<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
-		<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
-		
-		<p><? print $defaultLanguagesSelect; ?>
-		
-		<?=$form->checkbox('redirectHomeToDefaultLanguage', 1, $redirectHomeToDefaultLanguage)?>
-		<?=$form->label('redirectHomeToDefaultLanguage', t('Redirect home page to default language section.'))?><br /><br />
-		</p>
-		<?=Loader::helper('validation/token')->output('set_default')?>
-		<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
+	<form method="post" action="<?=$this->action('set_default')?> class="form-stacked">
+		<fieldset style="padding-top: 0px;">
+			<div class="clearfix">
+				<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
+				<div class="input">
+					<ul class="inputs-list">
+						<li>
+							<label>
+								<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
+							<label>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix">
+				<?=$form->label('redirectHomeToDefaultLanguage', t('Redirect home page to default language section.'))?>
+				<div class="input">
+					<ul class="inputs-list">
+						<li>
+							<label>
+								<?=$form->checkbox('redirectHomeToDefaultLanguage', 1, $redirectHomeToDefaultLanguage)?>
+							<label>
+						</li>
+					</ul>
+				</div>
+			</div>
+				<div class="clearfix">
+					<label>Select a default Language</label>
+						<div class="input">
+							<? print $defaultLanguagesSelect; ?>
+						</div>
+				</div>
+				<div class="clearfix">
+					<div class="input">
+						<?=Loader::helper('validation/token')->output('set_default')?>
+						<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
+					</div>
+				</div>
+			</div>
+		</fieldset>
 	</form>
 <? } else { ?>
 	<p><?=t('You have not created any multilingual content sections yet.')?></p>
 <? } ?>
-</div>
 <div class="ccm-pane-footer"></div>
+</div>
+
+<?=Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false);?>
