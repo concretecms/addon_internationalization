@@ -1,42 +1,12 @@
 <? defined('C5_EXECUTE') or die("Access Denied.");?>
-<style>
-table.ccm-results-list {
-margin-top: 15px;
-margin-bottom: 0px;
-}
 
-.ccm-pane-body form.form-stacked {
-padding-left: 0px;
-margin-bottom: 30px;
-}
-
-.ccm-multilingual-choose-flag  li {
-clear: left;
-float: left;
-margin: 5px 0px 5px 0px;
-}
-
-.ccm-multilingual-choose-flag  li label {
-	float: left;
-	margin: -5px 0px 0px 20px;
-}
-
-.ccm-multilingual-choose-flag  li input {
-	float: left;
-}
-
-select#defaultLanguage {
-	margin-top: 10px;
-}
-
-</style>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'),false, false, false); ?>
 <div class="ccm-pane-body">
-<h3 style="font-weight: normal;"><?=t('Content Sections')?></h3>
+<h3 style="font-weight: normal; margin-left: 20px;"><?=t('Content Sections')?></h3>
 <? 
 $nav = Loader::helper('navigation');
 if (count($pages) > 0) { ?>
-	<table class="ccm-results-list" style="width: auto">
+	<table class="ccm-results-list" style="width: auto; margin-left: 20px;">
 	<thead>
 	<tr>
 		<th>&nbsp;</th>
@@ -106,7 +76,7 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 
 
 
-<form method="post" action="<?=$this->action('copy_tree')?>" class="form-stacked">
+<form method="post" action="<?=$this->action('copy_tree')?>" class="form-stacked" style="margin-top: 30px;">
 	<? if (count($pages) > 1) {
 	$copyLanguages = array();
 	foreach($pages as $pc) {
@@ -148,7 +118,7 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	
 	?>
 	<form method="post" action="<?=$this->action('set_default')?> class="form-stacked">
-		<fieldset style="padding-top: 0px;">
+		<fieldset>
 			<div class="clearfix">
 				<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
 				<div class="input">

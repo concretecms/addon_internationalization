@@ -2,7 +2,6 @@
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
 <style>
 	.ccm-pane form.form-stacked {
-	padding-left: 0px;
 	margin-bottom: 30px;
 }
 .ccm-pane-body ul.input-list {
