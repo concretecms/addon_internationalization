@@ -5,6 +5,8 @@ class SwitchLanguageBlockController extends BlockController {
 	protected $btInterfaceWidth = "300";
 	protected $btInterfaceHeight = "150";
 	protected $btTable = 'btMultilingualSwitchLanguage';
+	protected $btWrapperClass = 'ccm-ui';
+	
 	public $helpers = array('form');
 	
 	public function getBlockTypeDescription() {
