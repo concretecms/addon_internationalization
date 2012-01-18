@@ -24,48 +24,47 @@
 $fh = Loader::helper('interface/flag', 'multilingual');
 $nav = Loader::helper('navigation');
 if (count($sections) > 0) { ?>
-	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
-		<fieldset>
+	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form">
 			<div class="clearfix">
-				<legend><?=t('Choose Source')?></legend> 
-				<div class="input" style="margin-top: 15px;">
+				<label for='sectionIDSelect'><?=t('Choose Source')?></label>
+				<div class="input">
 					<?=$form->select('sectionIDSelect', $sections, $sectionID)?>
 				</div>
 			</div>
 			<div class="clearfix">
-			<legend style="margin: 20px 0px 10px 0px;"><?=t('Choose Targets')?></legend>
-			<? foreach($sectionList as $sc) { ?>
-				<? $args = array('style' => 'vertical-align: middle');
-				if ($sectionID == $sc->getCollectionID()) {
-					$args['disabled'] = 'disabled';
-				}
-				?>
-					<?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText(). " (".$sc->getLocale().")")?>
-					<div class="input">
-						<ul class="input-list">
-							<li>
-								<label>
-									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?>
-								</label>
-							</li>						
-						</ul>
-					</div>
-			<? } ?>
-			
+			<label><?=t('Choose Targets')?></label>
+			<div class="input">
+				<ul class="input-list">
+				<? foreach($sectionList as $sc) { ?>
+					<? $args = array('style' => 'vertical-align: middle');
+					if ($sectionID == $sc->getCollectionID()) {
+						$args['disabled'] = 'disabled';
+					}
+					?>
+								<li>
+									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?>
+									<span><?=$sc->getLanguageText()." (".$sc->getLocale().")"?> <span style='vertical-align: middle'><?=$fh->getSectionFlagIcon($sc)?></span></span>
+								</li>	
+				<? } ?>
+								
+							</ul>
+						</div>
 			</div>
 		
 			<div class="clearfix">
-				<label style="margin-top: 15px;"><?=t('Show: ')?></label>
+				<label><?=t('Show: ')?></label>
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
-								<?=$form->label('showAllPages', t('Missing Pages'))?><span><?=$form->radio('showAllPages', 0, 0)?></span>
+								<?=$form->radio('showAllPages', 0, 0)?>
+								<span><?=t('Missing Pages')?></span>
 							</label>
 						</li>
 						<li>
 							<label>
-								<?=$form->label('showAllPages', t('All Pages'))?><span><?=$form->radio('showAllPages', 1, false)?></span>
+								<?=$form->radio('showAllPages', 1, false)?>
+								<span><?=t('All Pages')?></span>
 							</label>
 						</li>
 					</ul>
