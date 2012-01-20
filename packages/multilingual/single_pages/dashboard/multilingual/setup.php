@@ -2,14 +2,14 @@
 
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'),false, false, false); ?>
 <div class="ccm-pane-body">
-	<h3 style="font-weight: normal; margin-left: 20px;"><?=t('Content Sections')?></h3>
+	<h3><?=t('Content Sections')?></h3>
 	<? 
 	$nav = Loader::helper('navigation');
 	if (count($pages) > 0) { ?>
-		<table class="ccm-results-list" style="width: auto; margin-left: 20px;">
+		<table class="ccm-results-list">
 			<thead>
 				<tr>
-					<th>&nbsp;</th>
+					<th style="width:  18px">&nbsp;</th>
 					<th style="width: 200px"><?=t("Name")?></td>
 					<th style="width: 150px"><?=t('Language')?></th>
 					<th style="width: 150px"><?=t('Path')?></th>
@@ -89,7 +89,7 @@
 	</script>
 	
 	
-	<form method="post" action="<?=$this->action('copy_tree')?>" style="margin-top: 30px;">
+	<form method="post" action="<?=$this->action('copy_tree')?>" style="margin-top: 30px;" class='form-stacked'>
 		<?php
 		if (count($pages) > 1) {
 			$copyLanguages = array();
@@ -105,11 +105,11 @@
 				<div class="clearfix">
 					<label><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></label>
 					<div class="input" style="margin: 15px 0px 15px 0px;">
-						<p><?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?></p>
-					</div>
-					<div class="input">
-						<?=Loader::helper('validation/token')->output('copy_tree')?>
-						<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
+						<p>
+							<?=t('Copy from %s to %s', $copyLanguageSelect1, $copyLanguageSelect2)?>
+							<?=Loader::helper('validation/token')->output('copy_tree')?>
+							<?=Loader::helper('concrete/interface')->submit(t('Go'), 'copy', 'left')?>
+						</p>
 					</div>
 				</div>
 			</fieldset>
@@ -131,22 +131,19 @@
 		<form method="post" action="<?=$this->action('set_default')?>">
 			<fieldset>
 				<div class="clearfix">
-					<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
-					<div class="input">
-						<ul class="inputs-list">
-							<li>
-								<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix">
-					<?=$form->label('redirectHomeToDefaultLanguage', t('Redirect home page to default language section.'))?>
+					<?=$form->label('', t('Behavior'))?>
 					<div class="input">
 						<ul class="inputs-list">
 							<li>
 								<label>
+									<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
+									<?=t('Attempt to use visitor\'s language based on their browser information.')?>
+								</label>
+							</li>
+							<li>
+								<label>
 									<?=$form->checkbox('redirectHomeToDefaultLanguage', 1, $redirectHomeToDefaultLanguage)?>
+									<?=t('Redirect home page to default language section.')?>
 								<label>
 							</li>
 						</ul>
