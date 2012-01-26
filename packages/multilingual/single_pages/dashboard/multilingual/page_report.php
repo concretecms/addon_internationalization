@@ -3,25 +3,6 @@ $fh = Loader::helper('interface/flag', 'multilingual');
 $nav = Loader::helper('navigation');
 ?>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
-<style>
-	.ccm-pane form.form-stacked {
-	margin-bottom: 30px;
-}
-.ccm-pane-body ul.input-list {
-	list-style-type: none;
-	margin-left: 0px;
-	margin: 0px;
-	}
-	
-.ccm-pane ul.input-list li {
-	list-style-type: none;
-	margin: 0px;
-	}
-	
-.ccm-pane ul.input-list li label img.ccm-region-flag {
-	margin: 5px 0px -4px 5px;
-	}
-</style>
 <div class="ccm-pane-body">
 <?
 if (count($sections) > 0) { ?>
@@ -58,7 +39,6 @@ if (count($sections) > 0) { ?>
 						</ul>
 					</div>
 			<? } ?>
-			
 			</div>
 		</fieldset>
 		<fieldset class="span4">
@@ -179,14 +159,6 @@ if (count($sections) > 0) { ?>
 		</tbody>
 		</table>
 		<?=$pl->displayPaging()?>
-	</form>
-	
-<style type="text/css">
-.ccm-multilingual-page-report-target {margin-right: 16px; }
-.ccm-multilingual-page-report-target img, ccm-multilingual-page-report-target input {margin-right: 4px; vertical-align: middle;}
-.ccm-multilingual-page-report-section {float: left; height: 20px;  margin-right: 30px; white-space: nowrap; margin-bottom: 16px; line-height: 24px}
-table.ccm-results-list td {padding-top: 12px; padding-bottom: 12px}
-</style>
 
 <script type="text/javascript">
 

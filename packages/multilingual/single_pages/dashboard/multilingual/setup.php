@@ -151,10 +151,9 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 			</div>
 		</fieldset>
 	</form>
-<? } else { ?>
-	<p><?=t('You have not created any multilingual content sections yet.')?></p>
-<? } ?>
-<div class="ccm-pane-footer"></div>
+	<? } else { ?>
+		<p><?=t('You have not created any multilingual content sections yet.')?></p>
+	<? } ?>
 </div>
-
+<div class="ccm-pane-footer"></div>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false);?>
