@@ -7,6 +7,10 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 
 	public $helpers = array('form');
 	
+	public function on_before_render() {
+		$this->addHeaderItem(Loader::helper('html')->css('dashboard/multilingual.css','multilingual'));
+	}
+	
 	public function view() {
 		Loader::library('3rdparty/Zend/Locale');
 		Loader::library('content_localization', 'multilingual');

@@ -3,8 +3,8 @@
 class MultilingualPackage extends Package {
 
 	protected $pkgHandle = 'multilingual';
-	protected $appVersionRequired = '5.4.2';
-	protected $pkgVersion = '1.1alpha';
+	protected $appVersionRequired = '5.5';
+	protected $pkgVersion = '1.1beta';
 	
 	public function getPackageDescription() {
 		return t('Translate your site with this free multilingual solution.');
@@ -97,6 +97,28 @@ class MultilingualPackage extends Package {
 	public function upgrade() {
 		parent::upgrade();
 		//@todo write conversion from lang to locale
+		//1.0 - 1.1 changed languaage to locale
+		$db = Loader::db();
+		// update the MultiLingualSections table
+		$rows = $db->getAll("SELECT * FROM MultiLingualSections");
+		if(is_array($rows) && count($rows)) {
+			foreach($rows as $r) {
+				if(strlen($r['msLanguage']) && !strlen($row['msLocale'])) {
+					$locale = $r['msLanguage'].(strlen($r['msIcon'])?"_".$r['msIcon']:"");					
+					$db->query("UPDATE MultiLingualSections SET msLocale = ? WHERE cID = ?",array($locale, $r['cID']));
+				}
+			}
+		}
+		
+		// update the MultiLingualPageRelations table
+		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");
+		if(!$hasLocales) {
+			$query = "UPDATE MultiLingualPageRelations mpr, MultilingualSections 
+				SET mpr.mpLocale = MultilingualSections.msLocale
+				WHERE mpr.mpLanguage = MultilingualSections.msLanguage";
+			$db->query($query);
+		}
+		
 	}
 
 }

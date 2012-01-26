@@ -6,6 +6,10 @@ class DashboardMultilingualPageReportController extends Controller {
 
 	public $helpers = array('form');
 	
+	public function on_before_render() {
+		$this->addHeaderItem(Loader::helper('html')->css('dashboard/multilingual.css','multilingual'));
+	}
+	
 	public function view() {
 		Loader::model('section', 'multilingual');
 		$list = MultilingualSection::getList();

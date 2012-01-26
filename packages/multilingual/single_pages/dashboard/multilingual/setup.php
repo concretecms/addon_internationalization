@@ -2,15 +2,14 @@
 
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'),false, false, false); ?>
 <div class="ccm-pane-body">
-<h3 style="font-weight: normal; margin-left: 20px;"><?=t('Content Sections')?></h3>
+<h3><?=t('Content Sections')?></h3>
 <? 
 $nav = Loader::helper('navigation');
 if (count($pages) > 0) { ?>
 	<table class="ccm-results-list" style="width: auto; margin-left: 20px;">
-	<thead>
 	<tr>
 		<th>&nbsp;</th>
-		<th style="width: 200px"><?=t("Name")?></td>
+		<th style="width: 200px"><?=t("Name")?></th>
 		<th style="width: 150px"><?=t('Language')?></th>
 		<th style="width: 150px"><?=t('Path')?></th>
 		<th>&nbsp;</th>
@@ -22,7 +21,7 @@ if (count($pages) > 0) { ?>
 			<td><a href="<?=$nav->getLinkToCollection($pc)?>"><?=$pc->getCollectionName()?></a></td>
 			<td><?=$pcl->getLanguageText()?> (<?php echo $pcl->getLocale();?>)</td>
 			<td><?=$pc->getCollectionPath()?></td>
-			<td><a href="<?=$this->action('remove_language_section', $pc->getCollectionID(), Loader::helper('validation/token')->generate())?>"><img src="<?=ASSETS_URL_IMAGES?>/icons/remove_minus.png" /></td>
+			<td><a href="<?=$this->action('remove_language_section', $pc->getCollectionID(), Loader::helper('validation/token')->generate())?>"><img src="<?=ASSETS_URL_IMAGES?>/icons/remove_minus.png" /></a></td>
 		</tr>
 	<? } ?>
 	</table>
@@ -51,11 +50,6 @@ if (count($pages) > 0) { ?>
 		<?=Loader::helper('concrete/interface')->submit(t('Add Content Section'), 'add', 'left')?>
 	</fieldset>
 </form>
-
-<style type="text/css">
-ul.ccm-multilingual-choose-flag {list-style-type: none;}
-ul.ccm-multilingual-choose-flag li img {vertical-align: middle;}
-</style>
 
 <script type="text/javascript">
 $(function() {
@@ -117,43 +111,42 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	$defaultLanguagesSelect = $form->select('defaultLanguage', $defaultLanguages, $defaultLanguage);
 	
 	?>
-	<form method="post" action="<?=$this->action('set_default')?> class="form-stacked">
+	<form method="post" action="<?=$this->action('set_default')?>" class="form-stacked">
 		<fieldset>
 			<div class="clearfix">
-				<?=$form->label('useBrowserDetectedLanguage', t('Attempt to use visitor\'s language based on their browser information.'))?>
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
 								<?=$form->checkbox('useBrowserDetectedLanguage', 1, $useBrowserDetectedLanguage)?>
-							<label>
+								<span><?php echo t('Attempt to use visitor\'s language based on their browser information.') ?></span>
+							</label>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="clearfix">
-				<?=$form->label('redirectHomeToDefaultLanguage', t('Redirect home page to default language section.'))?>
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
 								<?=$form->checkbox('redirectHomeToDefaultLanguage', 1, $redirectHomeToDefaultLanguage)?>
-							<label>
+								<span><?php echo t('Redirect home page to default language section.') ?></span>
+							</label>
 						</li>
 					</ul>
 				</div>
 			</div>
-				<div class="clearfix">
-					<label>Select a default Language</label>
-						<div class="input">
-							<? print $defaultLanguagesSelect; ?>
-						</div>
+			<div class="clearfix">
+				<label><?php echo t('Select a default Language');?></label>
+				<div class="input">
+					<? print $defaultLanguagesSelect; ?>
 				</div>
-				<div class="clearfix">
-					<div class="input">
-						<?=Loader::helper('validation/token')->output('set_default')?>
-						<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
-					</div>
+			</div>
+			<div class="clearfix">
+				<div class="input">
+					<?=Loader::helper('validation/token')->output('set_default')?>
+					<?=Loader::helper('concrete/interface')->submit(t('Set Default'), 'set_default', 'left')?>
 				</div>
 			</div>
 		</fieldset>

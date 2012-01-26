@@ -1,4 +1,7 @@
-<? defined('C5_EXECUTE') or die("Access Denied.");?>
+<? defined('C5_EXECUTE') or die("Access Denied.");
+$fh = Loader::helper('interface/flag', 'multilingual');
+$nav = Loader::helper('navigation');
+?>
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
 <style>
 	.ccm-pane form.form-stacked {
@@ -21,31 +24,35 @@
 </style>
 <div class="ccm-pane-body">
 <?
-$fh = Loader::helper('interface/flag', 'multilingual');
-$nav = Loader::helper('navigation');
 if (count($sections) > 0) { ?>
 	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
-		<fieldset>
+		<div class="row">
+		<fieldset class="span4">
+			<legend><?=t('Choose Source')?></legend> 
 			<div class="clearfix">
-				<legend><?=t('Choose Source')?></legend> 
 				<div class="input" style="margin-top: 15px;">
 					<?=$form->select('sectionIDSelect', $sections, $sectionID)?>
 				</div>
 			</div>
+		</fieldset>
+		<fieldset class="span4">
+			<legend><?=t('Choose Targets')?></legend>
 			<div class="clearfix">
-			<legend style="margin: 20px 0px 10px 0px;"><?=t('Choose Targets')?></legend>
 			<? foreach($sectionList as $sc) { ?>
 				<? $args = array('style' => 'vertical-align: middle');
 				if ($sectionID == $sc->getCollectionID()) {
 					$args['disabled'] = 'disabled';
 				}
 				?>
-					<?=$form->label('targets[' . $sc->getCollectionID() . ']', $sc->getLanguageText(). " (".$sc->getLocale().")")?>
 					<div class="input">
-						<ul class="input-list">
+						<ul class="inputs-list">
 							<li>
 								<label>
-									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?><?=$fh->getSectionFlagIcon($sc)?>
+									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?>
+									<span>
+										<?=$fh->getSectionFlagIcon($sc)?>
+										<?=$sc->getLanguageText(). " (".$sc->getLocale().")"; ?>
+									</span>
 								</label>
 							</li>						
 						</ul>
@@ -53,51 +60,44 @@ if (count($sections) > 0) { ?>
 			<? } ?>
 			
 			</div>
-		
+		</fieldset>
+		<fieldset class="span4">
+			<legend><?=t('Display')?></legend>
 			<div class="clearfix">
-				<label style="margin-top: 15px;"><?=t('Show: ')?></label>
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
-								<?=$form->label('showAllPages', t('Missing Pages'))?><span><?=$form->radio('showAllPages', 0, 0)?></span>
+								<?=$form->radio('showAllPages', 0, 0)?> 
+								<span><?php echo t('Only Missing Pages')?></span>
 							</label>
 						</li>
 						<li>
 							<label>
-								<?=$form->label('showAllPages', t('All Pages'))?><span><?=$form->radio('showAllPages', 1, false)?></span>
+								<?=$form->radio('showAllPages', 1, false)?>
+								<span><?php echo t('All Pages') ?></span>
 							</label>
 						</li>
 					</ul>
 				</div>
 			</div>
-				
-									
-									
-				
-				
-				
-				
-		
-		<div class="clearfix">
-			<div class="input" style="margin-top: 10px;">
-				<?=$form->submit('submitForm', t('Go'))?>
-				<?=$form->hidden('sectionID', $sectionID); ?>
-			</div>
-		</div>
-			
-	
-		
-			
-			<div style="clear: both">&nbsp;</div>
 		</fieldset>
+		<fieldset class="span2">
+			<div class="clearfix">
+				<div class="input" style="margin-top: 10px;">
+					<?=$form->submit('submitForm', t('Go'))?>
+					<?=$form->hidden('sectionID', $sectionID); ?>
+				</div>
+			</div>
+		</fieldset>
+		</div>
 	</form>
 	<? if (count($pages) > 0) { ?>
 		<?=$pl->displaySummary()?>
 	<? } ?>
 	
 	
-		<table class="ccm-results-list" cellspacing="0" cellpadding="0" border="0">
+		<table class="ccm-results-list" cellspacing="0" cellpadding="0" border="0" id="ccm-multilingual-page-report-results">
 		<thead>
 		<tr>
 			<th><?

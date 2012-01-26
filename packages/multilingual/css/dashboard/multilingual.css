@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+ul.ccm-multilingual-choose-flag {list-style-type: none;}
+ul.ccm-multilingual-choose-flag li img {vertical-align: middle;}
+
+#ccm-multilingual-page-report-form img.ccm-region-flag {vertical-align: bottom;}
+#ccm-multilingual-page-report-results fieldset, #ccm-multilingual-page-report-results form { padding-top: 0; margin-bottom: 0;}
