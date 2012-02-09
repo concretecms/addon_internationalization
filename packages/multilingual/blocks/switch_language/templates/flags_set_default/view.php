@@ -17,6 +17,7 @@ $ih = Loader::helper("interface/flag", 'multilingual');
 	<input type="radio" name="ccmMultilingualSiteDefaultLanguage" value="<?=$ml->getLocale()?>"  <? if ($defaultLanguage == $ml->getLocale()) { ?> checked="checked" <? } ?> /><?
 		print $ih->getSectionFlagIcon($ml);	
 		print $ml->getLanguageText($ml->getLanguage());
+		print ' ' . (strlen($ml->msIcon)?'('.$ml->msIcon.')':'');
 	?></div>
 	
 <? } ?>
