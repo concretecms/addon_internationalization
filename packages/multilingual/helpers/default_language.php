@@ -9,12 +9,15 @@ class DefaultLanguageHelper {
 		$req = Request::get();
 		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
 			if (!$req->getRequestCollectionPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
-				$pkg = Package::getByHandle('multilingual');
-				if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
-					$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
-					if (is_object($ms)) {
-						header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
-						exit;
+				$p = $req->getCurrentPage();
+				if (is_object($p) && (!$p->isError())) { 
+					$pkg = Package::getByHandle('multilingual');
+					if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
+						$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
+						if (is_object($ms)) {
+							header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
+							exit;
+						}
 					}
 				}
 			}
