@@ -4,7 +4,7 @@ class MultilingualPackage extends Package {
 
 	protected $pkgHandle = 'multilingual';
 	protected $appVersionRequired = '5.5';
-	protected $pkgVersion = '1.1beta';
+	protected $pkgVersion = '1.1.1';
 	
 	public function getPackageDescription() {
 		return t('Translate your site with this free multilingual solution.');

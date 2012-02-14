@@ -1,3 +1,7 @@
+# 1.1.1
+- Improved 5.5 UI
+- Fixed bug where 404 pages would be redirected to default language page
+
 # 1.1
  - changed translations to work off of locale instead of language
  - locale browser detection

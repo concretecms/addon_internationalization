@@ -9,6 +9,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 	
 	public function on_before_render() {
 		$this->addHeaderItem(Loader::helper('html')->css('dashboard/multilingual.css','multilingual'));
+		parent::on_before_render();
 	}
 	
 	public function view() {
@@ -88,7 +89,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 		// and we return html for all regions in that language
 		$locales = Zend_Locale::getLocaleList();
 		$countries = array();
-		$html = '<div class="input"><ul class="ccm-multilingual-choose-flag inputs-list">';
+		$html = '';
 		
 		foreach($locales as $locale => $none) {
 			$zl = new Zend_Locale($locale);
@@ -110,15 +111,13 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 				} else if ($i == 1 && (!$this->post('selectedLanguageIcon'))) {
 					$checked = "checked=\"checked\"";
 				}
-					
-				$html .= '<li><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" onchange="ccm_multilingualUpdateLocale(\''.$region.'\')" /><span>'.$flag.$value.'</span></li>';
+				$html .= '<li><label><input type="radio" name="msIcon" ' . $checked . ' id="languageIcon' . $i . '" value="' . $region . '" onchange="ccm_multilingualUpdateLocale(\''.$region.'\')" /><span class="image-wrapper">' . $flag . ''.$value.'</span></label></li>';
 				$i++;
 			}
 		}
 	
-		$html .= '</ul>';
 		if ($i == 1) {
-			$html = "<div class='input noicons'>".t('None')."</div>";
+			$html = "<li><label><span><strong>".t('None')."</strong></span></label></li>";
 		}
 
 
