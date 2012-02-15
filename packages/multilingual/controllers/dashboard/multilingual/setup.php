@@ -6,6 +6,7 @@ Loader::model('section', 'multilingual');
 class DashboardMultilingualSetupController extends DashboardBaseController {
 
 	public $helpers = array('form');
+	protected $pagesToCopy = array();
 	
 	public function on_before_render() {
 		$this->addHeaderItem(Loader::helper('html')->css('dashboard/multilingual.css','multilingual'));
@@ -33,6 +34,20 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 		$this->set('redirectHomeToDefaultLanguage', $pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE'));
 		$this->set('useBrowserDetectedLanguage', $pkg->config('TRY_BROWSER_LANGUAGE'));
 	}
+
+	function populateCopyArray($startingPage) {
+		$db = Loader::db();
+		$cID = $startingPage->getCollectionID();
+		$q = "select cID from Pages where cParentID = ? order by cDisplayOrder asc";
+		$r = $db->query($q, array($cID));
+		while ($row = $r->fetchRow()) {
+			$c = Page::getByID($row['cID'], 'RECENT');
+			if (!$c->getAttribute('multilingual_exclude_from_copy')) { 
+				$this->pagesToCopy[] = $c;
+				$this->populateCopyArray($c);
+			}
+		}
+	}
 	
 	public function copy_tree() {
 		set_time_limit(0);
@@ -52,11 +67,9 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 				if (!$this->error->has()) {
 					// duplicate all into the new node
 					$ms = MultilingualSection::getByID($this->post('copyTreeTo'));
-					$children = $oc->getCollectionChildrenArray();
-				
-					foreach($children as $ccID) {
+					$this->populateCopyArray($oc);
 					
-						$cc = Page::getByID($ccID, 'RECENT');
+					foreach($this->pagesToCopy as $cc) {
 						$trcID = $ms->getTranslatedPageID($cc);
 						if (!$trcID) {
 							// this page doesn't exist in the new tree. So we need to duplicate it over there
