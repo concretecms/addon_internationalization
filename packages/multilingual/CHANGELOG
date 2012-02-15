@@ -10,7 +10,7 @@
  - updated ui for 5.5
 
 # 1.0.4
-Added German translation
+- Added German translation
 
 # 1.0.3
 - Added missing t() strings so package itself can be completely translated.
