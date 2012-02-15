@@ -4,7 +4,7 @@ class MultilingualPackage extends Package {
 
 	protected $pkgHandle = 'multilingual';
 	protected $appVersionRequired = '5.5';
-	protected $pkgVersion = '1.1.1';
+	protected $pkgVersion = '1.1.2';
 	
 	public function getPackageDescription() {
 		return t('Translate your site with this free multilingual solution.');
@@ -68,7 +68,6 @@ class MultilingualPackage extends Package {
 		), 'multilingual');
 	}
 	
-
 	
 	public function install() {
 		$pkg = parent::install();
@@ -90,7 +89,7 @@ class MultilingualPackage extends Package {
 			$p2->update(array('cName'=>t('Page Report'), 'cDescription'=>''));
 		}
 		BlockType::installBlockTypeFromPackage('switch_language', $pkg);
-
+		CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
 	}
 
 
@@ -117,6 +116,12 @@ class MultilingualPackage extends Package {
 				SET mpr.mpLocale = MultilingualSections.msLocale
 				WHERE mpr.mpLanguage = MultilingualSections.msLanguage";
 			$db->query($query);
+		}
+		
+		// 1.1.2
+		$ak = CollectionAttributeKey::getByHandle('multilingual_exclude_from_copy');
+		if(!is_object($ak)) {
+			CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
 		}
 		
 	}
