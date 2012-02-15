@@ -11,12 +11,13 @@ $ih = Loader::helper("interface/flag", 'multilingual');
 		<input type="hidden" name="ccmMultilingualCurrentPageID" value="<?=Loader::helper('text')->entities($_REQUEST['rcID'])?>" />	
 	<? } ?>
 
-<? foreach($languageSections as $ml) {  ?>	
+<? 
+foreach($languageSections as $ml) {  ?>	
 	<div class="ccm-multilingual-language-list-item">
 	
 	<input type="radio" name="ccmMultilingualSiteDefaultLanguage" value="<?=$ml->getLocale()?>"  <? if ($defaultLanguage == $ml->getLocale()) { ?> checked="checked" <? } ?> /><?
 		print $ih->getSectionFlagIcon($ml);	
-		print $ml->getLanguageText($ml->getLanguage());
+		print $ml->getLanguageText($ml->getLocale());
 		print ' ' . (strlen($ml->msIcon)?'('.$ml->msIcon.')':'');
 	?></div>
 	

@@ -8,10 +8,10 @@ if (isset($_POST['ccmMultilingualSiteDefaultLanguage'])) {
 	// this is coming from "set default" custom template
 	
 	if (isset($_POST['ccmMultilingualSiteRememberDefault']) && $_POST['ccmMultilingualSiteRememberDefault']) {
-		 setcookie('DEFAULT_LANGUAGE', $_POST['ccmMultilingualSiteDefaultLanguage'], time()+60*60*24*365, DIR_REL . '/');
+		 setcookie('DEFAULT_LOCALE', $_POST['ccmMultilingualSiteDefaultLanguage'], time()+60*60*24*365, DIR_REL . '/');
 	}
 	if (empty($_POST['ccmMultilingualSiteRememberDefault'])) {
-		 setcookie('DEFAULT_LANGUAGE', '', time() - 3600, DIR_REL . '/');
+		 setcookie('DEFAULT_LOCALE', '', time() - 3600, DIR_REL . '/');
 	}
 	$lang = MultilingualSection::getByLocale($_REQUEST['ccmMultilingualSiteDefaultLanguage']);
 	

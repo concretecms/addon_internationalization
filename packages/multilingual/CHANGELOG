@@ -1,10 +1,9 @@
 # 1.1.1
-- Improved 5.5 UI
-- Fixed bug where 404 pages would be redirected to default language page
-
-# 1.1
+ - Improved 5.5 UI
+ - Fixed bug where 404 pages would be redirected to default language page
  - changed translations to work off of locale instead of language
- - locale browser detection
+ - locale browser detection and option to automatically redirect based on that value
+ - package ui with matching locale are automatically translated in the front end.
  - updated ui for 5.5
 
 # 1.0.4

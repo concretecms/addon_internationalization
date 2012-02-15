@@ -1,6 +1,8 @@
-<div class="ccm-block-field-group">
-
-<strong><?=$form->label('label', t('Label'))?></strong><br/>
-<?=$form->text('label', $label, array('style' => 'width: 300px'))?>
-
+<fieldset class="form-stacked">
+<div class="clearfix">
+	<?=$form->label('label', t('Label'))?>
+	<div class="input">
+		<?=$form->text('label', $label, array('style' => 'width: 300px'))?>
+	</div>
 </div>
+</fieldset>
