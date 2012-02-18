@@ -98,21 +98,21 @@ class MultilingualPackage extends Package {
 		//@todo write conversion from lang to locale
 		//1.0 - 1.1 changed languaage to locale
 		$db = Loader::db();
-		// update the MultiLingualSections table
-		$rows = $db->getAll("SELECT * FROM MultiLingualSections");
+		// update the MultilingualSections table
+		$rows = $db->getAll("SELECT * FROM MultilingualSections");
 		if(is_array($rows) && count($rows)) {
 			foreach($rows as $r) {
 				if(strlen($r['msLanguage']) && !strlen($row['msLocale'])) {
 					$locale = $r['msLanguage'].(strlen($r['msIcon'])?"_".$r['msIcon']:"");					
-					$db->query("UPDATE MultiLingualSections SET msLocale = ? WHERE cID = ?",array($locale, $r['cID']));
+					$db->query("UPDATE MultilingualSections SET msLocale = ? WHERE cID = ?",array($locale, $r['cID']));
 				}
 			}
 		}
 		
-		// update the MultiLingualPageRelations table
+		// update the MultilingualPageRelations table
 		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");
 		if(!$hasLocales) {
-			$query = "UPDATE MultiLingualPageRelations mpr, MultilingualSections 
+			$query = "UPDATE MultilingualPageRelations mpr, MultilingualSections 
 				SET mpr.mpLocale = MultilingualSections.msLocale
 				WHERE mpr.mpLanguage = MultilingualSections.msLanguage";
 			$db->query($query);
