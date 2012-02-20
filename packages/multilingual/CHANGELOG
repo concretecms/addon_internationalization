@@ -1,5 +1,6 @@
 1.1.3dev
  - added static declaration + code comments
+ - changed incorrect db name case on upgrade
 
 # 1.1.2
 - Added exclude from internationalization copy custom attribute
