@@ -43,6 +43,11 @@ class SectionHelper {
 		return self::getLocale();
 	}
 	
+	/**
+	 * gets the locale string for the current page
+	 * based first on path within the site (section) or session if not available
+	 * @return string
+	*/
 	public function getLocale() {
 		$ms = MultilingualSection::getCurrentSection();
 		if (is_object($ms)) {

@@ -71,7 +71,7 @@ class MultilingualSection extends Page {
 	 * @param string $language
 	 * @return MultilingualSection|false
 	*/
-	public function getByLocale($locale) {
+	public static function getByLocale($locale) {
 		$db = Loader::db();
 		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where msLocale = ?', array($locale));
 		if ($r && is_array($r) && $r['msLocale']) {

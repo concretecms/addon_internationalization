@@ -1,7 +1,7 @@
 # 1.1.2
 - Added exclude from internationalization copy custom attribute
 
-# 1.1.1
+# 1.1.1 
  - Improved 5.5 UI
  - Fixed bug where 404 pages would be redirected to default language page
  - changed translations to work off of locale instead of language
