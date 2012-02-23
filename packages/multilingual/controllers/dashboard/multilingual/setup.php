@@ -37,7 +37,12 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 
 	function populateCopyArray($startingPage) {
 		$db = Loader::db();
-		$cID = $startingPage->getCollectionID();
+		if($startingPage->isAlias()) {
+			$cID = $startingPage->getCollectionPointerOriginalID();
+		} else {
+			$cID = $startingPage->getCollectionID();
+		}
+		
 		$q = "select cID from Pages where cParentID = ? order by cDisplayOrder asc";
 		$r = $db->query($q, array($cID));
 		while ($row = $r->fetchRow()) {

@@ -1,6 +1,4 @@
-<?
-
-defined('C5_EXECUTE') or die("Access Denied.");
+<?defined('C5_EXECUTE') or die("Access Denied.");
 
 class DashboardMultilingualPageReportController extends Controller {
 
@@ -55,6 +53,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		if (isset($sectionID) && $sectionID > 0) {
 			Loader::model('multilingual_page_list', 'multilingual');
 			$pl = new MultilingualPageList();
+			$pl->filterByIsAlias(false);
 			$pc = Page::getByID($sectionID);
 			$pl->filterByPath($pc->getCollectionPath());
 			$pl->setItemsPerPage(50);
