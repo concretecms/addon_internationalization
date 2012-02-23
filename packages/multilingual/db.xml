@@ -28,12 +28,12 @@
       <UNSIGNED/>
     </field>
     <field name="mpLanguage" type="C" size="32">
-      <KEY/>
+      <DEFAULT value=""/>
       <NOTNULL/>
     </field>
     <field name="mpLocale" type="C" size="32">
+      <KEY/>
       <NOTNULL/>
-      <DEFAULT value=""/>
     </field>
   </table>
 </schema>

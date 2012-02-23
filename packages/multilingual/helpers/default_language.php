@@ -59,7 +59,7 @@ class DefaultLanguageHelper {
 			$locale = new Zend_Locale();
 			
 			if(is_object(MultilingualSection::getByLocale((string) $locale))){
-				return $locale;
+				return (string) $locale;
 			}
 		}
 		

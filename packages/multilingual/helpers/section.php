@@ -55,7 +55,7 @@ class SectionHelper {
 		} else {
 			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLocale();
 		}
-		$_SESSION['DEFAULT_LOCALE'] = $lang;
-		return $lang;
+		$_SESSION['DEFAULT_LOCALE'] = (string) $lang;
+		return (string) $lang;
 	}
 }

@@ -78,41 +78,40 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 <h3><?=t('Copy Language Tree')?></h3>
 <form method="post" action="<?=$this->action('copy_tree')?>">
 	<? if (count($pages) > 1) {
-	$copyLanguages = array();
-	foreach($pages as $pc) {
-		$pcl = MultilingualSection::getByID($pc->getCollectionID());
-		$copyLanguages[$pc->getCollectionID()] = $pc->getCollectionName() . ' - ' . $pcl->getLanguageText();
-	}
-	$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
-	$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
+		$copyLanguages = array();
+		foreach($pages as $pc) {
+			$pcl = MultilingualSection::getByID($pc->getCollectionID());
+			$copyLanguages[$pc->getCollectionID()] = $pc->getCollectionName() . ' - ' . $pcl->getLanguageText();
+		}
+		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
+		$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
+		
+		?>
+		<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
+		<div class="clearfix">
+		<label><?=t('Copy From')?></label>
+		<div class="input"><?=$copyLanguageSelect1?></div>
+		</div>
+		
+		<div class="clearfix">
+		<label><?=t('To')?></label>
+		<div class="input"><?=$copyLanguageSelect2?></div>
+		</div>
 	
-	?>
-	<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
-	<div class="clearfix">
-	<label><?=t('Copy From')?></label>
-	<div class="input"><?=$copyLanguageSelect1?></div>
-	</div>
-	
-	<div class="clearfix">
-	<label><?=t('To')?></label>
-	<div class="input"><?=$copyLanguageSelect2?></div>
-	</div>
+		<div class="clearfix">
+		<label></label>
+		<div class="input">
+			<?=Loader::helper('validation/token')->output('copy_tree')?>
+			<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
+		</div>
+		</div>
 
-	<div class="clearfix">
-	<label></label>
-	<div class="input">
-		<?=Loader::helper('validation/token')->output('copy_tree')?>
-		<?=Loader::helper('concrete/interface')->submit(t('Copy Tree'), 'copy', 'left')?>
-	</div>
-	</div>
-	</form>
-
-<? } else if (count($pages) == 1) { ?>
-	<p><?=t("You must have more than one multilingual section to use this tool.")?></p>
-<? } else { ?>
-	<p><?=t('You have not created any multilingual content sections yet.')?></p>
-<? } ?>
-
+	<? } else if (count($pages) == 1) { ?>
+		<p><?=t("You must have more than one multilingual section to use this tool.")?></p>
+	<? } else { ?>
+		<p><?=t('You have not created any multilingual content sections yet.')?></p>
+	<? } ?>
+</form>
 
 
 <? if (count($pages) > 0) {
