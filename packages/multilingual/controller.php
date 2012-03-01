@@ -89,7 +89,11 @@ class MultilingualPackage extends Package {
 			$p2->update(array('cName'=>t('Page Report'), 'cDescription'=>''));
 		}
 		BlockType::installBlockTypeFromPackage('switch_language', $pkg);
-		CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
+		
+		$ak = CollectionAttributeKey::getByHandle('multilingual_exclude_from_copy');
+		if(!is_object($ak)) {
+			CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
+		}
 	}
 
 
