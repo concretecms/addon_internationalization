@@ -5,6 +5,8 @@
  - fixed changed unique index from lang to local on MultilingualPageRelations
  - fixed incomplete object in session problem by storing locale as string as apposed to Zend_Locale
  - fixed copying of aliases and excluded aliases from page report
+ - added check for Exclude from Internationalization Copy page attribute on install. 
+ - replaced reference to undefined constant in helper/interface/flag.php
  
 # 1.1.2
 - Added exclude from internationalization copy custom attribute
