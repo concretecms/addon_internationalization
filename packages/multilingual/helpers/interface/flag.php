@@ -14,7 +14,7 @@ class InterfaceFlagHelper {
 			$region = strtolower($region);
 	
 			if (file_exists(DIR_BASE . '/' . DIRNAME_IMAGES . '/' . DIRNAME_IMAGES_LANGUAGES . '/' . $region . '.png')) {
-				$icon = DIR_BASE . '/' . DIRNAME_IMAGES . '/' . DIRNAME_IMAGES_LANGUAGES . '/' . $region . '.png';
+				$icon = DIR_REL . '/' . DIRNAME_IMAGES . '/' . DIRNAME_IMAGES_LANGUAGES . '/' . $region . '.png';
 			} else if (file_exists(DIR_PACKAGES_CORE . '/multilingual/' . DIRNAME_IMAGES . '/' . DIRNAME_IMAGES_LANGUAGES . '/' . $region . '.png')) {
 				$icon = ASSETS_URL . '/' . DIRNAME_PACKAGES . '/multilingual/' . DIRNAME_IMAGES . '/' . DIRNAME_IMAGES_LANGUAGES . '/' . $region . '.png';
 			} else {
