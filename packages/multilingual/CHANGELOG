@@ -1,4 +1,4 @@
-1.1.3dev
+1.1.3
  - added static declaration + code comments
  - changed incorrect db name case on upgrade
  - fixed incorrect form closure when only one language enabled in dash settings
