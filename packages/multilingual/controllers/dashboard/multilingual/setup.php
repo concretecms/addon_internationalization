@@ -74,16 +74,42 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 					$ms = MultilingualSection::getByID($this->post('copyTreeTo'));
 					$this->populateCopyArray($oc);
 					
+					$aliases = array();
+					$created = array();
 					foreach($this->pagesToCopy as $cc) {
 						$trcID = $ms->getTranslatedPageID($cc);
 						if (!$trcID) {
 							// this page doesn't exist in the new tree. So we need to duplicate it over there
 							// find where this page is going
+							
 							$ccp = Page::getByID($cc->getCollectionParentID(), 'RECENT');
 							$trpcID = $ms->getTranslatedPageID($ccp);
 							$dest = Page::getByID($trpcID);
-							$cc->duplicate($dest);
+							if ($cc->isAlias()) {
+								$aliases[] = array($cc->getCollectionID(),$dest->getCollectionID());
+							} else {
+								$newPage = $cc->duplicate($dest);
+								$ceated[$cc->getCollectionID()] = $newPage->getCollectionID();
+							}
+						} else {
+							if ($cc->isAlias()) {
+								$aliases[] = array($cc->getCollectionID(),false);
+							} else {
+								$created[$cc->getCollectionID()] = $trcID;
+							}
 						}
+					}
+					foreach ($aliases as $data) {
+						list($cID,$dest) = $data;
+						$cc = Page::getByID($cID);
+						if ($dest === false) {
+							$ccp = Page::getByID($cc->getCollectionParentID(), 'RECENT');
+							$dest = $ms->getTranslatedPageID($ccp);
+						}
+						if (isset($created[$cID])) {
+							$dest = $created[$cID];
+						}
+						$aliasID = $cc->addCollectionAlias(Page::getByID($dest));
 					}
 					$this->redirect('/dashboard/multilingual/setup', 'tree_copied');
 				}
