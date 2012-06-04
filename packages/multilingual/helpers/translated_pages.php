@@ -1,6 +1,4 @@
 <?php
-Loader::Model('section', 'multilingual');
-
 class TranslatedPagesHelper {
 
 	public function addMetaTags() {
@@ -13,13 +11,26 @@ class TranslatedPagesHelper {
 		}
 	}
 
-	public function getTranslatedPages() {
-		$page   = Page::getCurrentPage();
+	public function getPageLocale($page) {
+		$ms = MultilingualSection::getByID($page->cID);
+		if (is_object($ms)) return $ms->getLocale();
+		$pkg = Package::getByHandle('multilingual');
+		return $pkg->config('DEFAULT_LANGUAGE');
+	}
+
+	public function getTranslatedPages($page=false,$sans=false) {
 		$langms = new MultilingualSection;
-		$ms     = MultilingualSection::getCurrentSection();
+		if ($page) {
+			$ms   = MultilingualSection::getByID($page->cID);
+		} else {
+			$page = Page::getCurrentPage();
+			$ms   = MultilingualSection::getCurrentSection();
+		}
 		if (is_object($ms))
 			$lang = $ms->getLocale();
-		$locales  = self::getLocales($lang);
+		if ($sans)
+			$locales  = self::getLocales($sans);
+		else $locales = self::getLocales($lang);
 
 		$tpages = array();
 		foreach($locales as $locale) {
@@ -34,12 +45,12 @@ class TranslatedPagesHelper {
 		return $tpages;
 	}
 
-	public function altMeta($lang,$page) {
+	public function altMeta($lang,$page,$tag='link') {
 		list($iso63911,$country) = explode('_',strtolower($lang));
 		$nh = Loader::helper('navigation');
 		$uri = $nh->getCollectionURL($page);
 		$meta = array(
-			'link',
+			$tag,
 			'rel'=>'alternate',
 			'hreflang'=>$iso63911."-".$country,
 			'href'=>$uri

@@ -76,6 +76,10 @@ class MultilingualPackage extends Package {
 		$pkg = parent::install();
 		
 		Loader::model('single_page');
+		Loader::model('job');
+
+		// install job
+		$jb = Job::installByPackage('generate_multilingual_sitemap', $this);
 
 		
 		$p = SinglePage::add('/dashboard/multilingual',$pkg);
@@ -115,6 +119,10 @@ class MultilingualPackage extends Package {
 				}
 			}
 		}
+		Loader::model('job');
+
+		// install job
+		$jb = Job::installByPackage('generate_multilingual_sitemap', package::getByHandle($this->pkgHandle));
 		
 		// update the MultilingualPageRelations table
 		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");
