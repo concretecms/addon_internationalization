@@ -22,6 +22,9 @@ class MultilingualPackage extends Package {
 		
 		// adds the site translation files to the translation library so strings wrapped in t('') will be translated
 		Events::extend('on_start', 'DefaultLanguageHelper', 'setupSiteInterfaceLocalization', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
+
+		// Ensure's the language tags are set in the header
+		Events::extend('on_start', 'TranslatedPagesHelper', 'addMetaTags', 'packages/' . $this->pkgHandle . '/helpers/translated_pages.php');
 		
 		Events::extend('on_page_get_icon',
 			'InterfaceFlagHelper',
@@ -73,6 +76,10 @@ class MultilingualPackage extends Package {
 		$pkg = parent::install();
 		
 		Loader::model('single_page');
+		Loader::model('job');
+
+		// install job
+		$jb = Job::installByPackage('generate_multilingual_sitemap', $this);
 
 		
 		$p = SinglePage::add('/dashboard/multilingual',$pkg);
@@ -112,6 +119,10 @@ class MultilingualPackage extends Package {
 				}
 			}
 		}
+		Loader::model('job');
+
+		// install job
+		$jb = Job::installByPackage('generate_multilingual_sitemap', package::getByHandle($this->pkgHandle));
 		
 		// update the MultilingualPageRelations table
 		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");

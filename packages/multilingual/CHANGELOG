@@ -1,6 +1,8 @@
 1.1.4dev
  - fixed copying of aliases
- 
+ - added alternate links
+ - added alternate links to the sitemap
+
 1.1.3
  - added static declaration + code comments
  - changed incorrect db name case on upgrade
