@@ -1,8 +1,10 @@
 <?php
 class TranslatedPagesHelper {
 
-	public function addMetaTags() {
-		$v      = View::getInstance();
+	public function addMetaTags($v = NULL) {
+		if(!$v instanceof View) {
+			$v = View::getInstance();
+		}
 		$translations = self::getTranslatedPages();
 		foreach ($translations as $locale => $tpage) {
 			$v->addHeaderItem(
@@ -19,9 +21,9 @@ class TranslatedPagesHelper {
 	}
 
 	public function getTranslatedPages($page=false,$sans=false) {
-		$langms = new MultilingualSection;
+		$langms = new MultilingualSection();
 		if ($page) {
-			$ms   = MultilingualSection::getByID($page->cID);
+			$ms   = MultilingualSection::getByID($page->getCollectionID());
 		} else {
 			$page = Page::getCurrentPage();
 			$ms   = MultilingualSection::getCurrentSection();

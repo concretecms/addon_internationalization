@@ -24,7 +24,7 @@ class MultilingualPackage extends Package {
 		Events::extend('on_start', 'DefaultLanguageHelper', 'setupSiteInterfaceLocalization', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
 
 		// Ensure's the language tags are set in the header
-		Events::extend('on_start', 'TranslatedPagesHelper', 'addMetaTags', 'packages/' . $this->pkgHandle . '/helpers/translated_pages.php');
+		//Events::extend('on_start', 'TranslatedPagesHelper', 'addMetaTags', 'packages/' . $this->pkgHandle . '/helpers/translated_pages.php');
 		
 		Events::extend('on_page_get_icon',
 			'InterfaceFlagHelper',
