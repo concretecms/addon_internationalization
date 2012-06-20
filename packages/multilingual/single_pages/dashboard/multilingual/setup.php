@@ -3,7 +3,7 @@
 <?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Multilingual Content Setup'), false, 'span14 offset1'); ?>
 
 <h3><?=t('Content Sections')?></h3>
-<? 
+<?
 $nav = Loader::helper('navigation');
 if (count($pages) > 0) { ?>
 	<table class="ccm-results-list" style="width: 100%">
@@ -14,7 +14,7 @@ if (count($pages) > 0) { ?>
 		<th style="width: 30%"><?=t('Path')?></th>
 		<th>&nbsp;</th>
 	</tr>
-	<? foreach($pages as $pc) { 
+	<? foreach($pages as $pc) {
 		$pcl = MultilingualSection::getByID($pc->getCollectionID()); ?>
 		<tr>
 			<td><?=$ch->getSectionFlagIcon($pc)?></td>
@@ -85,19 +85,19 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 		}
 		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
 		$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
-		
+
 		?>
 		<p><?=t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
 		<div class="clearfix">
 		<label><?=t('Copy From')?></label>
 		<div class="input"><?=$copyLanguageSelect1?></div>
 		</div>
-		
+
 		<div class="clearfix">
 		<label><?=t('To')?></label>
 		<div class="input"><?=$copyLanguageSelect2?></div>
 		</div>
-	
+
 		<div class="clearfix">
 		<label></label>
 		<div class="input">
@@ -121,7 +121,7 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 		$defaultLanguages[$pcl->getLocale()] = $pcl->getLanguageText();
 	}
 	$defaultLanguagesSelect = $form->select('defaultLanguage', $defaultLanguages, $defaultLanguage);
-	
+
 
 	?>
 

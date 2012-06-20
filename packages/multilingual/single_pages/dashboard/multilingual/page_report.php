@@ -9,7 +9,7 @@ if (count($sections) > 0) { ?>
 	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
 		<div class="row">
 		<fieldset class="span4">
-			<legend><?=t('Choose Source')?></legend> 
+			<legend><?=t('Choose Source')?></legend>
 			<div class="clearfix">
 				<div class="input" style="margin-top: 15px;">
 					<?=$form->select('sectionIDSelect', $sections, $sectionID)?>
@@ -35,7 +35,7 @@ if (count($sections) > 0) { ?>
 										<?=$sc->getLanguageText(). " (".$sc->getLocale().")"; ?>
 									</span>
 								</label>
-							</li>						
+							</li>
 						</ul>
 					</div>
 			<? } ?>
@@ -48,7 +48,7 @@ if (count($sections) > 0) { ?>
 					<ul class="inputs-list">
 						<li>
 							<label>
-								<?=$form->radio('showAllPages', 0, 0)?> 
+								<?=$form->radio('showAllPages', 0, 0)?>
 								<span><?php echo t('Only Missing Pages')?></span>
 							</label>
 						</li>
@@ -75,15 +75,15 @@ if (count($sections) > 0) { ?>
 	<? if (count($pages) > 0) { ?>
 		<?=$pl->displaySummary()?>
 	<? } ?>
-	
-	
+
+
 		<table class="ccm-results-list" cellspacing="0" cellpadding="0" border="0" id="ccm-multilingual-page-report-results">
 		<thead>
 		<tr>
 			<th><?
 				$sourceMS = MultilingualSection::getByID($sectionID);
 				print $sourceMS->getLanguageText(); echo " (".$sourceMS->getLocale().")";
-			
+
 			?></th>
 			<? foreach($targetList as $sc) { ?>
 				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
@@ -98,13 +98,13 @@ if (count($sections) > 0) { ?>
 		<tbody>
 		<? if (count($pages) > 0) { ?>
 		<? $class = 'ccm-list-record-no-hover ccm-list-record-alt'; ?>
-		<? foreach($pages as $pc) { 
+		<? foreach($pages as $pc) {
 			if ($class == 'ccm-list-record-no-hover ccm-list-record-alt') {
 				$class = 'ccm-list-record-no-hover';
 			} else {
 				$class = 'ccm-list-record-no-hover ccm-list-record-alt';
 			}
-			
+
 			?>
 		<tr class="<?=$class?>">
 			<td><a href="<?=$nav->getLinkToCollection($pc)?>"><?=$pc->getCollectionName()?></a></td>
@@ -112,19 +112,19 @@ if (count($sections) > 0) { ?>
 				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
 					<td id="node-<?=$pc->getCollectionID()?>-<?=$sc->getLocale()?>"><?
 						$cID = $sc->getTranslatedPageID($pc);
-						if ($cID) { 
+						if ($cID) {
 							$p = Page::getByID($cID);
 							print '<div style="margin-bottom: 8px"><a href="' . $nav->getLinkToCollection($p) . '">' . $p->getCollectionName() . '</a></div>';
-						} else if ($cID === '0') { 
+						} else if ($cID === '0') {
 							print '<div style="margin-bottom: 8px">' . t('Ignored') . '</div>';
-						
-						} 
-						
+
+						}
+
 							$cParentID = $pc->getCollectionParentID();
 							$cParent = Page::getByID($cParentID);
 							$cParentRelatedID = $sc->getTranslatedPageID($cParent);
-							if ($cParentRelatedID) { 
-							
+							if ($cParentRelatedID) {
+
 								$assignLang = t('Re-Map');
 								if (!$cID) {
 									$assignLang = t('Map');
@@ -141,7 +141,7 @@ if (count($sections) > 0) { ?>
 							<? } ?>
 							</fieldset>
 						</form>
-						
+
 						<? } else { ?>
 							<div class="ccm-note"><?=t("Create the parent page first.")?></div>
 						<? } ?>
@@ -150,7 +150,7 @@ if (count($sections) > 0) { ?>
 			<? } ?>
 		</tr>
 		<? } ?>
-		
+
 		<? } else { ?>
 		<tr>
 			<td colspan="4"><?=t('No pages found.')?></td>
@@ -178,7 +178,7 @@ $(function() {
 	$('input[name=ccm-multilingual-ignore-page]').click(function() {
 		ccm_multilingualIgnorePage($(this).attr('ccm-source-page-id'), $(this).attr('ccm-destination-language'));
 	});
-	
+
 	$("input[name=ccm-multilingual-assign-page]").click(function() {
 		activeAssignNode = this;
 		$.fn.dialog.open({
@@ -192,7 +192,7 @@ $(function() {
 });
 
 ccm_multilingualAssignPage = function(cID, cName) {
-	var srcID = $(activeAssignNode).attr('ccm-source-page-id'); 
+	var srcID = $(activeAssignNode).attr('ccm-source-page-id');
 	var destLang = $(activeAssignNode).attr('ccm-destination-language');
 	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("assign_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("assign_page")?>', 'sourceID': srcID, 'destID': cID});
 }

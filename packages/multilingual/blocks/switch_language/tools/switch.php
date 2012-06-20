@@ -6,7 +6,7 @@ Loader::model('section', 'multilingual');
 
 if (isset($_POST['ccmMultilingualSiteDefaultLanguage'])) {
 	// this is coming from "set default" custom template
-	
+
 	if (isset($_POST['ccmMultilingualSiteRememberDefault']) && $_POST['ccmMultilingualSiteRememberDefault']) {
 		 setcookie('DEFAULT_LOCALE', $_POST['ccmMultilingualSiteDefaultLanguage'], time()+60*60*24*365, DIR_REL . '/');
 	}
@@ -14,7 +14,7 @@ if (isset($_POST['ccmMultilingualSiteDefaultLanguage'])) {
 		 setcookie('DEFAULT_LOCALE', '', time() - 3600, DIR_REL . '/');
 	}
 	$lang = MultilingualSection::getByLocale($_REQUEST['ccmMultilingualSiteDefaultLanguage']);
-	
+
 } else {
 	$lang = MultilingualSection::getByID($_REQUEST['ccmMultilingualChooseLanguage']);
 }
@@ -30,9 +30,9 @@ if (is_object($lang)) {
 			}
 		}
 	}
-	
+
 	header('Location: ' . Loader::helper('navigation')->getLinkToCollection($lang, true));
-	exit;	
+	exit;
 }
 
 

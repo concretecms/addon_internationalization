@@ -12,14 +12,14 @@ class MultilingualPageList extends PageList {
 		}
 		$this->setBaseQuery($query);
 	}
-	
+
 	public function filterByMissingTargets($targets) {
 		$haveStr .= '';
-		
+
 		if (count($targets) > 0) {
 			$haveStr .= '(';
 		}
-		
+
 		for ($i = 0; $i < count($targets); $i++) {
 			$t = $targets[$i];
 			$haveStr .= 'relationCount' . $t->getCollectionID() . ' = 0';
@@ -34,7 +34,7 @@ class MultilingualPageList extends PageList {
 
 		if ($haveStr) {
 			$this->having(false, $haveStr);
-		}	
+		}
 	}
-	
+
 }

@@ -5,27 +5,27 @@ class MultilingualPackage extends Package {
 	protected $pkgHandle = 'multilingual';
 	protected $appVersionRequired = '5.5';
 	protected $pkgVersion = '1.1.4dev';
-	
+
 	public function getPackageDescription() {
 		return t('Translate your site with this free multilingual solution.');
 	}
-	
+
 	public function getPackageName() {
 		return t('Internationalization');
 	}
-	
+
 	public function on_start() {
 		define('DIRNAME_IMAGES_LANGUAGES', 'flags');
-		
+
 		// checks to see if the user should be redirected to the default language home page instead of the / home page.
 		Events::extend('on_start', 'DefaultLanguageHelper', 'checkDefaultLanguage', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
-		
+
 		// adds the site translation files to the translation library so strings wrapped in t('') will be translated
 		Events::extend('on_start', 'DefaultLanguageHelper', 'setupSiteInterfaceLocalization', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
 
 		// Ensure's the language tags are set in the header
 		Events::extend('on_start', 'TranslatedPagesHelper', 'addMetaTags', 'packages/' . $this->pkgHandle . '/helpers/translated_pages.php');
-		
+
 		Events::extend('on_page_get_icon',
 			'InterfaceFlagHelper',
 			'getDashboardSitemapIconSRC',
@@ -58,7 +58,7 @@ class MultilingualPackage extends Package {
 
 		// add the header menu item
 		$ihm = Loader::helper('concrete/interface/menu');
-		Loader::model('section', 'multilingual');		
+		Loader::model('section', 'multilingual');
 		$uh = Loader::helper('concrete/urls');
 		$ihm->addPageHeaderMenuItem('multilingual', false, 'right', array(
 				'dialog-title' => t('Multilingual Pages'),
@@ -70,23 +70,23 @@ class MultilingualPackage extends Package {
 			'class' => 'dialog-launch'
 		), 'multilingual');
 	}
-	
-	
+
+
 	public function install() {
 		$pkg = parent::install();
-		
+
 		Loader::model('single_page');
 		Loader::model('job');
 
 		// install job
-		$jb = Job::installByPackage('generate_multilingual_sitemap', $this);
+		$jb = Job::installByPackage('generate_multilingual_sitemap', $pkg);
 
-		
+
 		$p = SinglePage::add('/dashboard/multilingual',$pkg);
 		if (is_object($p)) {
 			$p->update(array('cName'=>t('Multilingual'), 'cDescription'=>t('Translate your site.')));
 		}
-		
+
 		$p1 = SinglePage::add('/dashboard/multilingual/setup', $pkg);
 		if (is_object($p1)) {
 			$p1->update(array('cName'=>t('Setup'), 'cDescription'=>''));
@@ -96,7 +96,7 @@ class MultilingualPackage extends Package {
 			$p2->update(array('cName'=>t('Page Report'), 'cDescription'=>''));
 		}
 		BlockType::installBlockTypeFromPackage('switch_language', $pkg);
-		
+
 		$ak = CollectionAttributeKey::getByHandle('multilingual_exclude_from_copy');
 		if(!is_object($ak)) {
 			CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
@@ -114,7 +114,7 @@ class MultilingualPackage extends Package {
 		if(is_array($rows) && count($rows)) {
 			foreach($rows as $r) {
 				if(strlen($r['msLanguage']) && !strlen($row['msLocale'])) {
-					$locale = $r['msLanguage'].(strlen($r['msIcon'])?"_".$r['msIcon']:"");					
+					$locale = $r['msLanguage'].(strlen($r['msIcon'])?"_".$r['msIcon']:"");
 					$db->query("UPDATE MultilingualSections SET msLocale = ? WHERE cID = ?",array($locale, $r['cID']));
 				}
 			}
@@ -123,22 +123,22 @@ class MultilingualPackage extends Package {
 
 		// install job
 		$jb = Job::installByPackage('generate_multilingual_sitemap', package::getByHandle($this->pkgHandle));
-		
+
 		// update the MultilingualPageRelations table
 		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");
 		if(!$hasLocales) {
-			$query = "UPDATE MultilingualPageRelations mpr, MultilingualSections 
+			$query = "UPDATE MultilingualPageRelations mpr, MultilingualSections
 				SET mpr.mpLocale = MultilingualSections.msLocale
 				WHERE mpr.mpLanguage = MultilingualSections.msLanguage";
 			$db->query($query);
 		}
-		
+
 		// 1.1.2
 		$ak = CollectionAttributeKey::getByHandle('multilingual_exclude_from_copy');
 		if(!is_object($ak)) {
 			CollectionAttributeKey::add('BOOLEAN',array('akHandle' => 'multilingual_exclude_from_copy', 'akName' => t('Exclude from Internationalization Copy'), 'akIsSearchable' => true), $pkg);
 		}
-		
+
 	}
 
 }

@@ -7,10 +7,10 @@ class DefaultLanguageHelper {
 
 	public function checkDefaultLanguage() {
 		$req = Request::get();
-		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
+		if (!$_SERVER['REQUEST_METHOD'] != 'POST') {
 			if (!$req->getRequestCollectionPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
 				$p = $req->getCurrentPage();
-				if (is_object($p) && (!$p->isError())) { 
+				if (is_object($p) && (!$p->isError())) {
 					$pkg = Package::getByHandle('multilingual');
 					if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
 						$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
@@ -23,7 +23,7 @@ class DefaultLanguageHelper {
 			}
 		}
 	}
-	
+
 	/*
 	 * To do the redirect to the browser language:
 	 *  - check the package's controller.php: it extends on_start to use checkdefaltlanguage() above.
@@ -33,46 +33,46 @@ class DefaultLanguageHelper {
 	 *       - see if there is a language for the browser
 	 *       - if yes, use that, otherwise use the default
 	 */
-	
+
 	// first checks to see if there is a cookie set with this
 	// otherwise we retrieve it from the sitewide multilingual settings
-	
+
 	public function getSessionDefaultLocale() {
 		// they have a language in a certain session going already
 		if (isset($_SESSION['DEFAULT_LOCALE'])) {
 			return $_SESSION['DEFAULT_LOCALE'];
 		}
-		
+
 		// if they've specified their own default locale to remember
 		if(isset($_COOKIE['DEFAULT_LOCALE'])) {
 			return $_COOKIE['DEFAULT_LOCALE'];
 		}
-		
+
 		$pkg = Package::getByHandle('multilingual');
 		//
-		// This could set the cookie here but it does not. 
+		// This could set the cookie here but it does not.
 		// If something wants to set the default language it should probably do that outside of here.
 		//
 		if ($pkg->config('TRY_BROWSER_LANGUAGE')) {
 			Loader::model('section','multilingual');
 			Loader::library('3rdparty/Zend/Locale');
 			$locale = new Zend_Locale();
-			
+
 			if(is_object(MultilingualSection::getByLocale((string) $locale))){
 				return (string) $locale;
 			}
 		}
-		
+
 		return $pkg->config('DEFAULT_LANGUAGE');
 	}
-	
+
 	public static function setupSiteInterfaceLocalization() {
 		// don't translate dashboard pages
 		$c = Page::getCurrentPage();
 		if($c instanceof Page && Loader::helper('section', 'multilingual')->section('dashboard')) {
 			return;
-		}		
-		
+		}
+
 		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
 			$ms = MultilingualSection::getCurrentSection();
@@ -90,10 +90,10 @@ class DefaultLanguageHelper {
 				}
 			}
 		}
-		
+
 		// add package translations, won't happen if the DIR_LANGUAGES_SITE_INTERFACE directory doen't exits...
 		if(strlen($locale)) {
-			$ms = MultilingualSection::getByLocale($locale);		
+			$ms = MultilingualSection::getByLocale($locale);
 			if($ms instanceof MultilingualSection) {
 				$pl = PackageList::get();
 				$installed = $pl->getPackages();
@@ -102,8 +102,8 @@ class DefaultLanguageHelper {
 						$pkg->setupPackageLocalization($ms->getLocale());
 					}
 				}
-			}			
+			}
 		}
-		
+
 	}
 }

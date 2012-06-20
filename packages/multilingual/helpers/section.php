@@ -5,12 +5,12 @@ class SectionHelper {
 
 	protected $lang = false;
 	protected $section = false;
-	
+
 	/**
 	 * if no argument is specified, returns the first portion of the current page's path
 	 * ex: path is /en/about/contact-us this function would return 'en'
-	 * if $s argument (a string page path) is specified this function tests to see if the current page is within the path 
-	 * @param string $s 
+	 * if $s argument (a string page path) is specified this function tests to see if the current page is within the path
+	 * @param string $s
 	 * @return string | boolean
 	 */
 	public function section($s = false) {
@@ -25,15 +25,15 @@ class SectionHelper {
 			return $s == $this->section;
 		}
 	}
-	
-	
+
+
 	public function getSectionByLocale($locale = NULL) {
 		if(!strlen($locale)) {
 			$locale = self::getLocale();
 		}
 		return MultilingualSection::getByLocale($locale);
 	}
-	
+
 	/**
 	 * returns the current language
 	 * @return string
@@ -42,7 +42,7 @@ class SectionHelper {
 	public function getLanguage() {
 		return self::getLocale();
 	}
-	
+
 	/**
 	 * gets the locale string for the current page
 	 * based first on path within the site (section) or session if not available

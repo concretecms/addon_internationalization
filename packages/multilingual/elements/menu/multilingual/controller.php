@@ -1,12 +1,12 @@
 <?
 defined('C5_EXECUTE') or die("Access Denied.");
 class MultilingualConcreteInterfaceMenuItemController extends ConcreteInterfaceMenuItemController {
-	
+
 	public function displayItem() {
 		$sect = MultilingualSection::getCurrentSection();
 		return (is_object($sect));
 	}
-	
+
 	public function getMenuLinkHTML() {
 		$sect = MultilingualSection::getCurrentSection();
 		$ih = Loader::helper('interface/flag', 'multilingual');
@@ -21,7 +21,7 @@ class MultilingualConcreteInterfaceMenuItemController extends ConcreteInterfaceM
 		$this->menuItem->linkAttributes['class'] = $class;
 		$this->menuItem->linkAttributes['style'] = 'background-image: url(' . $icon . ')';
 		$this->menuItem->setName($sect->getLanguageText());
-		
+
 		return parent::getMenuLinkHTML();
 	}
 }
