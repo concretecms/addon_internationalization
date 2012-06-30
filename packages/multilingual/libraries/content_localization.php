@@ -1,6 +1,4 @@
-<?
-
-defined('C5_EXECUTE') or die("Access Denied.");
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
 class MultilingualContentLocalization {
 
@@ -8,6 +6,4 @@ class MultilingualContentLocalization {
 		$r = Zend_Locale::getTranslationList('language',ACTIVE_LOCALE);
 		return $r;
 	}		
-		
-
 }

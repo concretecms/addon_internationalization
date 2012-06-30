@@ -1,6 +1,5 @@
-<? defined('C5_EXECUTE') or die("Access Denied.");?>
-<?
-$c = Page::getByID($_REQUEST['cID'], 'RECENT');
+<?php defined('C5_EXECUTE') or die("Access Denied.");?>
+<?php $c = Page::getByID($_REQUEST['cID'], 'RECENT');
 $cp = new Permissions($c);
 $pc = Page::getByPath('/dashboard/multilingual');
 $pcp = new Permissions($pc);
@@ -23,27 +22,24 @@ if ($cp->canRead() && $pcp->canRead()) {
 	?>
 
 	<ul class="icon-select-list">
-	<? foreach($ml as $m) { 
+	<?php foreach($ml as $m) {
 		$relatedID = $m->getTranslatedPageID($c); 
 		$icon = $ih->getSectionFlagIcon($m, true);
 		if ($icon) { ?>
-			<li><?
-		} else { ?>
+			<li><?php 		} else { ?>
 			<li class="icon-select-page">
-			<?
-		}
+			<?php 		}
 		if ($relatedID && $currentSection->getCollectionID() != $m->getCollectionID()) { 
 				$relatedPage = Page::getByID($relatedID, 'RECENT');
 				
-		?><a <? if ($icon) { ?>style="background-image: url(<?=$icon?>)" <? } ?> href="<?=$nav->getLinkToCollection($relatedPage)?>"><?=t('%s: %s', $m->getLanguageText(), $relatedPage->getCollectionName())?></a>
-		<? } else { ?><span <? if ($icon) { ?>style="background-image: url(<?=$icon?>)" <? } ?>><?
-			if ($currentSection->getCollectionID() == $m->getCollectionID()) {
+		?><a <?php if ($icon) { ?>style="background-image: url(<?php echo $icon?>)" <?php } ?> href="<?php echo $nav->getLinkToCollection($relatedPage)?>"><?php echo t('%s: %s', $m->getLanguageText(), $relatedPage->getCollectionName())?></a>
+		<?php } else { ?><span <?php if ($icon) { ?>style="background-image: url(<?php echo $icon?>)" <?php } ?>><?php 			if ($currentSection->getCollectionID() == $m->getCollectionID()) {
 				print t('Currently Viewing: %s', $c->getCollectionName());
-			} else { ?><?=t('%s: None Created', $m->getLanguageText())?></span><? }
+			} else { ?><?php echo t('%s: None Created', $m->getLanguageText())?></span><?php }
 			
 			}?></li>
-	<? } ?>
+	<?php } ?>
 	</ul>
 
 
-<? } ?>
+<?php } ?>

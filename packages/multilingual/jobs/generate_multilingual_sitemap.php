@@ -1,11 +1,8 @@
-<?php
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 /**
-*
-* Responsible for loading the indexed search class and initiating the reindex command.
-* @package Utilities
-*/
-
-defined('C5_EXECUTE') or die("Access Denied.");
+ * Responsible for loading the indexed search class and initiating the reindex command.
+ * @package Utilities
+ */
 class GenerateMultilingualSitemap extends Job {
 
 	public function getJobName() {
