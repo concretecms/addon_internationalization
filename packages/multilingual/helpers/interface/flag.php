@@ -22,7 +22,7 @@ class InterfaceFlagHelper {
 				if ($filePathOnly) {
 					return $icon;
 				} else {
-					return '<img class="ccm-region-flag" id="ccm-region-flag-' . $region . '" width="16" height="16" src="' . $icon . '" alt="' . $region . '" />';
+					return '<img class="ccm-region-flag" id="ccm-region-flag-' . $region . '" width="' . MULTILINGUAL_FLAGS_WIDTH . '" height="' . MULTILINGUAL_FLAGS_HEIGHT . '" src="' . $icon . '" alt="' . $region . '" />';
 				}
 			}
 		}
