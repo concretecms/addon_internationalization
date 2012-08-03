@@ -2,6 +2,8 @@
  - fixed copying of aliases
  - added alternate links
  - added alternate links to the sitemap
+ - added MULTILINGUAL_FLAGS_HEIGHT & MULTILINGUAL_FLAGS_WIDTH constants so users can size the 
+   flag images without forking thanks, @mlocati
 
 1.1.3
  - added static declaration + code comments
