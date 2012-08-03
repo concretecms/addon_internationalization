@@ -1,26 +1,25 @@
-<? defined('C5_EXECUTE') or die("Access Denied.");
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 $fh = Loader::helper('interface/flag', 'multilingual');
 $nav = Loader::helper('navigation');
 ?>
-<?=Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
+<?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Page Report'),false, false, false); ?>
 <div class="ccm-pane-body">
-<?
-if (count($sections) > 0) { ?>
-	<form method="get" action="<?=$this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
+<?php if (count($sections) > 0) { ?>
+	<form method="get" action="<?php echo $this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
 		<div class="row">
 		<fieldset class="span4">
-			<legend><?=t('Choose Source')?></legend> 
+			<legend><?php echo t('Choose Source')?></legend>
 			<div class="clearfix">
 				<div class="input" style="margin-top: 15px;">
-					<?=$form->select('sectionIDSelect', $sections, $sectionID)?>
+					<?php echo $form->select('sectionIDSelect', $sections, $sectionID)?>
 				</div>
 			</div>
 		</fieldset>
 		<fieldset class="span4">
-			<legend><?=t('Choose Targets')?></legend>
+			<legend><?php echo t('Choose Targets')?></legend>
 			<div class="clearfix">
-			<? foreach($sectionList as $sc) { ?>
-				<? $args = array('style' => 'vertical-align: middle');
+			<?php foreach($sectionList as $sc) { ?>
+				<?php $args = array('style' => 'vertical-align: middle');
 				if ($sectionID == $sc->getCollectionID()) {
 					$args['disabled'] = 'disabled';
 				}
@@ -29,32 +28,32 @@ if (count($sections) > 0) { ?>
 						<ul class="inputs-list">
 							<li>
 								<label>
-									<?=$form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?>
+									<?php echo $form->checkbox('targets[' . $sc->getCollectionID() . ']', $sc->getCollectionID(), in_array($sc->getCollectionID(), $targets), $args)?>
 									<span>
-										<?=$fh->getSectionFlagIcon($sc)?>
-										<?=$sc->getLanguageText(). " (".$sc->getLocale().")"; ?>
+										<?php echo $fh->getSectionFlagIcon($sc)?>
+										<?php echo $sc->getLanguageText(). " (".$sc->getLocale().")"; ?>
 									</span>
 								</label>
 							</li>						
 						</ul>
 					</div>
-			<? } ?>
+			<?php } ?>
 			</div>
 		</fieldset>
 		<fieldset class="span4">
-			<legend><?=t('Display')?></legend>
+			<legend><?php echo t('Display')?></legend>
 			<div class="clearfix">
 				<div class="input">
 					<ul class="inputs-list">
 						<li>
 							<label>
-								<?=$form->radio('showAllPages', 0, 0)?> 
+								<?php echo $form->radio('showAllPages', 0, 0)?>
 								<span><?php echo t('Only Missing Pages')?></span>
 							</label>
 						</li>
 						<li>
 							<label>
-								<?=$form->radio('showAllPages', 1, false)?>
+								<?php echo $form->radio('showAllPages', 1, false)?>
 								<span><?php echo t('All Pages') ?></span>
 							</label>
 						</li>
@@ -65,40 +64,38 @@ if (count($sections) > 0) { ?>
 		<fieldset class="span2">
 			<div class="clearfix">
 				<div class="input" style="margin-top: 10px;">
-					<?=$form->submit('submitForm', t('Go'))?>
-					<?=$form->hidden('sectionID', $sectionID); ?>
+					<?php echo $form->submit('submitForm', t('Go'))?>
+					<?php echo $form->hidden('sectionID', $sectionID); ?>
 				</div>
 			</div>
 		</fieldset>
 		</div>
 	</form>
-	<? if (count($pages) > 0) { ?>
-		<?=$pl->displaySummary()?>
-	<? } ?>
+	<?php if (count($pages) > 0) { ?>
+		<?php echo $pl->displaySummary()?>
+	<?php } ?>
 	
 	
 		<table class="ccm-results-list" cellspacing="0" cellpadding="0" border="0" id="ccm-multilingual-page-report-results">
 		<thead>
 		<tr>
-			<th><?
-				$sourceMS = MultilingualSection::getByID($sectionID);
+			<th><?php 				$sourceMS = MultilingualSection::getByID($sectionID);
 				print $sourceMS->getLanguageText(); echo " (".$sourceMS->getLocale().")";
 			
 			?></th>
-			<? foreach($targetList as $sc) { ?>
-				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
-					<th><?
-						print $sc->getLanguageText();
+			<?php foreach($targetList as $sc) { ?>
+				<?php if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
+					<th><?php 						print $sc->getLanguageText();
 						echo " (".$sc->getLocale().")";
 					?></th>
-				<? } ?>
-			<? } ?>
+				<?php } ?>
+			<?php } ?>
 		</tr>
 		</thead>
 		<tbody>
-		<? if (count($pages) > 0) { ?>
-		<? $class = 'ccm-list-record-no-hover ccm-list-record-alt'; ?>
-		<? foreach($pages as $pc) { 
+		<?php if (count($pages) > 0) { ?>
+		<?php $class = 'ccm-list-record-no-hover ccm-list-record-alt'; ?>
+		<?php foreach($pages as $pc) {
 			if ($class == 'ccm-list-record-no-hover ccm-list-record-alt') {
 				$class = 'ccm-list-record-no-hover';
 			} else {
@@ -106,12 +103,11 @@ if (count($sections) > 0) { ?>
 			}
 			
 			?>
-		<tr class="<?=$class?>">
-			<td><a href="<?=$nav->getLinkToCollection($pc)?>"><?=$pc->getCollectionName()?></a></td>
-			<? foreach($targetList as $sc) { ?>
-				<? if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
-					<td id="node-<?=$pc->getCollectionID()?>-<?=$sc->getLocale()?>"><?
-						$cID = $sc->getTranslatedPageID($pc);
+		<tr class="<?php echo $class?>">
+			<td><a href="<?php echo $nav->getLinkToCollection($pc)?>"><?php echo $pc->getCollectionName()?></a></td>
+			<?php foreach($targetList as $sc) { ?>
+				<?php if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
+					<td id="node-<?php echo $pc->getCollectionID()?>-<?php echo $sc->getLocale()?>"><?php 						$cID = $sc->getTranslatedPageID($pc);
 						if ($cID) { 
 							$p = Page::getByID($cID);
 							print '<div style="margin-bottom: 8px"><a href="' . $nav->getLinkToCollection($p) . '">' . $p->getCollectionName() . '</a></div>';
@@ -132,33 +128,33 @@ if (count($sections) > 0) { ?>
 						?>
 						<form>
 							<fieldset>
-							<? if (!$cID) { ?>
-								<input style="font-size: 10px" type="button" value="<?=t('Create')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-create-page" />
-							<? } ?>
-							<input style="font-size: 10px" type="button" value="<?=$assignLang?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-assign-page" />
-							<? if ($cID !== '0' && !$cID) { ?>
-								<input style="font-size: 10px" type="button" value="<?=t('Ignore')?>" ccm-source-page-id="<?=$pc->getCollectionID()?>" ccm-destination-language="<?=$sc->getLocale()?>" name="ccm-multilingual-ignore-page" />
-							<? } ?>
+							<?php if (!$cID) { ?>
+								<input style="font-size: 10px" type="button" value="<?php echo t('Create')?>" ccm-source-page-id="<?php echo $pc->getCollectionID()?>" ccm-destination-language="<?php echo $sc->getLocale()?>" name="ccm-multilingual-create-page" />
+							<?php } ?>
+							<input style="font-size: 10px" type="button" value="<?php echo $assignLang?>" ccm-source-page-id="<?php echo $pc->getCollectionID()?>" ccm-destination-language="<?php echo $sc->getLocale()?>" name="ccm-multilingual-assign-page" />
+							<?php if ($cID !== '0' && !$cID) { ?>
+								<input style="font-size: 10px" type="button" value="<?php echo t('Ignore')?>" ccm-source-page-id="<?php echo $pc->getCollectionID()?>" ccm-destination-language="<?php echo $sc->getLocale()?>" name="ccm-multilingual-ignore-page" />
+							<?php } ?>
 							</fieldset>
 						</form>
 						
-						<? } else { ?>
-							<div class="ccm-note"><?=t("Create the parent page first.")?></div>
-						<? } ?>
+						<?php } else { ?>
+							<div class="ccm-note"><?php echo t("Create the parent page first.")?></div>
+						<?php } ?>
 					</td>
-				<? } ?>
-			<? } ?>
+				<?php } ?>
+			<?php } ?>
 		</tr>
-		<? } ?>
+		<?php } ?>
 		
-		<? } else { ?>
+		<?php } else { ?>
 		<tr>
-			<td colspan="4"><?=t('No pages found.')?></td>
+			<td colspan="4"><?php echo t('No pages found.')?></td>
 		</tr>
-		<? } ?>
+		<?php } ?>
 		</tbody>
 		</table>
-		<?=$pl->displayPaging()?>
+		<?php echo $pl->displayPaging()?>
 
 <script type="text/javascript">
 
@@ -194,20 +190,20 @@ $(function() {
 ccm_multilingualAssignPage = function(cID, cName) {
 	var srcID = $(activeAssignNode).attr('ccm-source-page-id'); 
 	var destLang = $(activeAssignNode).attr('ccm-destination-language');
-	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("assign_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("assign_page")?>', 'sourceID': srcID, 'destID': cID});
+	$("#node-" + srcID + "-" + destLang).load('<?php echo $this->action("assign_page")?>', {'token': '<?php echo Loader::helper("validation/token")->generate("assign_page")?>', 'sourceID': srcID, 'destID': cID});
 }
 ccm_multilingualCreatePage = function(srcID, destLang) {
-	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("create_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("create_page")?>', 'sourceID': srcID, 'locale': destLang});
+	$("#node-" + srcID + "-" + destLang).load('<?php echo $this->action("create_page")?>', {'token': '<?php echo Loader::helper("validation/token")->generate("create_page")?>', 'sourceID': srcID, 'locale': destLang});
 }
 ccm_multilingualIgnorePage = function(srcID, destLang) {
-	$("#node-" + srcID + "-" + destLang).load('<?=$this->action("ignore_page")?>', {'token': '<?=Loader::helper("validation/token")->generate("ignore_page")?>', 'sourceID': srcID, 'locale': destLang});
+	$("#node-" + srcID + "-" + destLang).load('<?php echo $this->action("ignore_page")?>', {'token': '<?php echo Loader::helper("validation/token")->generate("ignore_page")?>', 'sourceID': srcID, 'locale': destLang});
 }
 
 </script>
-<? } else { ?>
-	<p><?=t('You have not defined any multilingual sections for your site yet.')?></p>
-<? } ?>
+<?php } else { ?>
+	<p><?php echo t('You have not defined any multilingual sections for your site yet.')?></p>
+<?php } ?>
 
 </div>
 <div class="ccm-pane-footer"></div>
-<?=Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false);?>
+<?php echo Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false);?>
