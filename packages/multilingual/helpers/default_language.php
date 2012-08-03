@@ -4,7 +4,6 @@ Loader::model('section', 'multilingual');
 
 class DefaultLanguageHelper {
 
-
 	public function checkDefaultLanguage() {
 		$req = Request::get();
 		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 

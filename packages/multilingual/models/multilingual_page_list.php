@@ -1,6 +1,4 @@
-<?
-
-defined('C5_EXECUTE') or die("Access Denied.");
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 Loader::model("page_list");
 class MultilingualPageList extends PageList {
 
@@ -36,5 +34,4 @@ class MultilingualPageList extends PageList {
 			$this->having(false, $haveStr);
 		}	
 	}
-	
 }
