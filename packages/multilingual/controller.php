@@ -16,6 +16,18 @@ class MultilingualPackage extends Package {
 	
 	public function on_start() {
 		define('DIRNAME_IMAGES_LANGUAGES', 'flags');
+		if(!defined('MULTILINGUAL_FLAGS_WIDTH')) {
+			/** Width of multilingual flags.
+			* @var int
+			*/
+			define('MULTILINGUAL_FLAGS_WIDTH', 16);
+		}
+		if(!defined('MULTILINGUAL_FLAGS_HEIGHT')) {
+			/** Height of multilingual flags.
+			* @var int
+			*/
+			define('MULTILINGUAL_FLAGS_HEIGHT', 16);
+		}
 		
 		// checks to see if the user should be redirected to the default language home page instead of the / home page.
 		Events::extend('on_start', 'DefaultLanguageHelper', 'checkDefaultLanguage', 'packages/' . $this->pkgHandle . '/helpers/default_language.php');
