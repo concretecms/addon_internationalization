@@ -4,6 +4,8 @@
  - added alternate links to the sitemap
  - added MULTILINGUAL_FLAGS_HEIGHT & MULTILINGUAL_FLAGS_WIDTH constants so users can size the 
    flag images without forking thanks, @mlocati
+ - added a check to prevent duplicate locales. 
+ - fixed copying of non-language-associated pages into language sections via site map drag and drop. 
 
 1.1.3
  - added static declaration + code comments

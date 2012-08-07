@@ -238,12 +238,24 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 					$this->error->add(t('Invalid Page. You must specify a page directly under the home page.'));
 				}
 			}
+			
 			if (!$this->error->has()) {
 				$lc = MultilingualSection::getByID($this->post('pageID'));
 				if (is_object($lc)) {
 					$this->error->add(t('A language section page at this location already exists.'));
 				}
 			}
+
+			if (!$this->error->has()) {
+				if($this->post('msIcon')) {
+					$combination = $this->post('msLanguage'). '_' . $this->post('msIcon'); 
+					$locale = MultilingualSection::getByLocale($combination);
+					if (is_object($locale)) {
+						$this->error->add(t('This locale/language combination already exists.'));
+					}
+				}
+			}
+
 			if (!$this->error->has()) {
 				MultilingualSection::assign($pc, $this->post('msLanguage'), $this->post('msIcon'));
 				$this->redirect('/dashboard/multilingual/setup', 'multilingual_content_updated');

@@ -162,7 +162,6 @@ class MultilingualSection extends Page {
 		} else {
 			$msx = MultilingualSection::getBySectionOfSite($oldPage);
 		}
-
 		if (is_object($ms)) {
 			if (!$mpRelationID) { 
 				$mpRelationID = $db->GetOne('select max(mpRelationID) as mpRelationID from MultilingualPageRelations');
@@ -171,11 +170,14 @@ class MultilingualSection extends Page {
 				} else {
 					$mpRelationID++;
 				}
-				$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage, mpLocale) values (?, ?, ?, ?)', array(
+				
+				if(is_object($msx)) {   // adding in a check to see if old page was part of a language section or neutral. 
+					$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage, mpLocale) values (?, ?, ?, ?)', array(
 					$mpRelationID, $oldPage->getCollectionID(), $msx->getLanguage(), $msx->getLocale()
 				));
-			}
-			
+				} 
+				
+			} 
 			$v = array($mpRelationID, $newPage->getCollectionID(), $ms->getLocale());
 			$cID = $db->GetOne('select cID from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?', array($mpRelationID, $ms->getLocale()));
 			if ($cID < 1) {
@@ -183,7 +185,6 @@ class MultilingualSection extends Page {
 			}
 			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale) values (?, ?, ?)', $v);
 
-	
 			/** 
 			 * Grabs the multilingual section for the old page, and for the new page, and compares themes
 			 * If they are different, the page gets the theme from the new section
