@@ -6,6 +6,7 @@
    flag images without forking thanks, @mlocati
  - added a check to prevent duplicate locales. 
  - fixed copying of non-language-associated pages into language sections via site map drag and drop. 
+ - Improved compatibility with concrete5.6.
 
 1.1.3
  - added static declaration + code comments
