@@ -3,11 +3,11 @@
 class DashboardMultilingualPageReportController extends Controller {
 
 	public $helpers = array('form');
-	
+
 	public function on_before_render() {
 		$this->addHeaderItem(Loader::helper('html')->css('dashboard/multilingual.css','multilingual'));
 	}
-	
+
 	public function view() {
 		Loader::model('section', 'multilingual');
 		$list = MultilingualSection::getList();
@@ -17,7 +17,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		}
 		$this->set('sections', $sections);
 		$this->set('sectionList', $list);
-		
+
 		if (!isset($_REQUEST['sectionID']) && (count($sections) > 0)) {
 			foreach($sections as $key => $value) {
 				$sectionID = $key;
@@ -33,7 +33,7 @@ class DashboardMultilingualPageReportController extends Controller {
 				if ($key != $sectionID) {
 					$targets[$key] = $key;
 					break;
-				}				
+				}
 				$i++;
 			}
 		} else {
@@ -42,7 +42,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		if (!isset($targets) || (!is_array($targets))) {
 			$targets = array();
 		}
-		
+
 		$targetList = array();
 		foreach($targets as $key => $value) {
 			$targetList[] = MultilingualSection::getByID($key);
@@ -56,7 +56,7 @@ class DashboardMultilingualPageReportController extends Controller {
 			$pl->filterByIsAlias(false);
 			$pc = Page::getByID($sectionID);
 			$pl->filterByPath($pc->getCollectionPath());
-			$pl->setItemsPerPage(50);
+			$pl->setItemsPerPage(25);
 			$pl->ignoreAliases();
 			if (!$_REQUEST['showAllPages']) {
 				$pl->filterByMissingTargets($targetList);
@@ -65,7 +65,7 @@ class DashboardMultilingualPageReportController extends Controller {
 			$pages = $pl->getPage();
 			$this->set('pages', $pages);
 			$this->set('section', MultilingualSection::getByID($sectionID));
-			$this->set('pl', $pl);			   
+			$this->set('pl', $pl);
 		}
 	}
 
@@ -84,12 +84,12 @@ class DashboardMultilingualPageReportController extends Controller {
 			}
 			if (is_object($ms)) {
 				$page = Page::getByID($_POST['sourceID']);
-				
+
 				// we need to assign/relate the source ID too, if it doesn't exist
 				if (!MultilingualSection::isAssigned($page)) {
 					MultilingualSection::assignAdd($page);
 				}
-				
+
 				MultilingualSection::relatePage($page, $destPage, $ms->getLocale());
 				print '<a href="' . Loader::helper("navigation")->getLinkToCollection($destPage) . '">' . $destPage->getCollectionName() . '</a>';
 			} else {
@@ -98,7 +98,7 @@ class DashboardMultilingualPageReportController extends Controller {
 		}
 		exit;
 	}
-	
+
 	public function ignore_page() {
 		Loader::model('section', 'multilingual');
 		if (Loader::helper('validation/token')->validate('ignore_page', $_POST['token'])) {
@@ -108,12 +108,12 @@ class DashboardMultilingualPageReportController extends Controller {
 		}
 		exit;
 	}
-	
+
 	public function create_page() {
 		Loader::model('section', 'multilingual');
 		if (Loader::helper('validation/token')->validate('create_page', $_POST['token'])) {
 			$ms = MultilingualSection::getByLocale($_POST['locale']);
-			
+
 			$page = Page::getByID($_POST['sourceID']);
 			if (is_object($page) && !$page->isError()) {
 				// we get the related parent id
