@@ -4,7 +4,7 @@ class MultilingualPageList extends PageList {
 
 	public function __construct() {
 		$mslist = MultilingualSection::getList();
-		$query = ',  (select mpRelationID from MultilingualPageRelations where cID = p1.cID) as mpr';
+		$query = ',  (select mpRelationID from MultilingualPageRelations where cID = p1.cID LIMIT 1) as mpr';
 		foreach($mslist as $ms) {
 			$query .= ', (select count(mpRelationID) from MultilingualPageRelations where MultilingualPageRelations.mpRelationID = mpr and mpLocale = \'' . $ms->getLocale() . '\') as relationCount'  . $ms->getCollectionID();
 		}
