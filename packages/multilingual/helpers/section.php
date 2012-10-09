@@ -40,7 +40,7 @@ class SectionHelper {
 	 * @deprecated
 	 */
 	public function getLanguage() {
-		return self::getLocale();
+		return MultilingualSection::getCurrentSection()->getLanguage();
 	}
 	
 	/**
