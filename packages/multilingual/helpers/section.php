@@ -40,7 +40,13 @@ class SectionHelper {
 	 * @deprecated
 	 */
 	public function getLanguage() {
-		return MultilingualSection::getCurrentSection()->getLanguage();
+		$ms = self::getSectionByLocale();
+		if (is_object($ms)) {
+			$lang = $ms->msLanguage;
+		} else {
+			$lang = substr(Loader::helper('default_language','multilingual')->getSessionDefaultLocale(), 0, 2);
+		}
+		return (string) $lang;
 	}
 	
 	/**
