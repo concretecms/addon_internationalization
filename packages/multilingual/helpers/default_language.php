@@ -101,8 +101,10 @@ class DefaultLanguageHelper {
 						$pkg->setupPackageLocalization($ms->getLocale());
 					}
 				}
-			}			
+			}
+			
+			// add default locale session from first run		
+			$_SESSION['DEFAULT_LOCALE'] = (string) $locale;
 		}
-		
 	}
 }
