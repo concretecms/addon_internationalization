@@ -9,7 +9,7 @@ $page = Page::getCurrentPage();
 	}
 	foreach($languageSections as $ml) {
 		?><a href="<?php echo $navigationHelper->getLinkToCollection($interfacePageHelper->getTranslatedPageWithAliasSupport($page, $ml, true)); ?>" class="<?php if($activeLanguage == $ml->getCollectionID()) { ?>ccm-multilingual-active-flag<?php } ?>"><?php
-			echo $ih->getSectionFlagIcon($ml);	
+			echo $ih->getSectionFlagIcon($ml);
 		?></a><?php
 	}
 ?></div>
