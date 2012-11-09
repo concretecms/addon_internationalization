@@ -131,4 +131,41 @@ class InterfacePageHelper {
 		// Fallback_ let's return the $lang homepage
 		return $fallbackToHome ? $lang : null;
 	}
+
+	/** Adds the link rel="alternate" hreflang=".." href=".." tag to the specified page.
+	* @param Page $page
+	*/
+	public function addAlternateHrefLang($page) {
+		if($page || ($page = Page::getCurrentPage())) {
+			if(!$page->isAdminArea()) {
+				if($lang = MultilingualSection::getBySectionOfSite($page)) {
+					if(!is_array(self::$_allLanguages)) {
+						self::$_allLanguages = MultilingualSection::getList();
+					}
+					$html = Loader::helper('html');
+					$navigation = Loader::helper('navigation');
+					$v = View::getInstance();
+					if(!$page->isAlias() && $page->cID == $lang->cID) {
+						$isRoot = true;
+					}
+					else {
+						$isRoot = false;
+					}
+					foreach(self::$_allLanguages as $otherLang) {
+						if($otherLang->msLanguage != $lang->msLanguage) {
+							if($isRoot) {
+								$otherPage = $otherLang;
+							}
+							else {
+								$otherPage = $this->getTranslatedPageWithAliasSupport($page, $otherLang, false);
+							}
+							if($otherPage) {
+								$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLanguage . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
