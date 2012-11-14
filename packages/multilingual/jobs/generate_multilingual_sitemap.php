@@ -57,16 +57,16 @@ class GenerateMultilingualSitemap extends Job {
 			$db = Loader::db();
 			$collection_attributes = Loader::model('collection_attributes');
 			$r = $db->query("select cID from Pages where cID > 1 order by cID asc");
-			$g = Group::getByID(GUEST_GROUP_ID);
 			$nh = Loader::helper('navigation');
 			$dh = Loader::helper('concrete/dashboard');
+			$g = Group::getByID(GUEST_GROUP_ID);
+			$groupPermissionEntity = GroupPermissionAccessEntity::getOrCreate($g);
 			
 			while ($row = $r->fetchRow()) {
 				$c = Page::getByID($row['cID'], 'ACTIVE');
 				if ($dh->inDashboard($c)) {
 					continue;
 				}
-				$g->setPermissionsForObject($c);
 				if ($c->isSystemPage()) {
 					continue;
 				}
@@ -79,7 +79,11 @@ class GenerateMultilingualSitemap extends Job {
 					continue;
 				} 
 				
-				if ($g->canRead()) {			
+				$viewPageKey = PermissionKey::getByHandle('view_page');
+				$viewPageKey->setPermissionObject($c);
+				$pa = $viewPageKey->getPermissionAccessObject();
+				
+				if (is_object($pa) && $pa->validateAccessEntities(array($groupPermissionEntity))) {
 	
 					$name = ($c->getCollectionName()) ? $c->getCollectionName() : '(No name)';
 					$cPath = $ni->getCollectionURL($c);
@@ -92,15 +96,21 @@ class GenerateMultilingualSitemap extends Job {
 						$priority = '0.' . round(rand(1, 5));
 					}
 					
-					$node = "";		
+					$node = "";
 					$node .= "<url>\n";
 					$node .= "<loc>" . $cPath . "</loc>\n";
 					$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
 					$node .= "  <changefreq>".$changefreq."</changefreq>\n";
 					$node .= "  <priority>".$priority."</priority>\n";
 
-					foreach($tp::getTranslatedPages($c,'NONE') as $locale => $page)
-						$node .= "  ".$tp->altMeta($locale,$page,'xhtml:link')."\n";
+					foreach($tp::getTranslatedPages($c,'NONE') as $locale => $page) {
+						$viewPageKey = PermissionKey::getByHandle('view_page');
+						$viewPageKey->setPermissionObject($page);
+						$pa = $viewPageKey->getPermissionAccessObject();
+						if (is_object($pa) && $pa->validateAccessEntities(array($groupPermissionEntity))) {
+							$node .= "  ".$tp->altMeta($locale,$page,'xhtml:link')."\n";
+						}
+					}
 					$node .= "</url>\n";
 					
 					fwrite($handle, $node);
