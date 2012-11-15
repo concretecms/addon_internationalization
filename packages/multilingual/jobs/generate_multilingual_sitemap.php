@@ -69,14 +69,23 @@ class GenerateMultilingualSitemap extends Job {
 				if ($dh->inDashboard($c)) {
 					continue;
 				}
-				$g->setPermissionsForObject($c);
+				$viewPagePermissionKey = PermissionKey::getByHandle('view_page');
+				$viewPagePermissionKey->setPermissionObject($c);
+				$pa = $viewPagePermissionKey->getPermissionAccessObject();
+				if (!is_object($pa)) {
+					continue;
+				}
+				
 				if (($c->isSystemPage()) ||
 					($c->getAttribute("exclude_sitemapxml")) ||
 					($c->isExternalLink())) {
 					continue;
 				}
-
-				if ($g->canRead()) {
+				
+				$accessEntities[] = GroupPermissionAccessEntity::getOrCreate($g);
+				if (!$pa->validateAccessEntities($accessEntities)) {
+					continue; 
+				} else {
 
 					$name = ($c->getCollectionName()) ? $c->getCollectionName() : '(No name)';
 					$cPath = $ni->getCollectionURL($c);
