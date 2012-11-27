@@ -76,7 +76,10 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 <br/>
 
 <h3><?php echo t('Copy Language Tree')?></h3>
-<form method="post" action="<?php echo $this->action('copy_tree')?>">
+<?
+$u = new User();
+if ($u->isSuperUser()) { ?>
+<form method="post" id="ccm-internationalization-copy-tree" action="<?php echo $this->action('copy_tree')?>">
 	<?php if (count($pages) > 1) {
 		$copyLanguages = array();
 		foreach($pages as $pc) {
@@ -111,8 +114,37 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 	<?php } else { ?>
 		<p><?php echo t('You have not created any multilingual content sections yet.')?></p>
 	<?php } ?>
-</form>
 
+	<? if(version_compare(APP_VERSION, '5.6.0.3', '>')) { 
+			// 5.6.1 OR GREATER
+		?>
+		<script type="text/javascript">
+		$(function() {
+			$("#ccm-internationalization-copy-tree").on('submit', function() {
+				var ctf = $('select[name=copyTreeFrom]').val();
+				var ctt = $('select[name=copyTreeTo]').val();
+				if (ctt > 0 && ctf > 0 && ctt != ctf) {
+					ccm_triggerProgressiveOperation(
+						CCM_TOOLS_PATH + '/dashboard/sitemap_copy_all', 
+						[{'name': 'origCID', 'value': ctf}, {'name': 'destCID', 'value': ctt}, {'name': 'copyChildrenOnly', 'value': true}],
+						"<?=t('Copy Language Tree')?>", function() {
+							window.location.href= "<?=$this->action('tree_copied')?>";
+						}
+					);
+				} else {
+					alert("<?=t('You must choose two separate multilingual sections to copy from/to')?>");
+				}
+				return false;
+			});
+		});
+		</script>
+
+	<? } ?>
+
+</form>
+<? } else { ?>
+	<p><?=t('Only the super user may copy language trees.')?></p>
+<? } ?>
 
 <?php if (count($pages) > 0) {
 	$defaultLanguages = array('' => t('** None Set'));

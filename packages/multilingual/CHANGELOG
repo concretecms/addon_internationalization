@@ -1,3 +1,6 @@
+1.1.6 
+	- minimum concrete version to 5.6
+	
 1.1.5
 	- Fix the sitemap generation job
 
