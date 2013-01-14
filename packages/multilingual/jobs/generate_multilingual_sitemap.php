@@ -78,34 +78,56 @@ class GenerateMultilingualSitemap extends Job {
 					continue;
 				}
 
-				if ($g->canRead()) {
-				
-				$viewPageKey = PermissionKey::getByHandle('view_page');
-				$viewPageKey->setPermissionObject($c);
-				$pa = $viewPageKey->getPermissionAccessObject();
-				
-				if (is_object($pa) && $pa->validateAccessEntities(array($groupPermissionEntity))) {
-	
-					$name = ($c->getCollectionName()) ? $c->getCollectionName() : '(No name)';
-					$cPath = $ni->getCollectionURL($c);
-					$changefreq = $c->getAttribute('sitemap_changefreq');
-					$priority = $c->getAttribute("sitemap_priority");
-					if ($changefreq == '') {
-						$changefreq = 'weekly';
+				$gcanread = false;
+				do {
+					if (method_exists($g, 'canRead')) {
+						if ($g->canRead()) {
+							$gcanread == true;
+						}
+					} else {
+						$pk = PermissionKey::getByHandle('view_page');
+						$pk->setPermissionObject($c);
+						$pa = $pk->getPermissionAccessObject();
+						if(!is_object($pa)) {
+							break;
+						}
+						$accessEntities[] = GroupPermissionAccessEntity::getOrCreate($g);
+						if (!$pa->validateAccessEntities($accessEntities)) {
+							break;
+						}
 					}
-					if ($priority == '') {
-						$priority = '0.' . round(rand(1, 5));
-					}
-					
-					$node .= "<url>\n";
-					$node .= "<loc>" . $cPath . "</loc>\n";
-					$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
-					$node .= "  <changefreq>".$changefreq."</changefreq>\n";
-					$node .= "  <priority>".$priority."</priority>\n";
+					$gcanread = true;
+				} while (false);
 
-					$translated_pages = $tp->getTranslatedPages($c,'NONE');
-					foreach($translated_pages as $locale => $page) {
-						$node .= "  ".$tp->altMeta($locale,$page,'xhtml:link')."\n";	}
+				if ($gcanRead) {
+				
+					$viewPageKey = PermissionKey::getByHandle('view_page');
+					$viewPageKey->setPermissionObject($c);
+					$pa = $viewPageKey->getPermissionAccessObject();
+					
+					if (is_object($pa) && $pa->validateAccessEntities(array($groupPermissionEntity))) {
+		
+						$name = ($c->getCollectionName()) ? $c->getCollectionName() : '(No name)';
+						$cPath = $ni->getCollectionURL($c);
+						$changefreq = $c->getAttribute('sitemap_changefreq');
+						$priority = $c->getAttribute("sitemap_priority");
+						if ($changefreq == '') {
+							$changefreq = 'weekly';
+						}
+						if ($priority == '') {
+							$priority = '0.' . round(rand(1, 5));
+						}
+						
+						$node .= "<url>\n";
+						$node .= "<loc>" . $cPath . "</loc>\n";
+						$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
+						$node .= "  <changefreq>".$changefreq."</changefreq>\n";
+						$node .= "  <priority>".$priority."</priority>\n";
+
+						$translated_pages = $tp->getTranslatedPages($c,'NONE');
+						foreach($translated_pages as $locale => $page) {
+							$node .= "  ".$tp->altMeta($locale,$page,'xhtml:link')."\n";
+						}
 					}
 					$node .= "</url>\n";
 
