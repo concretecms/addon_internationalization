@@ -62,18 +62,18 @@ class GenerateMultilingualSitemap extends Job {
 			$r = $db->query("select cID from Pages where cID > 1 order by cID asc");
 			$nh = Loader::helper('navigation');
 			$dh = Loader::helper('concrete/dashboard');
-			
+
 			$g = Group::getByID(GUEST_GROUP_ID);
 			$groupPermissionEntity = GroupPermissionAccessEntity::getOrCreate($g);
-			
+
 			while ($row = $r->fetchRow()) {
 				$c = Page::getByID($row['cID'], 'ACTIVE');
-				
+
 				$g->setPermissionsForObject($c);
-				
+
 				if (($c->isSystemPage()) ||
 					($c->getAttribute("exclude_sitemapxml")) ||
-					($c->isExternalLink()) || 
+					($c->isExternalLink()) ||
 					($dh->inDashboard($c))) {
 					continue;
 				}
@@ -100,13 +100,13 @@ class GenerateMultilingualSitemap extends Job {
 				} while (false);
 
 				if ($gcanRead) {
-				
+
 					$viewPageKey = PermissionKey::getByHandle('view_page');
 					$viewPageKey->setPermissionObject($c);
 					$pa = $viewPageKey->getPermissionAccessObject();
-					
+
 					if (is_object($pa) && $pa->validateAccessEntities(array($groupPermissionEntity))) {
-		
+
 						$name = ($c->getCollectionName()) ? $c->getCollectionName() : '(No name)';
 						$cPath = $ni->getCollectionURL($c);
 						$changefreq = $c->getAttribute('sitemap_changefreq');
@@ -117,7 +117,7 @@ class GenerateMultilingualSitemap extends Job {
 						if ($priority == '') {
 							$priority = '0.' . round(rand(1, 5));
 						}
-						
+
 						$node .= "<url>\n";
 						$node .= "<loc>" . $cPath . "</loc>\n";
 						$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
