@@ -82,7 +82,7 @@ class GenerateMultilingualSitemap extends Job {
 				do {
 					if (method_exists($g, 'canRead')) {
 						if ($g->canRead()) {
-							$gcanread == true;
+							$gcanread = true;
 						}
 					} else {
 						$pk = PermissionKey::getByHandle('view_page');
