@@ -6,7 +6,7 @@
 class GenerateMultilingualSitemap extends Job {
 
 	public function getJobName() {
-		return t('Generate multilingual Sitemap File');
+		return t('Generate multilingual sitemap.xml File');
 	}
 
 
@@ -15,6 +15,9 @@ class GenerateMultilingualSitemap extends Job {
 	}
 
 	function run() {
+		if(!defined('ENABLE_MULTILINGUAL_SITEMAPXML') || !ENABLE_MULTILINGUAL_SITEMAPXML) {
+			return t("This job is disabled because it may cause excessive load depending on the size of your site.  To enable this job, you must define the constant ENABLE_MULTILINGUAL_SITEMAPXML as true.");
+		}
 
 		$ni = Loader::helper('navigation');
 		$tp = Loader::helper('translated_pages', 'multilingual');
@@ -78,11 +81,11 @@ class GenerateMultilingualSitemap extends Job {
 					continue;
 				}
 
-				$gcanread = false;
+				$gcanRead = false;
 				do {
 					if (method_exists($g, 'canRead')) {
 						if ($g->canRead()) {
-							$gcanread = true;
+							$gcanRead = true;
 						}
 					} else {
 						$pk = PermissionKey::getByHandle('view_page');
@@ -96,9 +99,8 @@ class GenerateMultilingualSitemap extends Job {
 							break;
 						}
 					}
-					$gcanread = true;
+					$gcanRead = true;
 				} while (false);
-
 				if ($gcanRead) {
 
 					$viewPageKey = PermissionKey::getByHandle('view_page');
