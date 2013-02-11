@@ -68,6 +68,10 @@ class MultilingualPackage extends Package {
 			'packages/'.$this->pkgHandle.'/models/section.php'
 			);
 
+		if(defined('MULTILINGUAL_ADD_ALTERNATE_HREFLANG') && MULTILINGUAL_ADD_ALTERNATE_HREFLANG) {
+			Events::extend('on_page_view', __CLASS__, 'addAlternateHrefLang', __FILE__);
+		}
+
 		// add the header menu item
 		$ihm = Loader::helper('concrete/interface/menu');
 		Loader::model('section', 'multilingual');		
@@ -82,8 +86,11 @@ class MultilingualPackage extends Package {
 			'class' => 'dialog-launch'
 		), 'multilingual');
 	}
-	
-	
+
+	public static function addAlternateHrefLang($page) {
+		Loader::helper('interface/page', 'multilingual')->addAlternateHrefLang($page);
+	}
+
 	public function install() {
 		$pkg = parent::install();
 		
