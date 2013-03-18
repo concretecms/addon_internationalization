@@ -55,11 +55,12 @@ class MultilingualSection extends Page {
 	*/
 	public static function getByLanguage($language) {
 		$db = Loader::db();
-		$r = $db->GetRow('select cID, msLanguage, msIcon from MultilingualSections where msLanguage = ?', array($language));
+		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where msLanguage = ?', array($language));
 		if ($r && is_array($r) && $r['msLanguage']) {
 			$obj = parent::getByID($r['cID'], 'RECENT', 'MultilingualSection');
 			$obj->msLanguage = $r['msLanguage'];
 			$obj->msIcon = $r['msIcon'];
+			$obj->msLocale = $r['msLocale'];
 			return $obj;
 		}
 		return false;
