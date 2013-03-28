@@ -57,9 +57,16 @@ class DefaultLanguageHelper {
 			Loader::library('3rdparty/Zend/Locale');
 			$locale = new Zend_Locale();
 			
+			
+			
 			if(is_object(MultilingualSection::getByLocale((string) $locale))){
 				return (string) $locale;
-			}
+			} else {
+                $section = MultilingualSection::getByLanguage((string) $locale->getLanguage());
+                if(is_object($section)) {
+                    return (string) $section->getLocale();
+                }
+            }
 		}
 		
 		return $pkg->config('DEFAULT_LANGUAGE');
