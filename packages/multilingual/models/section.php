@@ -122,7 +122,12 @@ class MultilingualSection extends Page {
 		if (!class_exists('Zend_Locale')) {
 			Loader::library('3rdparty/Zend/Locale');
 		}
-		return Zend_Locale::getTranslation($this->msLanguage, 'language', $locale);
+		try{
+			$text = Zend_Locale::getTranslation($this->msLanguage, 'language', $locale); 
+		} catch(Exception $e) {
+			$text = $this->msLanguage;
+		}
+		return $text;
 	}
 	public function getIcon() {return $this->msIcon;}
 	
