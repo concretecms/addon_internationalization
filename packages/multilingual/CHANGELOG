@@ -2,6 +2,7 @@
 	- added href lang to page headers (thanks mlocati)
 	- added seo flags template switch language block (thanks mlocati)
 	- redirects to language if exact locale is not found (thanks LyDiaMo)
+	- fixed layout of switch language add block form
 
 1.1.7
 	- Fix sitemap generation to work with 5.6+ and disabled it since it should be run carefully on large sites
