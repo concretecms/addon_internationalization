@@ -2,7 +2,7 @@
 defined('C5_EXECUTE') or die(_("Access Denied."));
 class SwitchLanguageBlockController extends BlockController {
 		
-	protected $btInterfaceWidth = "300";
+	protected $btInterfaceWidth = "500";
 	protected $btInterfaceHeight = "150";
 	protected $btTable = 'btMultilingualSwitchLanguage';
 	protected $btWrapperClass = 'ccm-ui';
