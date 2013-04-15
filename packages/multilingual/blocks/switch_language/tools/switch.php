@@ -18,8 +18,6 @@ if (isset($_POST['ccmMultilingualSiteDefaultLanguage'])) {
 	$lang = MultilingualSection::getByID($_REQUEST['ccmMultilingualChooseLanguage']);
 }
 
-//echo var_dump($_REQUEST, $lang); exit;
-
 if (is_object($lang)) {
 	if (isset($_REQUEST['ccmMultilingualCurrentPageID'])) {
 		$page = Page::getByID($_REQUEST['ccmMultilingualCurrentPageID']);
@@ -39,7 +37,6 @@ if (is_object($lang)) {
 	header('Location: ' . Loader::helper('navigation')->getLinkToCollection($lang, true));
 	exit;
 }
-
 
 
 header('Location: ' . BASE_URL . DIR_REL . '/');
