@@ -62,11 +62,11 @@ class DefaultLanguageHelper {
 			if(is_object(MultilingualSection::getByLocale((string) $locale))){
 				return (string) $locale;
 			} else {
-                $section = MultilingualSection::getByLanguage((string) $locale->getLanguage());
-                if(is_object($section)) {
-                    return (string) $section->getLocale();
-                }
-            }
+				$section = MultilingualSection::getByLanguage((string) $locale->getLanguage());
+				if(is_object($section)) {
+				return (string) $section->getLocale();
+				}
+			}
 		}
 		
 		return $pkg->config('DEFAULT_LANGUAGE');
@@ -77,7 +77,7 @@ class DefaultLanguageHelper {
 		$c = Page::getCurrentPage();
 		if($c instanceof Page && Loader::helper('section', 'multilingual')->section('dashboard')) {
 			return;
-		}		
+		}
 		
 		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
@@ -99,7 +99,7 @@ class DefaultLanguageHelper {
 		
 		// add package translations, won't happen if the DIR_LANGUAGES_SITE_INTERFACE directory doen't exits...
 		if(strlen($locale)) {
-			$ms = MultilingualSection::getByLocale($locale);		
+			$ms = MultilingualSection::getByLocale($locale);
 			if($ms instanceof MultilingualSection) {
 				$pl = PackageList::get();
 				$installed = $pl->getPackages();
@@ -108,7 +108,7 @@ class DefaultLanguageHelper {
 						$pkg->setupPackageLocalization($ms->getLocale());
 					}
 				}
-			}			
+			}
 		}
 		
 	}
