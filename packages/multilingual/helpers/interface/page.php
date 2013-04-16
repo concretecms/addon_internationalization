@@ -74,9 +74,9 @@ class InterfacePageHelper {
 	* @return Page|null
 	*/
 	public function getTranslatedPageWithAliasSupport($page, $lang, $fallbackToHome = true) {
-		// Is the page already under $lang?
+		// Is the page already under $lang (in the same locale)?
 		$pageLang = MultilingualSection::getBySectionOfSite($page);
-		if($pageLang && ($pageLang->msLanguage === $lang->msLanguage)) {
+		if($pageLang && ($pageLang->msLocale === $lang->msLocale)) {
 			return $page;
 		}
 		// Let's determine the original cID (differs from $page->cID if $page is an alias).
@@ -90,7 +90,7 @@ class InterfacePageHelper {
 		}
 		// If we're querying an alias of $page, return it.
 		foreach(self::$_pageAliasesOf[$original_cID] as $alias) {
-			if($alias['Lang'] && ($alias['Lang']->msLanguage === $lang->msLanguage)) {
+			if($alias['Lang'] && ($alias['Lang']->msLocale === $lang->msLocale)) {
 				return $alias['Page'];
 			}
 		}
@@ -98,7 +98,7 @@ class InterfacePageHelper {
 		if($aliasLevel == 2) {
 			$originalPage = Page::getByID($original_cID);
 			$originalLanguage = MultilingualSection::getBySectionOfSite($originalPage);
-			if($originalLanguage && ($originalLanguage->msLanguage === $lang->msLanguage)) {
+			if($originalLanguage && ($originalLanguage->msLocale === $lang->msLocale)) {
 				return $originalPage;
 			}
 		}
@@ -121,7 +121,7 @@ class InterfacePageHelper {
 						self::$_pageAliasesOf[$translatedTo_cID] = self::getAliasesOf($translatedTo_cID);
 					}
 					foreach(self::$_pageAliasesOf[$translatedTo_cID] as $alias) {
-						if($alias['Lang'] && ($alias['Lang']->msLanguage === $lang->msLanguage)) {
+						if($alias['Lang'] && ($alias['Lang']->msLocale === $lang->msLocale)) {
 							return $alias['Page'];
 						}
 					}
@@ -152,7 +152,7 @@ class InterfacePageHelper {
 						$isRoot = false;
 					}
 					foreach(self::$_allLanguages as $otherLang) {
-						if($otherLang->msLanguage != $lang->msLanguage) {
+						if($otherLang->msLocale != $lang->msLocale) {
 							if($isRoot) {
 								$otherPage = $otherLang;
 							}
@@ -160,7 +160,7 @@ class InterfacePageHelper {
 								$otherPage = $this->getTranslatedPageWithAliasSupport($page, $otherLang, false);
 							}
 							if($otherPage) {
-								$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLanguage . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
+								$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLocale . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
 							}
 						}
 					}
