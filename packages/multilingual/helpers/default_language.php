@@ -4,17 +4,19 @@ Loader::model('section', 'multilingual');
 
 class DefaultLanguageHelper {
 
-
 	public function checkDefaultLanguage() {
 		$req = Request::get();
 		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
 			if (!$req->getRequestCollectionPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
-				$pkg = Package::getByHandle('multilingual');
-				if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
-					$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
-					if (is_object($ms)) {
-						header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
-						exit;
+				$p = $req->getCurrentPage();
+				if (is_object($p) && (!$p->isError())) { 
+					$pkg = Package::getByHandle('multilingual');
+					if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
+						$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
+						if (is_object($ms)) {
+							header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
+							exit;
+						}
 					}
 				}
 			}
@@ -55,8 +57,15 @@ class DefaultLanguageHelper {
 			Loader::library('3rdparty/Zend/Locale');
 			$locale = new Zend_Locale();
 			
+			
+			
 			if(is_object(MultilingualSection::getByLocale((string) $locale))){
-				return $locale;
+				return (string) $locale;
+			} else {
+				$section = MultilingualSection::getByLanguage((string) $locale->getLanguage());
+				if(is_object($section)) {
+				return (string) $section->getLocale();
+				}
 			}
 		}
 		
@@ -70,29 +79,27 @@ class DefaultLanguageHelper {
 			return;
 		}
 		
-		$ms = MultilingualSection::getCurrentSection();
-		if (is_object($ms)) {
-			$locale = $ms->getLocale();
-		} else {
-			$locale = DefaultLanguageHelper::getSessionDefaultLocale();
-		}
-		
-		// change core language to translate e.g. core blocks/themes
-		if (strlen($locale)) {
-			Localization::changeLocale($locale);
-		}
-		
 		// site translations
 		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
-			if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
-				$loc = Localization::getInstance();
-				$loc->addSiteInterfaceLanguage($locale);
+			$ms = MultilingualSection::getCurrentSection();
+			if (is_object($ms)) {
+				$locale = $ms->getLocale();
+				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
+					$loc = Localization::getInstance();
+					$loc->addSiteInterfaceLanguage($locale);
+				}
+			} else {
+				$locale = DefaultLanguageHelper::getSessionDefaultLocale();
+				if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
+					$loc = Localization::getInstance();
+					$loc->addSiteInterfaceLanguage($locale);
+				}
 			}
 		}
 		
-		// add package translations
+		// add package translations, won't happen if the DIR_LANGUAGES_SITE_INTERFACE directory doen't exits...
 		if(strlen($locale)) {
-			$ms = MultilingualSection::getByLocale($locale);		
+			$ms = MultilingualSection::getByLocale($locale);
 			if($ms instanceof MultilingualSection) {
 				$pl = PackageList::get();
 				$installed = $pl->getPackages();
@@ -103,5 +110,6 @@ class DefaultLanguageHelper {
 				}
 			}
 		}
+		
 	}
 }

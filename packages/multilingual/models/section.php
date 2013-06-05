@@ -1,6 +1,4 @@
-<?
-
-defined('C5_EXECUTE') or die("Access Denied.");
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 class MultilingualSection extends Page {
 	
 	/**
@@ -57,11 +55,12 @@ class MultilingualSection extends Page {
 	*/
 	public static function getByLanguage($language) {
 		$db = Loader::db();
-		$r = $db->GetRow('select cID, msLanguage, msIcon from MultilingualSections where msLanguage = ?', array($language));
+		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where msLanguage = ?', array($language));
 		if ($r && is_array($r) && $r['msLanguage']) {
 			$obj = parent::getByID($r['cID'], 'RECENT', 'MultilingualSection');
 			$obj->msLanguage = $r['msLanguage'];
 			$obj->msIcon = $r['msIcon'];
+			$obj->msLocale = $r['msLocale'];
 			return $obj;
 		}
 		return false;
@@ -71,7 +70,7 @@ class MultilingualSection extends Page {
 	 * @param string $language
 	 * @return MultilingualSection|false
 	*/
-	public function getByLocale($locale) {
+	public static function getByLocale($locale) {
 		$db = Loader::db();
 		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where msLocale = ?', array($locale));
 		if ($r && is_array($r) && $r['msLocale']) {
@@ -123,7 +122,12 @@ class MultilingualSection extends Page {
 		if (!class_exists('Zend_Locale')) {
 			Loader::library('3rdparty/Zend/Locale');
 		}
-		return Zend_Locale::getTranslation($this->msLanguage, 'language', $locale);
+		try{
+			$text = Zend_Locale::getTranslation($this->msLanguage, 'language', $locale); 
+		} catch(Exception $e) {
+			$text = $this->msLanguage;
+		}
+		return $text;
 	}
 	public function getIcon() {return $this->msIcon;}
 	
@@ -133,15 +137,15 @@ class MultilingualSection extends Page {
 		$db->Execute('delete from MultilingualPageRelations where cID = ?', array($page->getCollectionID()));
 	}
 	
-	public static function relatePage($oldPage, $newPage, $language) {
+	public static function relatePage($oldPage, $newPage, $locale) {
 		$db = Loader::db();
 		$mpRelationID = $db->GetOne('select mpRelationID from MultilingualPageRelations where cID = ?', array($oldPage->getCollectionID()));
 		if ($mpRelationID) {
-			$v = array($mpRelationID, $newPage->getCollectionID(), $language);
-			$db->Execute('delete from MultilingualPageRelations where mpRelationID = ? and mpLanguage = ?', array($mpRelationID, $language));
+			$v = array($mpRelationID, $newPage->getCollectionID(), $locale);
+			$db->Execute('delete from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?', array($mpRelationID, $locale));
 			$db->Execute('delete from MultilingualPageRelations where cID = ?', array($newPage->getCollectionID()));
-			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', $v);
-			Events::fire('on_multilingual_page_relate', $newPage, $language);
+			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale) values (?, ?, ?)', $v);
+			Events::fire('on_multilingual_page_relate', $newPage, $locale);
 		}
 	}	
 	
@@ -164,7 +168,6 @@ class MultilingualSection extends Page {
 		} else {
 			$msx = MultilingualSection::getBySectionOfSite($oldPage);
 		}
-
 		if (is_object($ms)) {
 			if (!$mpRelationID) { 
 				$mpRelationID = $db->GetOne('select max(mpRelationID) as mpRelationID from MultilingualPageRelations');
@@ -173,19 +176,21 @@ class MultilingualSection extends Page {
 				} else {
 					$mpRelationID++;
 				}
-				$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', array(
-					$mpRelationID, $oldPage->getCollectionID(), $msx->getLanguage()
+				
+				if(is_object($msx)) {   // adding in a check to see if old page was part of a language section or neutral. 
+					$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage, mpLocale) values (?, ?, ?, ?)', array(
+					$mpRelationID, $oldPage->getCollectionID(), $msx->getLanguage(), $msx->getLocale()
 				));
-			}
-			
-			$v = array($mpRelationID, $newPage->getCollectionID(), $ms->getLanguage());
-			$cID = $db->GetOne('select cID from MultilingualPageRelations where mpRelationID = ? and mpLanguage = ?', array($mpRelationID, $ms->getLanguage()));
+				} 
+				
+			} 
+			$v = array($mpRelationID, $newPage->getCollectionID(), $ms->getLocale());
+			$cID = $db->GetOne('select cID from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?', array($mpRelationID, $ms->getLocale()));
 			if ($cID < 1) {
-				$db->Execute('delete from MultilingualPageRelations where mpRelationID = ? and mpLanguage = ?', array($mpRelationID, $ms->getLanguage()));
+				$db->Execute('delete from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?', array($mpRelationID, $ms->getLocale()));
 			}
-			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', $v);
+			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale) values (?, ?, ?)', $v);
 
-	
 			/** 
 			 * Grabs the multilingual section for the old page, and for the new page, and compares themes
 			 * If they are different, the page gets the theme from the new section
@@ -211,9 +216,9 @@ class MultilingualSection extends Page {
 			} else {
 				$mpRelationID++;
 			}		
-			$v = array($mpRelationID, $page->getCollectionID(), $ms->getLanguage());
-			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', $v);
-			Events::fire('on_multilingual_page_relate', $page, $language);
+			$v = array($mpRelationID, $page->getCollectionID(), $ms->getLanguage(), $ms->getLocale());
+			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage, mpLocale) values (?, ?, ?, ?)', $v);
+			Events::fire('on_multilingual_page_relate', $page, $ms->getLocale());
 		}
 	}
 	
@@ -263,20 +268,20 @@ class MultilingualSection extends Page {
 		}
 		$db = Loader::db();
 		$r = $db->GetRow('select cID, msLanguage, msIcon, msLocale from MultilingualSections where cID = ?', array($cID));
-		if ($r && is_array($r) && $r['msLanguage']) {
+		if ($r && is_array($r) && $r['msLocale']) {
 			return $r;
 		} else {
 			return false;
 		}		
 	}
 
-	public static function ignorePageRelation($page, $language) {
+	public static function ignorePageRelation($page, $locale) {
 		$db = Loader::db();
 		$mpRelationID = $db->GetOne('select mpRelationID from MultilingualPageRelations where cID = ?', array($page->getCollectionID()));
 		if ($mpRelationID) {
-			$v = array($mpRelationID, 0, $language);
-			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', $v);
-			Events::fire('on_multilingual_page_ignore', $page, $language);
+			$v = array($mpRelationID, 0, $locale);
+			$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLocale) values (?, ?, ?)', $v);
+			Events::fire('on_multilingual_page_ignore', $page, $locale);
 
 		}
 	}	
@@ -316,12 +321,12 @@ class MultilingualSection extends Page {
 		$db = Loader::db();
 		$ids = MultilingualSection::getIDList();
 		if (in_array($page->getCollectionID(), $ids)) {
-			$cID = $db->GetOne('select cID from MultilingualSections where msLanguage = ?', array($this->getLanguage()));
+			$cID = $db->GetOne('select cID from MultilingualSections where msLocale = ?', array($this->getLocale()));
 			return $cID;
 		}
 		$mpRelationID = $db->GetOne('select mpRelationID from MultilingualPageRelations where cID = ?', array($page->getCollectionID()));
 		if ($mpRelationID) {
-			$cID = $db->GetOne('select cID from MultilingualPageRelations where mpRelationID = ? and mpLanguage = ?', array($mpRelationID, $this->getLanguage()));
+			$cID = $db->GetOne('select cID from MultilingualPageRelations where mpRelationID = ? and mpLocale = ?', array($mpRelationID, $this->getLocale()));
 			return $cID;
 		}
 	}

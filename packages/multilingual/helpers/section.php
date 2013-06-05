@@ -1,5 +1,4 @@
-<?
-
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 Loader::Model('section', 'multilingual');
 
 class SectionHelper {
@@ -27,6 +26,14 @@ class SectionHelper {
 		}
 	}
 	
+	
+	public function getSectionByLocale($locale = NULL) {
+		if(!strlen($locale)) {
+			$locale = self::getLocale();
+		}
+		return MultilingualSection::getByLocale($locale);
+	}
+	
 	/**
 	 * returns the current language
 	 * @return string
@@ -36,6 +43,11 @@ class SectionHelper {
 		return self::getLocale();
 	}
 	
+	/**
+	 * gets the locale string for the current page
+	 * based first on path within the site (section) or session if not available
+	 * @return string
+	*/
 	public function getLocale() {
 		$ms = MultilingualSection::getCurrentSection();
 		if (is_object($ms)) {
@@ -43,7 +55,7 @@ class SectionHelper {
 		} else {
 			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLocale();
 		}
-		$_SESSION['DEFAULT_LOCALE'] = $lang;
-		return $lang;
+		$_SESSION['DEFAULT_LOCALE'] = (string) $lang;
+		return (string) $lang;
 	}
 }

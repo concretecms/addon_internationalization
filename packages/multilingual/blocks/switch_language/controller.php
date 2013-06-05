@@ -1,10 +1,12 @@
-<?
+<?php
 defined('C5_EXECUTE') or die(_("Access Denied."));
 class SwitchLanguageBlockController extends BlockController {
 		
-	protected $btInterfaceWidth = "300";
+	protected $btInterfaceWidth = "500";
 	protected $btInterfaceHeight = "150";
 	protected $btTable = 'btMultilingualSwitchLanguage';
+	protected $btWrapperClass = 'ccm-ui';
+	
 	public $helpers = array('form');
 	
 	public function getBlockTypeDescription() {
@@ -37,7 +39,7 @@ class SwitchLanguageBlockController extends BlockController {
 			$locale = $al->getLanguage();
 		}
 		foreach($ml as $m) {
-			$languages[$m->getCollectionID()] = $m->getLanguageText($locale);
+			$languages[$m->getCollectionID()] = $m->getLanguageText($locale) . ' ' . (strlen($m->msIcon)?'('.$m->msIcon.')':'');
 		}
 		$this->set('languages', $languages);
 		$this->set('languageSections', $ml);

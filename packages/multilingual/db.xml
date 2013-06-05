@@ -28,6 +28,10 @@
       <UNSIGNED/>
     </field>
     <field name="mpLanguage" type="C" size="32">
+      <DEFAULT value=""/>
+      <NOTNULL/>
+    </field>
+    <field name="mpLocale" type="C" size="32">
       <KEY/>
       <NOTNULL/>
     </field>
