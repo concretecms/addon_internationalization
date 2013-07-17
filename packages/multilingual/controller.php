@@ -134,7 +134,7 @@ class MultilingualPackage extends Package {
 		$rows = $db->getAll("SELECT * FROM MultilingualSections");
 		if(is_array($rows) && count($rows)) {
 			foreach($rows as $r) {
-				if(strlen($r['msLanguage']) && !strlen($row['msLocale'])) {
+				if(strlen($r['msLanguage']) && !strlen($r['msLocale'])) {
 					$locale = $r['msLanguage'].(strlen($r['msIcon'])?"_".$r['msIcon']:"");					
 					$db->query("UPDATE MultilingualSections SET msLocale = ? WHERE cID = ?",array($locale, $r['cID']));
 				}
