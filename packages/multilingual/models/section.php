@@ -244,8 +244,8 @@ class MultilingualSection extends Page {
 				} else {
 					$mpRelationID++;
 				}		
-				$v = array($mpRelationID, $page->getCollectionID(), $ms->getLanguage());
-				$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage) values (?, ?, ?)', $v);
+				$v = array($mpRelationID, $page->getCollectionID(), $ms->getLanguage(), $ms->getLocale());
+				$db->Execute('insert into MultilingualPageRelations (mpRelationID, cID, mpLanguage, mpLocale) values (?, ?, ?, ?)', $v);
 			} else {
 				$db->Execute('update MultilingualPageRelations set mpLanguage = ? where cID = ?', array($ms->getLanguage(), $page->getCollectionID()));
 			}
