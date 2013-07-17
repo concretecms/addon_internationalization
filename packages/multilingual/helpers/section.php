@@ -44,6 +44,16 @@ class SectionHelper {
 	}
 	
 	/**
+	 * returns if the current locale is a right-to-left language
+	 * @return boolean
+	 */
+	public function isRtlLocale() {
+		$lang = self::getLocale();
+		$direction = Zend_Locale_Data::getList($lang, 'layout', 'characters');
+		return ($direction['characters'] == 'right-to-left');
+	}
+	
+	/**
 	 * gets the locale string for the current page
 	 * based first on path within the site (section) or session if not available
 	 * @return string
