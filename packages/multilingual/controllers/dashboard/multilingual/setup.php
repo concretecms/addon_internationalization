@@ -234,9 +234,6 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 				$this->error->add(t('You must specify a page for this multilingual content section.'));
 			} else {
 				$pc = Page::getByID($this->post('pageID'));
-				if ($pc->isError() || $pc->getCollectionParentID() != 1) {
-					$this->error->add(t('Invalid Page. You must specify a page directly under the home page.'));
-				}
 			}
 			
 			if (!$this->error->has()) {

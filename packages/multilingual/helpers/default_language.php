@@ -14,8 +14,10 @@ class DefaultLanguageHelper {
 					if ($pkg->config('REDIRECT_HOME_TO_DEFAULT_LANGUAGE')) {
 						$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
 						if (is_object($ms)) {
-							header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
-							exit;
+							if ($ms->getCollectionID() != 1) {
+								header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
+								exit;
+							}
 						}
 					}
 				}

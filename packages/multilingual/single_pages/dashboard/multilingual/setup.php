@@ -78,14 +78,19 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 <h3><?php echo t('Copy Language Tree')?></h3>
 <?
 $u = new User();
-if ($u->isSuperUser()) { ?>
+$copyLanguages = array();
+$includesHome = false;
+foreach($pages as $pc) {
+	$pcl = MultilingualSection::getByID($pc->getCollectionID());
+	if ($pc->getCollectionID() == HOME_CID) {
+		$includesHome = true;
+	}
+	$copyLanguages[$pc->getCollectionID()] = $pc->getCollectionName() . ' - ' . $pcl->getLanguageText();
+}
+
+if ($u->isSuperUser() && !$includesHome) { ?>
 <form method="post" id="ccm-internationalization-copy-tree" action="<?php echo $this->action('copy_tree')?>">
 	<?php if (count($pages) > 1) {
-		$copyLanguages = array();
-		foreach($pages as $pc) {
-			$pcl = MultilingualSection::getByID($pc->getCollectionID());
-			$copyLanguages[$pc->getCollectionID()] = $pc->getCollectionName() . ' - ' . $pcl->getLanguageText();
-		}
 		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
 		$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
 		
@@ -142,8 +147,11 @@ if ($u->isSuperUser()) { ?>
 	<? } ?>
 
 </form>
-<? } else { ?>
+<? } else if (!$u->isSuperUser()) { ?>
 	<p><?=t('Only the super user may copy language trees.')?></p>
+<? } else if ($includesHome) { ?>
+	<p><?=t('Since one of your multilingual sections is the home page, you may not duplicate your site tree using this tool. You must manually assign pages using the page report.')?></p>
+
 <? } ?>
 
 <?php if (count($pages) > 0) {

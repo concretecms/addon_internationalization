@@ -107,12 +107,17 @@ class MultilingualSection extends Page {
 		// looks at the page, traverses its parents until it finds the proper language
 		$nav = Loader::helper('navigation');
 		$pages = $nav->getTrailToCollection($page);
+		$pages = array_reverse($pages);
 		$pages[] = $page;
 		$ids = self::getIDList();
+		$returnID = false;
 		foreach($pages as $pc) {
 			if (in_array($pc->getCollectionID(), $ids)) {
-				return MultilingualSection::getByID($pc->getCollectionID());
+				$returnID = $pc->getCollectionID();
 			}
+		}
+		if ($returnID) {
+			return MultilingualSection::getByID($returnID);
 		}
 	}
 	

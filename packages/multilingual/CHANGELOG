@@ -1,4 +1,5 @@
-1.2.1dev
+1.3.
+	- Support for setting the root site to a language, with other languages set beneath it.
 	- changed switch language block to redirect to the same page with language set if placed on a single page that does not have ar related page.
 
 1.2 
