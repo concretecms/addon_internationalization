@@ -15,9 +15,16 @@ class SectionHelper {
 	 */
 	public function section($s = false) {
 		if (!$this->section) {
+			$ms = MultilingualSection::getCurrentSection();
+			/*
 			$c = Page::getCurrentPage();
 			$cparts = explode('/', $c->getCollectionPath());
 			$this->section = $cparts[1];
+			*/
+			if($ms instanceof MultilingualSection) {
+				$this->section = $ms->getCollectionPath();
+				$this->section = (strlen($this->section)?$this->section:""); // acount for home page
+			}
 		}
 		if ($s == false) {
 			return $this->section;
