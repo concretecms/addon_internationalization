@@ -48,6 +48,16 @@ class DefaultLanguageHelper {
 		if(isset($_COOKIE['DEFAULT_LOCALE'])) {
 			return $_COOKIE['DEFAULT_LOCALE'];
 		}
+
+		if (User::isLoggedIn()) {
+			$u = new User();
+			$userDefaultLanguage = $u->getUserDefaultLanguage();
+			if ($userDefaultLanguage != '') {
+				if (is_object(MultilingualSection::getByLocale($userDefaultLanguage)) || ($userDefaultLanguage == 'en_US' && Page::getCurrentPage()->cID != 1)) {
+					return $userDefaultLanguage;
+				}
+			}
+		}
 		
 		$pkg = Package::getByHandle('multilingual');
 		//
