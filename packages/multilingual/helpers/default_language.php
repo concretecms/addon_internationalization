@@ -49,8 +49,8 @@ class DefaultLanguageHelper {
 			return $_COOKIE['DEFAULT_LOCALE'];
 		}
 
-		$u = new User();
-		if ($u->isLoggedIn()) {
+		if (User::isLoggedIn()) {
+			$u = new User();
 			$userDefaultLanguage = $u->getUserDefaultLanguage();
 			if ($userDefaultLanguage != '') {
 				if (is_object(MultilingualSection::getByLocale($userDefaultLanguage)) || ($userDefaultLanguage == 'en_US' && Page::getCurrentPage()->cID != 1)) {
