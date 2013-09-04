@@ -102,7 +102,7 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 		</div>
 		
 		<div class="clearfix">
-		<label><?php echo t('To')?></label>
+		<label><?php echo tc('Destination', 'To')?></label>
 		<div class="input"><?php echo $copyLanguageSelect2?></div>
 		</div>
 	
