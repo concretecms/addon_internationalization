@@ -2,6 +2,7 @@
 	- Support for setting the root site to a language, with other languages set beneath it.
 	- changed switch language block to redirect to the same page with language set if placed on a single page that does not have ar related page.
 	- changed default language helper to honor user the default language from the user object. (thanks github.com/ojalehto)
+	- minimum concrete version to 5.6.1
 	
 
 1.2 
