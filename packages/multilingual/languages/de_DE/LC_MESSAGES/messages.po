@@ -1,313 +1,376 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: multilingual 1.0.2\n"
+msgstr "Project-Id-Version: multilingual 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 11:08+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2013-09-04 12:25+0000\n"
+"PO-Revision-Date: 2013-09-04 11:48+0000\n"
 "Last-Translator: Patrick Heck <heckp@gmx.de>\n"
-"Language-Team:  <patrick@patrickheck.de>\n"
+"Language-Team: <patrick@patrickheck.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Poedit-Language: german\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Poedit-Basepath: ../../../../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Language: de_DE\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
 "X-Poedit-KeywordsList: t\n"
-"X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /Users/heckp/Downloads/multilingual\n"
 
-#: /Users/heckp/Downloads/multilingual/controller.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/add.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/controller.php:2
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/edit.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/view.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/templates/flags/view.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/templates/flags_set_default/view.php:1
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/tools/switch.php:1
-msgid "Access Denied."
-msgstr "Zugriff Verweigert."
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:9
+msgid "Generate multilingual sitemap.xml File"
+msgstr "Mehrsprachige sitemap.xml Datei erstellen"
 
-#: /Users/heckp/Downloads/multilingual/controller.php:10
-msgid "Translate your site with this free multilingual solution."
-msgstr "Übersetzen Sie Ihre Website mit dieser kostenlosen mehrsprachigen Lösung."
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:14
+msgid "Generate the sitemap.xml file that search engines use to crawl your site with additional multilingual directives."
+msgstr "Generiert die sitemap.xml Datei, die von Suchmaschinen benutzt wird um eine Website mit zusätzlichen multilingualen Direktiven zu erfassen."
 
-#: /Users/heckp/Downloads/multilingual/controller.php:14
-msgid "Internationalization"
-msgstr "Internationalisierung"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:19
+msgid "This job is disabled because it may cause excessive load depending on the size of your site.  To enable this job, you must define the constant ENABLE_MULTILINGUAL_SITEMAPXML as true."
+msgstr "Dieser Auftrag ist deaktiviert weil er je nach Größe der Website eine starke Auslastung des Servers mit sich bringt. Um den Auftrag zu aktivieren muss die Konstante ENABLE_MULTILINGUAL_SITEMAPXML als 'true' definiert werden."
 
-#: /Users/heckp/Downloads/multilingual/controller.php:58
-msgid "Multilingual Pages"
-msgstr "Mehrsprachige Seiten"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:56
+#, php-format
+msgid "Cannot open file %s"
+msgstr "Die Datei %s kann nicht geöffnet werden"
 
-#: /Users/heckp/Downloads/multilingual/controller.php:78
-msgid "Multilingual"
-msgstr "Mehrsprachigkeit"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:145
+msgid "Sitemap XML File Saved."
+msgstr "Sitemap XML Datei gespeichert."
 
-#: /Users/heckp/Downloads/multilingual/controller.php:78
-msgid "Translate your site."
-msgstr "Ihre Website übersetzen."
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:148
+#, php-format
+msgid "The file %s is not writable"
+msgstr "Die Datei %s ist nicht schreibbar"
 
-#: /Users/heckp/Downloads/multilingual/controller.php:83
-msgid "Setup"
-msgstr "Einrichtung"
-
-#: /Users/heckp/Downloads/multilingual/controller.php:87
-msgid "Page Report"
-msgstr "Seiten Report"
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/controller.php:11
-msgid "Adds a front-end language switcher to your website."
-msgstr "Fügt einen Front-End Sprachschalter zu Ihrer Website hinzu."
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/controller.php:15
-msgid "Switch Language"
-msgstr "Sprache umschalten"
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/controller.php:23
-msgid "Choose Language"
-msgstr "Sprache auswählen"
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/form.php:3
-msgid "Label"
-msgstr "Label"
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/templates/flags_set_default/view.php:31
-msgid "Remember my choice on this computer."
-msgstr "Meine Auswahl auf diesem Rechner speichern."
-
-#: /Users/heckp/Downloads/multilingual/blocks/switch_language/templates/flags_set_default/view.php:34
-msgid "Save"
-msgstr "Speichern"
-
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/page_report.php:73
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:76
 msgid "You cannot assign this page to itself."
 msgstr "Sie können diese Seite nicht sich selbst zuweisen."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/page_report.php:93
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:96
 msgid "The destination page doesn't appear to be in a valid multilingual section."
 msgstr "Die Zielseite scheint kein gültiger mehrsprachiger Bereich zu sein."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/page_report.php:104
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:107
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:109
 msgid "Ignored"
 msgstr "Ingnoriert"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/page_report.php:130
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:134
 msgid "Insufficient permissions."
 msgstr "Unzureichende Berechtigungen."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:14
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:18
 msgid "** Choose a Language"
 msgstr "** Sprache auswählen"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:40
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:64
 msgid "You must have admin privileges on the destination page to perform this action."
 msgstr "Sie müssen über Administrator Rechte auf der Zielseite verfügen um diese Aktion auszuführen."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:43
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:67
 msgid "You cannot read the original page."
 msgstr "Sie können die Ursprungsseite nicht auslesen."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:68
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:116
 msgid "You must choose two separate, valid language sections."
 msgstr "Sie müssen zwei separate, gültige Sprachbereiche auswählen."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:116
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:162
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:42
 msgid "None"
 msgstr "Keine"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:123
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:171
 msgid "Multilingual content enabled"
 msgstr "Mehrsprachiger Inhalt aktiviert"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:128
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:176
 msgid "Multilingual content updated"
 msgstr "Mehrsprachiger Inhalt aktualisiert"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:133
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:181
 msgid "Multilingual tree copied."
 msgstr "Mehrsprachiger Baum kopiert"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:138
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:186
 msgid "Language section removed."
 msgstr "Sprachbereich entfernt."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:143
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:191
 msgid "Default language settings updated."
 msgstr "Einstellungen der Standardsprache aktualisiert."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:157
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:174
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:206
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:223
 msgid "Invalid language section"
 msgstr "Ungültiger Sprachbereich"
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:185
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:234
 msgid "You must specify a page for this multilingual content section."
 msgstr "Sie müssen eine Seite angeben für diesen mehrsprachigen Bereich des Inhalts."
 
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:189
-msgid "Invalid Page. You must specify a page directly under the home page."
-msgstr "Ungültige Seite. Sie müssen eine Seite auswählen, die direkt unter der Startseite liegt."
-
-#: /Users/heckp/Downloads/multilingual/controllers/dashboard/multilingual/setup.php:195
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:242
 msgid "A language section page at this location already exists."
 msgstr "Es existiert bereits ein Sprachbereich an diesem Ort."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:13
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:251
+msgid "This locale/language combination already exists."
+msgstr ""
+
+#: packages/multilingual/controller.php:10
+msgid "Translate your site with this free multilingual solution."
+msgstr "Übersetzen Sie Ihre Website mit dieser kostenlosen mehrsprachigen Lösung."
+
+#: packages/multilingual/controller.php:14
+msgid "Internationalization"
+msgstr "Internationalisierung"
+
+#: packages/multilingual/controller.php:80
+msgid "Multilingual Pages"
+msgstr "Mehrsprachige Seiten"
+
+#: packages/multilingual/controller.php:106
+msgid "Multilingual"
+msgstr "Mehrsprachigkeit"
+
+#: packages/multilingual/controller.php:106
+msgid "Translate your site."
+msgstr "Ihre Website übersetzen."
+
+#: packages/multilingual/controller.php:111
+msgid "Setup"
+msgstr "Einrichtung"
+
+#: packages/multilingual/controller.php:115
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:5
+msgid "Page Report"
+msgstr "Seiten Report"
+
+#: packages/multilingual/controller.php:121
+#: packages/multilingual/controller.php:160
+msgid "Exclude from Internationalization Copy"
+msgstr "Von zu übersetzenden Inhalten ausschließen"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:11
 msgid "Choose Source"
 msgstr "Quelle auswählen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:18
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:19
 msgid "Choose Targets"
 msgstr "Ziel auswählen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:34
-msgid "Show: "
-msgstr "Anzeigen:"
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:44
+msgid "Display"
+msgstr "Zeige"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:36
-msgid "Missing Pages"
-msgstr "Fehlende Seiten"
-
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:38
-msgid "All Pages"
-msgstr "Alle Seiten"
-
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:41
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:45
 msgid "Go"
 msgstr "Los"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:101
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:53
+msgid "Only Missing Pages"
+msgstr "Nur fehlende Seiten"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:59
+msgid "All Pages"
+msgstr "Alle Seiten"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:118
 msgid "Re-Map"
 msgstr "Erneut zuweisen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:103
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:120
 msgid "Map"
 msgstr "Zuweisen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:108
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:126
 msgid "Create"
 msgstr "Erstellen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:112
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:130
 msgid "Ignore"
 msgstr "Ignorieren"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:117
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:136
 msgid "Create the parent page first."
 msgstr "Erstellen Sie die übergeordnete Seite zuerst."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:127
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:146
 msgid "No pages found."
 msgstr "Keine Seiten gefunden."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:164
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:175
 msgid "Choose A Page"
 msgstr "Seite auswählen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/page_report.php:187
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:198
 msgid "You have not defined any multilingual sections for your site yet."
 msgstr "Sie haben keine mehrsprachigen Bereiche definiert für diese Website."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:3
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:3
 msgid "Multilingual Content Setup"
 msgstr "Einrichtung des mehrsprachigen Inhalts"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:5
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:5
 msgid "Content Sections"
 msgstr "Inhaltsbereiche"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:13
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:12
 msgid "Name"
 msgstr "Name"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:14
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:13
 msgid "Language"
 msgstr "Sprache"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:15
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:14
 msgid "Path"
 msgstr "Pfad"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:32
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:102
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:129
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:30
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:120
 msgid "You have not created any multilingual content sections yet."
 msgstr "Sie haben noch keine mehrsprachigen Inhaltsbereiche erzeugt."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:35
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:33
 msgid "Add a Language"
 msgstr "Sprache hinzufügen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:42
+#: packages/multilingual/blocks/switch_language/controller.php:25
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:35
+msgid "Choose Language"
+msgstr "Sprache auswählen"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:41
 msgid "Language Icon"
 msgstr "Sprachsymbol"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:44
-msgid "Choose a Language"
-msgstr "Sprache auswählen"
-
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:48
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:45
 msgid "Choose a Parent Page"
 msgstr "Wählen Sie eine übergeordnete Seite"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:52
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:54
 msgid "Add Content Section"
 msgstr "Inhaltsbereich hinzufügen"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:79
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:78
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:135
 msgid "Copy Language Tree"
 msgstr "Sprachbaum kopieren"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:81
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:98
 msgid "Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section."
 msgstr "Alle Seite von einer Sprache in einen anderen Bereich kopieren. Dies wird nur Seiten kopieren, die noch nicht zugewiesen sind. Vom Zielbereich werden keine Seiten entfernt."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:93
-#, php-format
-msgid "Copy from %s to %s"
-msgstr "Kopieren von %s nach %s"
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:100
+msgid "Copy From"
+msgstr "Kopieren von"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:96
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:105
+msgid "To"
+msgstr ""
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:113
 msgid "Copy Tree"
 msgstr "Baum kopieren"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:100
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:118
 msgid "You must have more than one multilingual section to use this tool."
 msgstr "Sie brauchen mehr als einen mehrsprachigen Bereich um dieses Werkzeug zu nutzen."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:107
-msgid "Default Language"
-msgstr "Standardsprache"
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:140
+msgid "You must choose two separate multilingual sections to copy from/to"
+msgstr "Es müssen zwei separate Sprachbereiche als Quelle und Ziel ausgewählt werden"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:109
-msgid "Set a default language section for your site."
-msgstr "Eine Standardsprache für diese Website festlegen."
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:151
+msgid "Only the super user may copy language trees."
+msgstr "Nur der Superadministrator darf Sprachbäume kopieren."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:111
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:153
+msgid "Since one of your multilingual sections is the home page, you may not duplicate your site tree using this tool. You must manually assign pages using the page report."
+msgstr "Da einer der Sprachbereiche die Startseite selbst ist, kann der Websitebaum mit diesem Werkzeug nicht dupliziert werden. Die Seiten müssen manuell mit dem Seiten Report zugewiesen werden"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:158
 msgid "** None Set"
 msgstr "** Nichts ausgewählt"
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:122
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:170
+msgid "Multilingual Settings"
+msgstr "Mehrsprachige Einstellungen"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:174
+msgid "Default Language"
+msgstr "Standardsprache"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:186
+msgid "Attempt to use visitor's language based on their browser information."
+msgstr "Es wird versucht die Sprache des Besuchers aus den Browserinformationen auszulesen."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:192
 msgid "Redirect home page to default language section."
 msgstr "Startseite zum Bereich der Standardsprache weiterleiten."
 
-#: /Users/heckp/Downloads/multilingual/single_pages/dashboard/multilingual/setup.php:125
-msgid "Set Default"
-msgstr "Standard festlegen"
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:201
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
 
-#: /Users/heckp/Downloads/multilingual/tools/switch_language_for_page.php:38
+#: packages/multilingual/tools/switch_language_for_page.php:44
 #, php-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: /Users/heckp/Downloads/multilingual/tools/switch_language_for_page.php:41
+#: packages/multilingual/tools/switch_language_for_page.php:47
 #, php-format
 msgid "Currently Viewing: %s"
 msgstr "Aktuelle Ansicht: %s"
 
-#: /Users/heckp/Downloads/multilingual/tools/switch_language_for_page.php:42
+#: packages/multilingual/tools/switch_language_for_page.php:48
 #, php-format
 msgid "%s: None Created"
 msgstr "%s: Keine erstellt"
 
+#: packages/multilingual/blocks/switch_language/form.php:3
+msgid "Label"
+msgstr "Label"
+
+#: packages/multilingual/blocks/switch_language/controller.php:13
+msgid "Adds a front-end language switcher to your website."
+msgstr "Fügt einen Front-End Sprachschalter zu Ihrer Website hinzu."
+
+#: packages/multilingual/blocks/switch_language/controller.php:17
+msgid "Switch Language"
+msgstr "Sprache umschalten"
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:25
+msgid "Remember my choice on this computer."
+msgstr "Meine Auswahl auf diesem Rechner speichern."
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:28
+msgid "Save"
+msgstr "Speichern"
+
+#~ msgid "Invalid Page. You must specify a page directly under the home page."
+#~ msgstr "Ungültige Seite. Sie müssen eine Seite auswählen, die direkt unter der Startseite liegt."
+
+#~ msgid "Access Denied."
+#~ msgstr "Zugriff Verweigert."
+
+#~ msgid "Show: "
+#~ msgstr "Anzeigen:"
+
+#~ msgid "Missing Pages"
+#~ msgstr "Fehlende Seiten"
+
+#~ msgid "Choose a Language"
+#~ msgstr "Sprache auswählen"
+
+#~ msgid "Copy from %s to %s"
+#~ msgstr "Kopieren von %s nach %s"
+
+#~ msgid "Set a default language section for your site."
+#~ msgstr "Eine Standardsprache für diese Website festlegen."
+
+#~ msgid "Set Default"
+#~ msgstr "Standard festlegen"
