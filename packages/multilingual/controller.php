@@ -3,7 +3,7 @@
 class MultilingualPackage extends Package {
 
 	protected $pkgHandle = 'multilingual';
-	protected $appVersionRequired = '5.6';
+	protected $appVersionRequired = '5.6.1';
 	protected $pkgVersion = '1.3';
 	
 	public function getPackageDescription() {
