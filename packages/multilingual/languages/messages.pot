@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: multilingual 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 12:25+0000\n"
+"POT-Creation-Date: 2013-09-04 17:19+0000\n"
 "MIME-Version: 1.0\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -107,7 +107,7 @@ msgid "A language section page at this location already exists."
 msgstr ""
 
 #: packages/multilingual/controllers/dashboard/multilingual/setup.php:251
-msgid "This locale/language combination already exists."
+msgid "This language/region combination already exists."
 msgstr ""
 
 #: packages/multilingual/controller.php:10
@@ -260,6 +260,7 @@ msgid "Copy From"
 msgstr ""
 
 #: packages/multilingual/single_pages/dashboard/multilingual/setup.php:105
+msgctxt "Destination"
 msgid "To"
 msgstr ""
 
