@@ -248,7 +248,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 					$combination = $this->post('msLanguage'). '_' . $this->post('msIcon'); 
 					$locale = MultilingualSection::getByLocale($combination);
 					if (is_object($locale)) {
-						$this->error->add(t('This locale/language combination already exists.'));
+						$this->error->add(t('This language/region combination already exists.'));
 					}
 				}
 			}
