@@ -109,10 +109,12 @@ class MultilingualPackage extends Package {
 		$p1 = SinglePage::add('/dashboard/multilingual/setup', $pkg);
 		if (is_object($p1)) {
 			$p1->update(array('cName'=>t('Setup'), 'cDescription'=>''));
+			$p1->setAttribute('icon_dashboard', 'icon-wrench');
 		}
 		$p2 = SinglePage::add('/dashboard/multilingual/page_report', $pkg);
 		if (is_object($p2)) {
 			$p2->update(array('cName'=>t('Page Report'), 'cDescription'=>''));
+			$p2->setAttribute('icon_dashboard', 'icon-briefcase');
 		}
 		BlockType::installBlockTypeFromPackage('switch_language', $pkg);
 		
