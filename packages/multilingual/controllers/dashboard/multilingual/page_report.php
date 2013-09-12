@@ -128,7 +128,19 @@ class DashboardMultilingualPageReportController extends Controller {
 					if ($cp->canAddSubCollection($ct) && $page->canMoveCopyTo($newParent)) {
 						$newPage = $page->duplicate($newParent);
 						if (is_object($newPage)) {
-							print '<a href="' . Loader::helper("navigation")->getLinkToCollection($newPage) . '">' . $newPage->getCollectionName() . '</a>';
+							// grab the approved version and unapprove it
+							$v = CollectionVersion::get($newPage, 'ACTIVE');
+							if (is_object($v)) {
+								$v->deny();
+								$pkr = new ApprovePagePageWorkflowRequest();
+								$pkr->setRequestedPage($newPage);
+								$u = new User();
+								$pkr->setRequestedVersionID($v->getVersionID());
+								$pkr->setRequesterUserID($u->getUserID());
+								$pkr->trigger();
+							}
+
+							print '<a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $newPage->getCollectionID() . '">' . $newPage->getCollectionName() . '</a>';
 						}
 					} else {
 						print '<span class="ccm-error">' . t("Insufficient permissions.").'</span>';
