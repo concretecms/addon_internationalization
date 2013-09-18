@@ -6,8 +6,8 @@ $nav = Loader::helper('navigation');
 <div class="ccm-pane-body">
 <?php if (count($sections) > 0) { ?>
 	<form method="get" action="<?php echo $this->action('view')?>" id="ccm-multilingual-page-report-form" class="form-stacked">
-		<div class='row' style='margin-left:0'>
-		<fieldset class="span4">
+		<div class='row'>
+		<fieldset class="span5">
 			<legend style='margin-bottom:0'><?php echo t('Choose Source')?></legend>
 			<div class="clearfix">
 				<div class="">
@@ -15,7 +15,7 @@ $nav = Loader::helper('navigation');
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="span4">
+		<fieldset class="span5">
 			<legend style='margin-bottom:0'><?php echo t('Choose Targets')?></legend>
 			<div class="clearfix">
 			<?php foreach($sectionList as $sc) { ?>
@@ -40,9 +40,10 @@ $nav = Loader::helper('navigation');
 			<?php } ?>
 			</div>
 		</fieldset>
-		<fieldset class="span4">
-			<legend style='margin-bottom:0'><?php echo t('Display')?>
-				<?php echo $form->submit('submitForm', t('Go'), '',' ccm-button-right primary')?></legend>
+		</div>
+		<div class="row">
+		<fieldset class="span5">
+			<legend style='margin-bottom:0'><?php echo t('Display')?></legend>
 				<?php echo $form->hidden('sectionID', $sectionID); ?>
 			<div class="clearfix">
 				<div class="">
@@ -63,6 +64,14 @@ $nav = Loader::helper('navigation');
 				</div>
 			</div>
 		</fieldset>
+		<fieldset class="span5">
+			<legend><?=t('Filter Pages')?></legend>
+			<label><?=t('By Name')?></label>
+			<?=$form->text('keywords')?>
+		</fieldset>
+		</div>
+		<div class="row">
+			<div span="12"><?php echo $form->submit('submitForm', t('Go'), '',' ccm-button-right primary')?></div>
 		</div>
 	</form>
 	<?php if (count($pages) > 0) { ?>
@@ -98,7 +107,10 @@ $nav = Loader::helper('navigation');
 
 			?>
 		<tr class="<?php echo $class?>">
-			<td><a href="<?php echo $nav->getLinkToCollection($pc)?>"><?php echo $pc->getCollectionName()?></a></td>
+			<td>
+				<a href="<?php echo $nav->getLinkToCollection($pc)?>"><?php echo $pc->getCollectionName()?></a>
+				<div style="font-size: 10px;"><?=$pc->getCollectionPath()?></div>
+			</td>
 			<?php foreach($targetList as $sc) { ?>
 				<?php if ($section->getCollectionID() != $sc->getCollectionID()) { ?>
 					<td style='width:165px;text-align:right' id="node-<?php echo $pc->getCollectionID()?>-<?php echo $sc->getLocale()?>"><?php 						$cID = $sc->getTranslatedPageID($pc);

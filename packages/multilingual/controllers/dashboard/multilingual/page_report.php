@@ -55,7 +55,15 @@ class DashboardMultilingualPageReportController extends Controller {
 			$pl = new MultilingualPageList();
 			$pl->filterByIsAlias(false);
 			$pc = Page::getByID($sectionID);
-			$pl->filterByPath($pc->getCollectionPath());
+			$path = $pc->getCollectionPath();
+			if(strlen($path)>1) {
+				$pl->filterByPath($path);
+			}
+			
+			if($_REQUEST['keywords']) {
+				$pl->filterByName($_REQUEST['keywords']);
+			}
+			
 			$pl->setItemsPerPage(25);
 			$pl->ignoreAliases();
 			if (!$_REQUEST['showAllPages']) {
