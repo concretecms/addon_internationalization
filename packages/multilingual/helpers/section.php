@@ -65,14 +65,16 @@ class SectionHelper {
 	 * based first on path within the site (section) or session if not available
 	 * @return string
 	*/
-	public function getLocale() {
+	public function getLocale($setDefaultLocale = true) {
 		$ms = MultilingualSection::getCurrentSection();
 		if (is_object($ms)) {
 			$lang = $ms->getLocale();
 		} else {
 			$lang = Loader::helper('default_language','multilingual')->getSessionDefaultLocale();
 		}
-		$_SESSION['DEFAULT_LOCALE'] = (string) $lang;
+		if($setDefaultLocale) {
+			$_SESSION['DEFAULT_LOCALE'] = (string) $lang;
+		}
 		return (string) $lang;
 	}
 }
