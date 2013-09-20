@@ -120,7 +120,7 @@ class GenerateMultilingualSitemap extends Job {
 							$priority = '0.' . round(rand(1, 5));
 						}
 
-						$node .= "<url>\n";
+						$node = "<url>\n";
 						$node .= "<loc>" . $cPath . "</loc>\n";
 						$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
 						$node .= "  <changefreq>".$changefreq."</changefreq>\n";
