@@ -152,7 +152,10 @@ class InterfacePageHelper {
 						$isRoot = false;
 					}
 					foreach(self::$_allLanguages as $otherLang) {
-						if($isRoot) {
+						if($otherLang->msLocale == $lang->msLocale) {
+							$otherPage = $page;
+						}
+						elseif($isRoot) {
 							$otherPage = $otherLang;
 						}
 						else {
