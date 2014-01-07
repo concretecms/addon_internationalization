@@ -55,10 +55,13 @@ class GenerateMultilingualSitemap extends Job {
 			if (!$handle = fopen($xmlFile, 'w')) {
 				throw new Exception(t("Cannot open file %s", $xmlFile));
 			}
+			
+			$addedPages = 0;
 
 			fwrite($handle, $xmlHead);
 			fwrite($handle, $home);
 			fflush($handle);
+			$addedPages++;
 
 			$db = Loader::db();
 			$collection_attributes = Loader::model('collection_attributes');
@@ -120,7 +123,7 @@ class GenerateMultilingualSitemap extends Job {
 							$priority = '0.' . round(rand(1, 5));
 						}
 
-						$node .= "<url>\n";
+						$node = "<url>\n";
 						$node .= "<loc>" . $cPath . "</loc>\n";
 						$node .= "  <lastmod>". substr($c->getCollectionDateLastModified(), 0, 10)."</lastmod>\n";
 						$node .= "  <changefreq>".$changefreq."</changefreq>\n";
@@ -135,6 +138,7 @@ class GenerateMultilingualSitemap extends Job {
 
 					fwrite($handle, $node);
 					fflush($handle);
+					$addedPages++;
 				}
 			}
 
@@ -142,7 +146,7 @@ class GenerateMultilingualSitemap extends Job {
 			fflush($handle);
 			fclose($handle);
 
-			return t("Sitemap XML File Saved.");
+			return t("Sitemap XML File Saved.(%d pages)", $addedPages);
 
 		} else {
 			throw new Exception(t("The file %s is not writable", $xmlFile));
