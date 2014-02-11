@@ -46,18 +46,21 @@ class TranslatedPagesHelper {
 		}
 		return $tpages;
 	}
-
-	public function altMeta($lang,$page,$tag='link') {
+	
+	public function getAltMeta($lang, $page, $tag = 'link') {
 		list($iso63911,$country) = explode('_',strtolower($lang));
 		$nh = Loader::helper('navigation');
 		$uri = $nh->getCollectionURL($page);
-		$meta = array(
+		return array(
 			$tag,
 			'rel'=>'alternate',
 			'hreflang'=>$iso63911."-".$country,
 			'href'=>$uri
 		);
-		return self::renderTag($meta);
+	}
+
+	public function altMeta($lang, $page, $tag = 'link') {
+		return self::renderTag(self::getAltMeta($lang, $page, $tag));
 	}
 
 	protected function renderTag($arr) {

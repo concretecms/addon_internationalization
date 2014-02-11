@@ -85,6 +85,13 @@ class MultilingualPackage extends Package {
 			'dialog-modal' => "false",
 			'class' => 'dialog-launch'
 		), 'multilingual');
+		if(defined('ENABLE_MULTILINGUAL_SITEMAPXML') && ENABLE_MULTILINGUAL_SITEMAPXML && Loader::helper('sitemap_job', 'multilingual')->canUseStandardSitemapJob()) {
+			Events::extend('on_sitemap_xml_addingpage',
+				'SitemapJobHelper',
+				'extendSitemapNode',
+				DIRNAME_PACKAGES.'/'.$this->pkgHandle.'/'.DIRNAME_HELPERS.'/sitemap_job.php'
+			);
+		}
 	}
 
 	public static function addAlternateHrefLang($page) {
@@ -98,7 +105,9 @@ class MultilingualPackage extends Package {
 		Loader::model('job');
 
 		// install job
-		$jb = Job::installByPackage('generate_multilingual_sitemap', $pkg);
+		if(Loader::helper('sitemap_job', 'multilingual')->canUseStandardSitemapJob() == false) {
+			Job::installByPackage('generate_multilingual_sitemap', $pkg);
+		}
 
 		
 		$p = SinglePage::add('/dashboard/multilingual',$pkg);
@@ -146,8 +155,17 @@ class MultilingualPackage extends Package {
 		// install job
 		Loader::model('job');
 		$jb = Job::getByHandle('generate_multilingual_sitemap');
-		if (!is_object($jb))
-			$jb = Job::installByPackage('generate_multilingual_sitemap', $pkg);
+		if(is_object($jb)) {
+			/* @var $jb Job */
+			if(Loader::helper('sitemap_job', 'multilingual')->canUseStandardSitemapJob() == true) {
+				$jb->uninstall();
+			}
+		}
+		else {
+			if(Loader::helper('sitemap_job', 'multilingual')->canUseStandardSitemapJob() == false) {
+				Job::installByPackage('generate_multilingual_sitemap', $pkg);
+			}
+		}
 		
 		// update the MultilingualPageRelations table
 		$hasLocales = $db->getOne("SELECT COUNT(msLocale) FROM MultilingualSections WHERE LENGTH(msLocale)");
