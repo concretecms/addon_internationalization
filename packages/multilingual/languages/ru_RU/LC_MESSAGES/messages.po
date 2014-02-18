@@ -1,0 +1,389 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: multilingual 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-04 17:19+0000\n"
+"PO-Revision-Date: 2014-02-16 02:44+0400\n"
+"Last-Translator: Anton Schepetkov <schepetkov@gmail.com>\n"
+"Language-Team: Concrete5 Russia <admin@concrete5russia.ru>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:9
+msgid "Generate multilingual sitemap.xml File"
+msgstr "Генерация мультиязычного файла карты сайта sitemap.xml"
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:14
+msgid ""
+"Generate the sitemap.xml file that search engines use to crawl your site "
+"with additional multilingual directives."
+msgstr ""
+"Генерирует файл sitemap.xml, который используется поисковыми роботами для "
+"индексации сайта с учетом всех дополнительных путей мультиязычного файла."
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:19
+msgid ""
+"This job is disabled because it may cause excessive load depending on the "
+"size of your site.  To enable this job, you must define the constant "
+"ENABLE_MULTILINGUAL_SITEMAPXML as true."
+msgstr ""
+"Данная задача по умолчанию отключена во избежание чрезмерной нагрузки на "
+"сайт в зависимости от его размера. Для включения этой задачи, необходимо "
+"установить константу ENABLE_MULTILINGUAL_SITEMAPXML в файле config/site.php "
+"со значением TRUE."
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:56
+#, php-format
+msgid "Cannot open file %s"
+msgstr "Невозможно открыть файл %s"
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:145
+msgid "Sitemap XML File Saved."
+msgstr "Файл карты сайта сохранен."
+
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:148
+#, php-format
+msgid "The file %s is not writable"
+msgstr "Файл %s не доступен для записи"
+
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:76
+msgid "You cannot assign this page to itself."
+msgstr "Вы не можете определить соответствие страницы самой себе. "
+
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:96
+msgid ""
+"The destination page doesn't appear to be in a valid multilingual section."
+msgstr "Указанную страницу невозможно назначить языковым разделом."
+
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:107
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:109
+msgid "Ignored"
+msgstr "Игнорировано"
+
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:134
+msgid "Insufficient permissions."
+msgstr "Недостаточно прав."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:18
+msgid "** Choose a Language"
+msgstr "** Выберите язык"
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:64
+msgid ""
+"You must have admin privileges on the destination page to perform this "
+"action."
+msgstr ""
+"Вы должны обладать правами администратора ну указанной странице, чтобы "
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:67
+msgid "You cannot read the original page."
+msgstr "Вы не можете читать оригинал страницы."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:116
+msgid "You must choose two separate, valid language sections."
+msgstr "Необходимо выбрать два различных, существующих языковых раздела."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:162
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:42
+msgid "None"
+msgstr "Нет"
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:171
+msgid "Multilingual content enabled"
+msgstr "Мультиязычность включена. "
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:176
+msgid "Multilingual content updated"
+msgstr "Настройки мультиязычности обновлены."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:181
+msgid "Multilingual tree copied."
+msgstr "Языковое дерево скопировано."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:186
+msgid "Language section removed."
+msgstr "Языковой раздел удален"
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:191
+msgid "Default language settings updated."
+msgstr "Параметры языка по умолчанию обновлены."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:206
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:223
+msgid "Invalid language section"
+msgstr "Недопустимый языковой раздел"
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:234
+msgid "You must specify a page for this multilingual content section."
+msgstr "Необходимо указать страницу для данного языкового раздела."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:242
+msgid "A language section page at this location already exists."
+msgstr "Языковой раздел по указанному пути уже существует."
+
+#: packages/multilingual/controllers/dashboard/multilingual/setup.php:251
+msgid "This language/region combination already exists."
+msgstr "Языковой раздел по указанному пути уже существует."
+
+#: packages/multilingual/controller.php:10
+msgid "Translate your site with this free multilingual solution."
+msgstr "Переведите сайт на другие языки с помощью этого бесплатного модуля."
+
+#: packages/multilingual/controller.php:14
+msgid "Internationalization"
+msgstr "Мультиязычность"
+
+#: packages/multilingual/controller.php:80
+msgid "Multilingual Pages"
+msgstr "Мультиязычные страницы"
+
+#: packages/multilingual/controller.php:106
+msgid "Multilingual"
+msgstr "Мультиязычность"
+
+#: packages/multilingual/controller.php:106
+msgid "Translate your site."
+msgstr "Переведите ваш сайт."
+
+#: packages/multilingual/controller.php:111
+msgid "Setup"
+msgstr "Настройки"
+
+#: packages/multilingual/controller.php:115
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:5
+msgid "Page Report"
+msgstr "Сводка по страницам"
+
+#: packages/multilingual/controller.php:121
+#: packages/multilingual/controller.php:160
+msgid "Exclude from Internationalization Copy"
+msgstr "Не копировать в языковые разделы"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:11
+msgid "Choose Source"
+msgstr "Исходный язык"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:19
+msgid "Choose Targets"
+msgstr "Целевые языки"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:44
+msgid "Display"
+msgstr "Отображать"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:45
+msgid "Go"
+msgstr "Далее"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:53
+msgid "Only Missing Pages"
+msgstr "Только пропущенные страницы"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:59
+msgid "All Pages"
+msgstr "Все страницы"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:118
+msgid "Re-Map"
+msgstr "Переопределить соответствие"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:120
+msgid "Map"
+msgstr "Определить соответствие"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:126
+msgid "Create"
+msgstr "Создать"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:130
+msgid "Ignore"
+msgstr "Игнорировать"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:136
+msgid "Create the parent page first."
+msgstr "Создайте сначала родительскую страницу для языкового раздела."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:146
+msgid "No pages found."
+msgstr "Страницы не найдены."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:175
+msgid "Choose A Page"
+msgstr "Выберите страницу"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:198
+msgid "You have not defined any multilingual sections for your site yet."
+msgstr "Вы ещё не определили ни одного языкового раздела на сайте. "
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:3
+msgid "Multilingual Content Setup"
+msgstr "Настройки языковых разделов"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:5
+msgid "Content Sections"
+msgstr "Список языковых разделов на сайте"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:12
+msgid "Name"
+msgstr "Имя"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:13
+msgid "Language"
+msgstr "Язык"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:14
+msgid "Path"
+msgstr "Путь"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:30
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:120
+msgid "You have not created any multilingual content sections yet."
+msgstr "Вы ещё не создали ни одного языкового раздела на сайте"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:33
+msgid "Add a Language"
+msgstr "Добавить новый язык на сайт"
+
+#: packages/multilingual/blocks/switch_language/controller.php:25
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:35
+msgid "Choose Language"
+msgstr "Выбор языка"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:41
+msgid "Language Icon"
+msgstr "Иконка для языка"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:45
+msgid "Choose a Parent Page"
+msgstr "Выберите родительскую страницу для языкового раздела"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:54
+msgid "Add Content Section"
+msgstr "Добавить языковой раздел"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:78
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:135
+msgid "Copy Language Tree"
+msgstr "Копировать языковое дерево"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:98
+msgid ""
+"Copy all pages from a language to another section. This will only copy pages "
+"that have not been associated. It will not replace or remove any pages from "
+"the destination section."
+msgstr ""
+"Копирование всех страниц из одного языкового раздела в другой. Страницы не "
+"будут удалены или перемещены из исходного раздела. "
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:100
+msgid "Copy From"
+msgstr "Копирование из"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:105
+msgctxt "Destination"
+msgid "To"
+msgstr "в"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:113
+msgid "Copy Tree"
+msgstr "Копировать дерево"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:118
+msgid "You must have more than one multilingual section to use this tool."
+msgstr ""
+"Для использования данной опции на сайте необходимо иметь как минимум два "
+"языковых раздела. "
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:140
+msgid "You must choose two separate multilingual sections to copy from/to"
+msgstr ""
+"Необходимо выбрать два различных языковых раздела для копирования откуда/"
+"куда."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:151
+msgid "Only the super user may copy language trees."
+msgstr "Только администратор имеет возможность копировать языковое дерево."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:153
+msgid ""
+"Since one of your multilingual sections is the home page, you may not "
+"duplicate your site tree using this tool. You must manually assign pages "
+"using the page report."
+msgstr ""
+"Так как один из языковых разделов имеет в основе главную страницу сайта, то "
+"вы не можете воспользоваться данным инструментом для дублирования дерева "
+"страниц из одного раздела в другой. Воспользуйтесь инструментом в разделе  "
+"'Сводка по страницам'."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:158
+msgid "** None Set"
+msgstr "** Не установлен"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:170
+msgid "Multilingual Settings"
+msgstr "Настройки мультиязычности"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:174
+msgid "Default Language"
+msgstr "Язык по умолчанию"
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:186
+msgid "Attempt to use visitor's language based on their browser information."
+msgstr ""
+"По возможности выбирать язык сайта основываясь на настройках в браузере."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:192
+msgid "Redirect home page to default language section."
+msgstr ""
+"Перенаправлять посетителя с главной страницы в языковой раздел по умолчанию."
+
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:201
+msgid "Save Settings"
+msgstr "Сохранить"
+
+#: packages/multilingual/tools/switch_language_for_page.php:44
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: packages/multilingual/tools/switch_language_for_page.php:47
+#, php-format
+msgid "Currently Viewing: %s"
+msgstr "Вы просматриваете страницу: %s"
+
+#: packages/multilingual/tools/switch_language_for_page.php:48
+#, php-format
+msgid "%s: None Created"
+msgstr "%s: не создано"
+
+#: packages/multilingual/blocks/switch_language/form.php:3
+msgid "Label"
+msgstr "Заголовок"
+
+#: packages/multilingual/blocks/switch_language/controller.php:13
+msgid "Adds a front-end language switcher to your website."
+msgstr "Добавление переключателя языков на страницы сайта."
+
+#: packages/multilingual/blocks/switch_language/controller.php:17
+msgid "Switch Language"
+msgstr "Переключатель языков"
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:25
+msgid "Remember my choice on this computer."
+msgstr "Запомнить мой выбор на этом компьютере."
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:28
+msgid "Save"
+msgstr "Сохранить"
+
+#~ msgid "Access Denied."
+#~ msgstr "Доступ запрещен"
