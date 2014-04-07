@@ -160,7 +160,7 @@ class InterfacePageHelper {
 								$otherPage = $this->getTranslatedPageWithAliasSupport($page, $otherLang, false);
 							}
 							if($otherPage) {
-								$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLocale . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
+								$v->addHeaderItem('<link rel="alternate" hreflang="' . str_replace('_', '-', $otherLang->msLocale) . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
 							}
 						}
 					}
