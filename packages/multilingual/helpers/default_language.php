@@ -112,14 +112,11 @@ class DefaultLanguageHelper {
 				}
 				
 				// add package translations
-				$ms = MultilingualSection::getByLocale($locale);
-				if($ms instanceof MultilingualSection) {
-					$pl = PackageList::get();
-					$installed = $pl->getPackages();
-					foreach($installed as $pkg) {
-						if($pkg instanceof Package) {
-							$pkg->setupPackageLocalization($ms->getLocale());
-						}
+				$pl = PackageList::get();
+				$installed = $pl->getPackages();
+				foreach($installed as $pkg) {
+					if($pkg instanceof Package) {
+						$pkg->setupPackageLocalization($locale);
 					}
 				}
 			}
