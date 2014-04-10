@@ -98,7 +98,7 @@ class DefaultLanguageHelper {
 			$locale = DefaultLanguageHelper::getSessionDefaultLocale();
 		}
 		
-		if (strlen($locale)) {
+		if (strlen($locale) && ($locale !== Localization::activeLocale())) {
 			// change core language to translate e.g. core blocks/themes. For versions after 5.6.3.1 it'll load also the site and package translations
 			Localization::changeLocale($locale);
 
