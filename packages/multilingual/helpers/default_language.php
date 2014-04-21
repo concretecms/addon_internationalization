@@ -91,39 +91,30 @@ class DefaultLanguageHelper {
 			return;
 		}
 		
-		$ms = MultilingualSection::getCurrentSection();
-		if (is_object($ms)) {
-			$locale = $ms->getLocale();
-		} else {
-			$locale = DefaultLanguageHelper::getSessionDefaultLocale();
-		}
+		$locale = Loader::helper('section', 'multilingual')->getLocale();
 		
-		// change core language to translate e.g. core blocks/themes
-		if (strlen($locale)) {
+		if (strlen($locale) && ($locale !== Localization::activeLocale())) {
+			// change core language to translate e.g. core blocks/themes. For versions after 5.6.3.1 it'll load also the site and package translations
 			Localization::changeLocale($locale);
-		}
-		
-		// site translations
-		if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
-			if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
-				$loc = Localization::getInstance();
-				$loc->addSiteInterfaceLanguage($locale);
-			}
-		}
-		
-		// add package translations
-		if(strlen($locale)) {
-			$ms = MultilingualSection::getByLocale($locale);
-			if($ms instanceof MultilingualSection) {
+
+			if(version_compare(APP_VERSION, '5.6.3.1') <= 0) {
+				// site translations
+				if (is_dir(DIR_LANGUAGES_SITE_INTERFACE)) {
+					if (file_exists(DIR_LANGUAGES_SITE_INTERFACE . '/' . $locale . '.mo')) {
+						$loc = Localization::getInstance();
+						$loc->addSiteInterfaceLanguage($locale);
+					}
+				}
+				
+				// add package translations
 				$pl = PackageList::get();
 				$installed = $pl->getPackages();
 				foreach($installed as $pkg) {
 					if($pkg instanceof Package) {
-						$pkg->setupPackageLocalization($ms->getLocale());
+						$pkg->setupPackageLocalization($locale);
 					}
 				}
 			}
 		}
-		
 	}
 }
