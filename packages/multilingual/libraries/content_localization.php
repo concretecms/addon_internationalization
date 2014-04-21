@@ -3,7 +3,12 @@
 class MultilingualContentLocalization {
 
 	public function getLanguages() {
-		$r = Zend_Locale::getTranslationList('language',ACTIVE_LOCALE);
-		return $r;
-	}		
+		$languages = array();
+		foreach(Zend_Locale::getTranslationList('language', ACTIVE_LOCALE) as $key => $name) {
+			if(strpos($key, '_') === false) {
+				$languages[$key] = $name;
+			}
+		}
+		return $languages;
+	}
 }
