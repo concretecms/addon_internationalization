@@ -4,7 +4,7 @@ Loader::model('section', 'multilingual');
 
 class DefaultLanguageHelper {
 
-	public function checkDefaultLanguage() {
+	public function checkDefaultLanguage($page) {
 		$req = Request::get();
 		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
 			if (!$req->getRequestCollectionPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
@@ -84,7 +84,7 @@ class DefaultLanguageHelper {
 		return $pkg->config('DEFAULT_LANGUAGE');
 	}
 	
-	public static function setupSiteInterfaceLocalization() {
+	public static function setupSiteInterfaceLocalization($page) {
 		// don't translate dashboard pages
 		$c = Page::getCurrentPage();
 		if($c instanceof Page && Loader::helper('section', 'multilingual')->section('dashboard')) {
