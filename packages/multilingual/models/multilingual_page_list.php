@@ -2,15 +2,15 @@
 Loader::model("page_list");
 class MultilingualPageList extends PageList {
 
-	public function __construct() {
+	protected function setBaseQuery($additionalFields = '') {
 		$mslist = MultilingualSection::getList();
 		$query = ',  (select mpRelationID from MultilingualPageRelations where cID = p1.cID LIMIT 1) as mpr';
-		foreach($mslist as $ms) {
-			$query .= ', (select count(mpRelationID) from MultilingualPageRelations where MultilingualPageRelations.mpRelationID = mpr and mpLocale = \'' . $ms->getLocale() . '\') as relationCount'  . $ms->getCollectionID();
+		foreach ($mslist as $ms) {
+        		$query .= ', (select count(mpRelationID) from MultilingualPageRelations where MultilingualPageRelations.mpRelationID = mpr and mpLocale = \'' . $ms->getLocale() . '\') as relationCount' . $ms->getCollectionID();
 		}
-		$this->setBaseQuery($query);
+		parent::setBaseQuery($query . $additionalFields);
 	}
-	
+
 	public function filterByMissingTargets($targets) {
 		$haveStr .= '';
 		
