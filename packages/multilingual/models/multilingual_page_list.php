@@ -12,7 +12,7 @@ class MultilingualPageList extends PageList {
                 foreach ($mslist as $ms) {
                         $query .= ', (select count(mpRelationID) from MultilingualPageRelations where MultilingualPageRelations.mpRelationID = mpr and mpLocale = \'' . $ms->getLocale() . '\') as relationCount' . $ms->getCollectionID();
                 }
-                parent::setBaseQuery('' . $query);
+                parent::setBaseQuery($query . $additionalFields);
         }
 	
 	public function filterByMissingTargets($targets) {
