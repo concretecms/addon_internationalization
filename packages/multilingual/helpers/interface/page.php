@@ -152,16 +152,17 @@ class InterfacePageHelper {
 						$isRoot = false;
 					}
 					foreach(self::$_allLanguages as $otherLang) {
-						if($otherLang->msLocale != $lang->msLocale) {
-							if($isRoot) {
-								$otherPage = $otherLang;
-							}
-							else {
-								$otherPage = $this->getTranslatedPageWithAliasSupport($page, $otherLang, false);
-							}
-							if($otherPage) {
-								$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLocale . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
-							}
+						if($otherLang->msLocale == $lang->msLocale) {
+							$otherPage = $page;
+						}
+						elseif($isRoot) {
+							$otherPage = $otherLang;
+						}
+						else {
+							$otherPage = $this->getTranslatedPageWithAliasSupport($page, $otherLang, false);
+						}
+						if($otherPage) {
+							$v->addHeaderItem('<link rel="alternate" hreflang="' . $otherLang->msLocale . '" href="' . $navigation->getLinkToCollection($otherPage) . '" />');
 						}
 					}
 				}
