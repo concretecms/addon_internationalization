@@ -15,6 +15,7 @@ class DefaultLanguageHelper {
 						$ms = MultilingualSection::getByLocale(DefaultLanguageHelper::getSessionDefaultLocale());
 						if (is_object($ms)) {
 							if ($ms->getCollectionID() != 1) {
+								header('HTTP/1.1 301 Moved Permanently');
 								header('Location: ' . Loader::helper('navigation')->getLinkToCollection($ms, true));
 								exit;
 							}
