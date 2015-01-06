@@ -1,6 +1,12 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
 class MultilingualSection extends Page {
-	
+
+
+	public function getPermissionObjectPermissionKeyCategoryHandle()
+	{
+		return 'multilingual_section';
+	}
+
 	/**
 	 * @var string
 	*/
