@@ -195,16 +195,16 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 	public function set_default() {
 		if (Loader::helper('validation/token')->validate('set_default')) {
 			$lc = MultilingualSection::getByLocale($this->post('defaultLanguage'));
+            $pkg = Package::getByHandle('multilingual');
 			if (is_object($lc)) {
-				$pkg = Package::getByHandle('multilingual');
-				$pkg->saveConfig('DEFAULT_LANGUAGE', $this->post('defaultLanguage'));				
-				$pkg->saveConfig('REDIRECT_HOME_TO_DEFAULT_LANGUAGE', $this->post('redirectHomeToDefaultLanguage'));				
+				$pkg->saveConfig('DEFAULT_LANGUAGE', $this->post('defaultLanguage'));
+				$pkg->saveConfig('REDIRECT_HOME_TO_DEFAULT_LANGUAGE', $this->post('redirectHomeToDefaultLanguage'));
 				$pkg->saveConfig('TRY_BROWSER_LANGUAGE', $this->post('useBrowserDetectedLanguage'));
-				$this->redirect('/dashboard/multilingual/setup', 'default_language_updated');
-				
 			} else {
-				$this->error->add(t('Invalid language section'));			
+				$pkg->saveConfig('DEFAULT_LANGUAGE', $this->post('defaultLanguage'));
+				$pkg->saveConfig('REDIRECT_HOME_TO_DEFAULT_LANGUAGE', '');
 			}
+			$this->redirect('/dashboard/multilingual/setup', 'default_language_updated');
 		} else {
 			$this->error->add(Loader::helper('validation/token')->getErrorMessage());
 		}
