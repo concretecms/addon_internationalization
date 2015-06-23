@@ -195,7 +195,7 @@ class DashboardMultilingualSetupController extends DashboardBaseController {
 	public function set_default() {
 		if (Loader::helper('validation/token')->validate('set_default')) {
 			$lc = MultilingualSection::getByLocale($this->post('defaultLanguage'));
-            $pkg = Package::getByHandle('multilingual');
+			$pkg = Package::getByHandle('multilingual');
 			if (is_object($lc)) {
 				$pkg->saveConfig('DEFAULT_LANGUAGE', $this->post('defaultLanguage'));
 				$pkg->saveConfig('REDIRECT_HOME_TO_DEFAULT_LANGUAGE', $this->post('redirectHomeToDefaultLanguage'));
