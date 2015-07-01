@@ -132,27 +132,27 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 					ccm_triggerProgressiveOperation(
 						CCM_TOOLS_PATH + '/dashboard/sitemap_copy_all', 
 						[{'name': 'origCID', 'value': ctf}, {'name': 'destCID', 'value': ctt}, {'name': 'copyChildrenOnly', 'value': true}],
-						"<?=t('Copy Language Tree')?>", function() {
-							window.location.href= "<?=$this->action('tree_copied')?>";
+						"<?php echo t('Copy Language Tree')?>", function() {
+							window.location.href= "<?php echo $this->action('tree_copied')?>";
 						}
 					);
 				} else {
-					alert("<?=t('You must choose two separate multilingual sections to copy from/to')?>");
+					alert("<?php echo t('You must choose two separate multilingual sections to copy from/to')?>");
 				}
 				return false;
 			});
 		});
 		</script>
 
-	<? } ?>
+	<?php } ?>
 
 </form>
-<? } else if (!$u->isSuperUser()) { ?>
-	<p><?=t('Only the super user may copy language trees.')?></p>
-<? } else if ($includesHome) { ?>
-	<p><?=t('Since one of your multilingual sections is the home page, you may not duplicate your site tree using this tool. You must manually assign pages using the page report.')?></p>
+<?php } else if (!$u->isSuperUser()) { ?>
+	<p><?php echo t('Only the super user may copy language trees.')?></p>
+<?php } else if ($includesHome) { ?>
+	<p><?php echo t('Since one of your multilingual sections is the home page, you may not duplicate your site tree using this tool. You must manually assign pages using the page report.')?></p>
 
-<? } ?>
+<?php } ?>
 
 <?php if (count($pages) > 0) {
 	$defaultLanguages = array('' => t('** None Set'));
