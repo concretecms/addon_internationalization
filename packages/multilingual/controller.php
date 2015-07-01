@@ -13,7 +13,16 @@ class MultilingualPackage extends Package {
 	public function getPackageName() {
 		return t('Internationalization');
 	}
-	
+
+	public function warmUp() {
+		if(!defined('ACTIVE_LOCALE')) {
+			$locale = Loader::helper('section', 'multilingual')->getLocale(false);
+			if(is_string($locale) && strlen($locale)) {
+				define('ACTIVE_LOCALE', $locale);
+			}
+		}
+	}
+
 	public function on_start() {
 		define('DIRNAME_IMAGES_LANGUAGES', 'flags');
 		if(!defined('MULTILINGUAL_FLAGS_WIDTH')) {
