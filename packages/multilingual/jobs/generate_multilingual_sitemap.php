@@ -18,6 +18,9 @@ class GenerateMultilingualSitemap extends Job {
 		if(!defined('ENABLE_MULTILINGUAL_SITEMAPXML') || !ENABLE_MULTILINGUAL_SITEMAPXML) {
 			return t("This job is disabled because it may cause excessive load depending on the size of your site.  To enable this job, you must define the constant ENABLE_MULTILINGUAL_SITEMAPXML as true.");
 		}
+		if(Loader::helper('sitemap_job', 'multilingual')->canUseStandardSitemapJob() == true) {
+			return t('This job is useless since the multilingual sitemap generation is integrated in the core sitemap generation job.');
+		}
 
 		$ni = Loader::helper('navigation');
 		$tp = Loader::helper('translated_pages', 'multilingual');
