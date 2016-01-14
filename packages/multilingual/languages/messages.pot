@@ -1,7 +1,7 @@
 msgid ""
-msgstr "Project-Id-Version: multilingual 1.3\n"
+msgstr "Project-Id-Version: multilingual 1.3.2dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 17:19+0000\n"
+"POT-Creation-Date: 2015-07-02 07:09+0000\n"
 "MIME-Version: 1.0\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -9,46 +9,94 @@ msgstr "Project-Id-Version: multilingual 1.3\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:9
-msgid "Generate multilingual sitemap.xml File"
+#: packages/multilingual/blocks/switch_language/templates/flags
+msgctxt "TemplateFileName"
+msgid "Flags"
 msgstr ""
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:14
-msgid "Generate the sitemap.xml file that search engines use to crawl your site with additional multilingual directives."
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default
+msgctxt "TemplateFileName"
+msgid "Flags Set Default"
 msgstr ""
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:19
-msgid "This job is disabled because it may cause excessive load depending on the size of your site.  To enable this job, you must define the constant ENABLE_MULTILINGUAL_SITEMAPXML as true."
+#: packages/multilingual/blocks/switch_language/templates/seo_flags
+msgctxt "TemplateFileName"
+msgid "Seo Flags"
 msgstr ""
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:56
-#, php-format
-msgid "Cannot open file %s"
+#: packages/multilingual/controller.php:10
+msgid "Translate your site with this free multilingual solution."
 msgstr ""
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:145
-msgid "Sitemap XML File Saved."
+#: packages/multilingual/controller.php:14
+msgid "Internationalization"
 msgstr ""
 
-#: packages/multilingual/jobs/generate_multilingual_sitemap.php:148
-#, php-format
-msgid "The file %s is not writable"
+#: packages/multilingual/controller.php:80
+msgid "Multilingual Pages"
 msgstr ""
 
-#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:76
+#: packages/multilingual/controller.php:106
+msgid "Multilingual"
+msgstr ""
+
+#: packages/multilingual/controller.php:106
+msgid "Translate your site."
+msgstr ""
+
+#: packages/multilingual/controller.php:111
+msgid "Setup"
+msgstr ""
+
+#: packages/multilingual/controller.php:116
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:5
+msgid "Page Report"
+msgstr ""
+
+#: packages/multilingual/controller.php:123
+#: packages/multilingual/controller.php:164
+msgid "Exclude from Internationalization Copy"
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:25
+msgid "Remember my choice on this computer."
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:28
+msgid "Save"
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/controller.php:13
+msgid "Adds a front-end language switcher to your website."
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/controller.php:17
+msgid "Switch Language"
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/controller.php:25
+#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:35
+msgid "Choose Language"
+msgstr ""
+
+#: packages/multilingual/blocks/switch_language/form.php:3
+msgid "Label"
+msgstr ""
+
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:84
 msgid "You cannot assign this page to itself."
 msgstr ""
 
-#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:96
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:104
 msgid "The destination page doesn't appear to be in a valid multilingual section."
 msgstr ""
 
-#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:107
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:109
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:115
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:121
 msgid "Ignored"
 msgstr ""
 
-#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:134
+#: packages/multilingual/controllers/dashboard/multilingual/page_report.php:154
 msgid "Insufficient permissions."
 msgstr ""
 
@@ -110,38 +158,31 @@ msgstr ""
 msgid "This language/region combination already exists."
 msgstr ""
 
-#: packages/multilingual/controller.php:10
-msgid "Translate your site with this free multilingual solution."
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:9
+msgid "Generate multilingual sitemap.xml File"
 msgstr ""
 
-#: packages/multilingual/controller.php:14
-msgid "Internationalization"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:14
+msgid "Generate the sitemap.xml file that search engines use to crawl your site with additional multilingual directives."
 msgstr ""
 
-#: packages/multilingual/controller.php:80
-msgid "Multilingual Pages"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:19
+msgid "This job is disabled because it may cause excessive load depending on the size of your site.  To enable this job, you must define the constant ENABLE_MULTILINGUAL_SITEMAPXML as true."
 msgstr ""
 
-#: packages/multilingual/controller.php:106
-msgid "Multilingual"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:56
+#, php-format
+msgid "Cannot open file %s"
 msgstr ""
 
-#: packages/multilingual/controller.php:106
-msgid "Translate your site."
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:149
+#, php-format
+msgid "Sitemap XML File Saved.(%d pages)"
 msgstr ""
 
-#: packages/multilingual/controller.php:111
-msgid "Setup"
-msgstr ""
-
-#: packages/multilingual/controller.php:115
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:5
-msgid "Page Report"
-msgstr ""
-
-#: packages/multilingual/controller.php:121
-#: packages/multilingual/controller.php:160
-msgid "Exclude from Internationalization Copy"
+#: packages/multilingual/jobs/generate_multilingual_sitemap.php:152
+#, php-format
+msgid "The file %s is not writable"
 msgstr ""
 
 #: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:11
@@ -152,51 +193,62 @@ msgstr ""
 msgid "Choose Targets"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:44
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:46
 msgid "Display"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:45
-msgid "Go"
-msgstr ""
-
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:53
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:54
 msgid "Only Missing Pages"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:59
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:60
 msgid "All Pages"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:118
-msgid "Re-Map"
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:68
+msgid "Filter Pages"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:120
-msgid "Map"
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:69
+msgid "By Name"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:126
-msgid "Create"
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:74
+msgid "Go"
 msgstr ""
 
 #: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:130
+msgid "Re-Map"
+msgstr ""
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:132
+#: packages/multilingual/tools/switch_language_for_page.php:52
+msgid "Map"
+msgstr ""
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:138
+#: packages/multilingual/tools/switch_language_for_page.php:51
+msgid "Create"
+msgstr ""
+
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:142
 msgid "Ignore"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:136
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:148
 msgid "Create the parent page first."
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:146
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:158
 msgid "No pages found."
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:175
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:187
+#: packages/multilingual/tools/switch_language_for_page.php:67
 msgid "Choose A Page"
 msgstr ""
 
-#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:198
+#: packages/multilingual/single_pages/dashboard/multilingual/page_report.php:210
 msgid "You have not defined any multilingual sections for your site yet."
 msgstr ""
 
@@ -227,11 +279,6 @@ msgstr ""
 
 #: packages/multilingual/single_pages/dashboard/multilingual/setup.php:33
 msgid "Add a Language"
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/controller.php:25
-#: packages/multilingual/single_pages/dashboard/multilingual/setup.php:35
-msgid "Choose Language"
 msgstr ""
 
 #: packages/multilingual/single_pages/dashboard/multilingual/setup.php:41
@@ -308,37 +355,17 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: packages/multilingual/tools/switch_language_for_page.php:44
+#: packages/multilingual/tools/switch_language_for_page.php:45
 #, php-format
 msgid "%s: %s"
 msgstr ""
 
-#: packages/multilingual/tools/switch_language_for_page.php:47
+#: packages/multilingual/tools/switch_language_for_page.php:48
 #, php-format
 msgid "Currently Viewing: %s"
 msgstr ""
 
-#: packages/multilingual/tools/switch_language_for_page.php:48
+#: packages/multilingual/tools/switch_language_for_page.php:49
 #, php-format
 msgid "%s: None Created"
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/form.php:3
-msgid "Label"
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/controller.php:13
-msgid "Adds a front-end language switcher to your website."
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/controller.php:17
-msgid "Switch Language"
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:25
-msgid "Remember my choice on this computer."
-msgstr ""
-
-#: packages/multilingual/blocks/switch_language/templates/flags_set_default/view.php:28
-msgid "Save"
 msgstr ""
