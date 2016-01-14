@@ -1,4 +1,4 @@
-1.4.0dev
+1.4
 	- prevented duplicate loading of package translation files in versions greater than 5.6.3.1 (thx github.com/mlocati)
 	- remove locales from getLanguages
 	- added map and creat pages from in page menu (thx github.com/ojalehto)
