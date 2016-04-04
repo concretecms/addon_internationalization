@@ -6,7 +6,7 @@ class DefaultLanguageHelper {
 
 	public function checkDefaultLanguage() {
 		$req = Request::get();
-		if (!$_SERVER['REQUEST_METHOD'] != 'POST') { 
+		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 			if (!$req->getRequestPath() && $req->getRequestCollectionID() == 1 && (!$req->isIncludeRequest())) {
 				$p = $req->getCurrentPage();
 				if (is_object($p) && (!$p->isError())) { 
