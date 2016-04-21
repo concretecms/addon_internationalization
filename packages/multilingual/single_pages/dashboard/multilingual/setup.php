@@ -21,10 +21,15 @@ if (count($pages) > 0) { ?>
 			<td><a href="<?php echo $nav->getLinkToCollection($pc)?>"><?php echo $pc->getCollectionName()?></a></td>
 			<td><?php echo $pcl->getLanguageText()?> (<?php echo $pcl->getLocale();?>)</td>
 			<td><?php echo $pc->getCollectionPath()?></td>
-			<td><a href="<?php echo $this->action('remove_language_section', $pc->getCollectionID(), Loader::helper('validation/token')->generate())?>"><img src="<?php echo ASSETS_URL_IMAGES?>/icons/remove_minus.png" /></a></td>
+			<td><a href="<?php echo $this->action('remove_language_section', $pc->getCollectionID(), Loader::helper('validation/token')->generate())?>" class="js-remove-lang"><img src="<?php echo ASSETS_URL_IMAGES?>/icons/remove_minus.png" /></a></td>
+
 		</tr>
 	<?php } ?>
 	</table>
+
+	<div id="dialog-confirm-remove-lang" class="hide" title="Are you sure ?">
+  		<p>This language will be permanently deleted and cannot be recovered. Are you sure?</p>
+	</div>
 
 <?php } else { ?>
 	<p><?php echo t('You have not created any multilingual content sections yet.')?></p>
@@ -62,6 +67,29 @@ $(function() {
 		ccm_multilingualPopulateIcons($(this).val(), '');
 	});
 	ccm_multilingualPopulateIcons($("select[name=msLanguage]").val(), '<?php echo $_POST["msIcon"]?>');
+
+	$(".js-remove-lang").click(function(e){
+		e.preventDefault();
+
+		var url = $(this).attr('href');
+
+		$('#dialog-confirm-remove-lang').dialog({
+			resizable: false,
+			modal: true,
+			buttons: {
+		        "Delete": function() {
+					document.location.href = url;
+		            $( this ).dialog( "close" );
+		        },
+		        Cancel: function() {
+		            $( this ).dialog( "close" );
+		        }
+		    }
+		});
+
+		return false;
+	});
+
 });
 
 ccm_multilingualPopulateIcons = function(lang, icon) {
@@ -93,19 +121,19 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 	<?php if (count($pages) > 1) {
 		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
 		$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
-		
+
 		?>
 		<p><?php echo t('Copy all pages from a language to another section. This will only copy pages that have not been associated. It will not replace or remove any pages from the destination section.')?></p>
 		<div class="clearfix">
 		<label><?php echo t('Copy From')?></label>
 		<div class="input"><?php echo $copyLanguageSelect1?></div>
 		</div>
-		
+
 		<div class="clearfix">
 		<label><?php echo tc('Destination', 'To')?></label>
 		<div class="input"><?php echo $copyLanguageSelect2?></div>
 		</div>
-	
+
 		<div class="clearfix">
 		<label></label>
 		<div class="input">
@@ -120,7 +148,7 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 		<p><?php echo t('You have not created any multilingual content sections yet.')?></p>
 	<?php } ?>
 
-	<? if(version_compare(APP_VERSION, '5.6.0.3', '>')) { 
+	<? if(version_compare(APP_VERSION, '5.6.0.3', '>')) {
 			// 5.6.1 OR GREATER
 		?>
 		<script type="text/javascript">
@@ -130,7 +158,7 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 				var ctt = $('select[name=copyTreeTo]').val();
 				if (ctt > 0 && ctf > 0 && ctt != ctf) {
 					ccm_triggerProgressiveOperation(
-						CCM_TOOLS_PATH + '/dashboard/sitemap_copy_all', 
+						CCM_TOOLS_PATH + '/dashboard/sitemap_copy_all',
 						[{'name': 'origCID', 'value': ctf}, {'name': 'destCID', 'value': ctt}, {'name': 'copyChildrenOnly', 'value': true}],
 						"<?php echo t('Copy Language Tree')?>", function() {
 							window.location.href= "<?php echo $this->action('tree_copied')?>";
@@ -161,7 +189,7 @@ if ($u->isSuperUser() && !$includesHome) { ?>
 		$defaultLanguages[$pcl->getLocale()] = $pcl->getLanguageText();
 	}
 	$defaultLanguagesSelect = $form->select('defaultLanguage', $defaultLanguages, $defaultLanguage);
-	
+
 
 	?>
 
