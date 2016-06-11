@@ -80,18 +80,22 @@ ccm_multilingualPopulateIcons = function(lang, icon) {
 $u = new User();
 $copyLanguages = array();
 $includesHome = false;
+$defaultCopyTreeFrom = false;
 foreach($pages as $pc) {
 	$pcl = MultilingualSection::getByID($pc->getCollectionID());
 	if ($pc->getCollectionID() == HOME_CID) {
 		$includesHome = true;
 	}
 	$copyLanguages[$pc->getCollectionID()] = $pc->getCollectionName() . ' - ' . $pcl->getLanguageText();
+	if ($pcl->msLocale === $defaultLanguage) {
+		$defaultCopyTreeFrom = $pc->getCollectionID();
+	}
 }
 
 if ($u->isSuperUser() && !$includesHome) { ?>
 <form method="post" id="ccm-internationalization-copy-tree" action="<?php echo $this->action('copy_tree')?>">
 	<?php if (count($pages) > 1) {
-		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages);
+		$copyLanguageSelect1 = $form->select('copyTreeFrom', $copyLanguages, $defaultCopyTreeFrom); // works whether $defaultCopyTreeFrom remains false or was set to a locale
 		$copyLanguageSelect2 = $form->select('copyTreeTo', $copyLanguages);
 		
 		?>
